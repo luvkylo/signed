@@ -72,21 +72,21 @@ var artist = {
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyDCUBY69qfLyOGhu8ThOcNAyi1DJPCN378",
-    authDomain: "signed-1d025.firebaseapp.com",
-    databaseURL: "https://signed-1d025.firebaseio.com",
-    projectId: "signed-1d025",
-    storageBucket: "signed-1d025.appspot.com",
-    messagingSenderId: "686756480958"
-};
+    apiKey: "AIzaSyBGEi2FNlzHCBjl6Oit1qTAjPQ7oKSTER0",
+    authDomain: "project-1-930f6.firebaseapp.com",
+    databaseURL: "https://project-1-930f6.firebaseio.com",
+    projectId: "project-1-930f6",
+    storageBucket: "project-1-930f6.appspot.com",
+    messagingSenderId: "772881617679"
+  };
 firebase.initializeApp(config);
 
-var userTop50 = function () {
+var userTop50 = function() {
     $.ajax({
-        url: 'https://api.spotify.com/v1/'
+        url: 'https://api.spotify.com/v1/' 
     })
 
-    $.each(data.artist, function (item, index) {
+    $.each(data.artist, function(item, index) {
         var name = item;
         // do an ajax call to spotify to get the info on the artist
         // when done, receive result 
@@ -94,104 +94,39 @@ var userTop50 = function () {
     })
 }
 
-// D3 map
-"use strict";
-
-var format = d3.format(','); // Set tooltips
-
-var tip = d3.tip().attr('class', 'd3-tip').offset([-10, 0]).html(function (d) {
-    return "<strong>Country: </strong><span class='details'>".concat(d.properties.name, "<br></span><strong># of Unsiged Singers: </strong><span class='details'>").concat(format(d.population), "</span>");
-        // change d.population to {singer variable from ready function}
-});
-var margin = {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
-};
-var width = 960 - margin.left - margin.right;
-var height = 500 - margin.top - margin.bottom;
-var color = d3.scaleThreshold().domain([
-    1, 2, 4, 8, 12, 20, 28, 36, 44, 50
-    ]).range([
-    'rgb(247,251,255)', 'rgb(222,235,247)', 'rgb(198,219,239)', 'rgb(158,202,225)', 
-    'rgb(107,174,214)', 'rgb(66,146,198)', 'rgb(33,113,181)', 'rgb(8,81,156)', 'rgb(8,48,107)', 
-    'rgb(3,19,43)']);
+var provider = new firebase.auth.GoogleAuthProvider();
+// Enable Google Authentication
 
 
-svg.call(tip);
+function googleSignin() {
+    firebase.auth()
+    
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+        console.log(token)
+        console.log(user)
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        console.log(errorCode)
+        console.log(errorMessage)
+      });
 
-function musicBrainzAPI() {
-    var search = "Pink Floyd"
-    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json"
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-        .then(function (response) {
-            MBID = response.artists[0].id
-            queryURL = "http://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json"
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            })
-                .then(function (response) {
-                    var label = response.relations[0].label.name
-                    console.log(label)
-                })
-        })
-}
-musicBrainzAPI()
-
-$(document).ready(function {
-    $("#login").on("click", function () {
-        var provider = new firebase.auth.GoogleAuthProvider();
+ }
+ 
+ function googleSignout() {
+    firebase.auth().signOut()
+     
+    .then(function() {
+       console.log('Signout Succesfull')
+    }, function(error) {
+       console.log('Signout Failed')  
     });
-
-
-
-
-    // change all population related variable name into singer related name.
-
-    // this need to be put into the html once user is logged in
-    // Note select('body') needs to select the parent element before the table
-    // var svg = d3.select('#world-map').append('svg').attr('width', width).attr('height', height).append('g').attr('class', 'map');
-    // var projection = d3.geoRobinson().scale(148).rotate([352, 0, 0]).translate([width / 2, height / 2]);
-    // var path = d3.geoPath().projection(projection);
-
-    // queue().
-    // defer(d3.json, 'world_countries.json').
-    // defer(d3.tsv, 'world_population.tsv').
-    // await(ready);
-    // // remove queue.defer({d3.csv, 'world_population.tsv'})
-
-    // function ready(error, data, population) {
-    //     var populationById = {};
-    //     population.forEach(function (d) {
-    //         populationById[d.id] = +d.population;
-    //         // in "population.forEach(d => { populationById[d.id] = +d.population; });" - use the existing country list, for each country, parse through spotify API (a function from Taylor), count unsigned singer, push # and alpha 3 code (use geoname API to convert country name to alpha 3 code) into "populationById" obj, append to the table below, give them class name of their country
-    //     });
-    //     data.features.forEach(function (d) {
-    //         d.population = populationById[d.id];
-    //         // in "data.features.forEach(d => { d.population = populationById[d.id] });" - use the alpha 3 country code in "populationById" obj to push # of unsigned singer into data
-    //     });
-
-    //     svg.append('g').attr('class', 'countries').selectAll('path').data(data.features).enter().append('path').attr('d', path).style('fill', function (d) {
-    //         return color(populationById[d.id]);
-    //     }).style('stroke', 'white').style('opacity', 0.8).style('stroke-width', 0.3) // tooltips
-    //     .on('mouseover', function (d) {
-    //         tip.show(d);
-    //         d3.select(this).style('opacity', 1).style('stroke-width', 3);
-    //     }).on('mouseout', function (d) {
-    //         tip.hide(d);
-    //         d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
-    //     });
-    //     // add svg.append("g").on("click") - > to scroll down to the list of singer from their country
-
-    //     svg.append('path').datum(topojson.mesh(data.features, function (a, b) {
-    //         return a.id !== b.id;
-    //     })).attr('class', 'names').attr('d', path);
-    // }
-});
-
+ }
 
