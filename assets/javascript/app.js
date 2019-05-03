@@ -86,7 +86,10 @@ var config = {
   messagingSenderId: "772881617679"
 };
 
+var userEmail = "";
+
 firebase.initializeApp(config);
+var database = firebase.database();
 
 // --------------------------------------------- Functions --------------------------------------------------
 // var userTop50 = function() {
@@ -155,7 +158,13 @@ function musicBrainzAPI(name) {
         });
     });
 }
+<<<<<<< HEAD
 // ---------------------------------------- Spotify Authentication ----------------------------------------------
+=======
+
+var playlistURL = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
+
+>>>>>>> master
 // Find hash of URL
 var hash = window.location.hash
 .substring(1)
@@ -214,45 +223,68 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 })
 
+// when the sign in button is pressed
+function googleSignin() {
+    firebase.auth();
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        // var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+
+        var usersRef = firebase.database().ref("users");
+        if (user) {
+            database.ref().once("value", function(data) {
+                var userList = data.val().users;
+                if (userList[user.uid] == undefined) {
+                    usersRef.child(user.uid).set({ 
+                        displayName: user.displayName,
+                        email: user.email,
+                        favorite: ""
+                    });
+                }
+            });
+            // var user = firebase.auth().currentUser;
+            // to get current user
+            // remove all display
+            // ------------------------------ add map and display table -----------------------------------
+        }
+    }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        console.log(errorCode);
+        console.log(errorMessage);
+    });
+
+    $(".signin").addClass("invisible").css("display", "none");
+    $(".signout").removeClass("invisible").css("display", "initial");
+    $(".fav").removeClass("invisible").css("display", "initial");
+
+}
+
+// when the signout button is pressed
+function googleSignout() {
+    firebase.auth().signOut()
+    
+    .then(function() {
+    console.log('Signout Succesfull');
+    }, function(error) {
+    console.log('Signout Failed');
+    });
+    $(".signin").removeClass("invisible").css("display", "initial");
+    $(".signout").addClass("invisible").css("display", "none");
+    $(".fav").addClass("invisible").css("display", "none");
+}
 
 // ---------------------------------------- load web --------------------------------------------
 
 $(document).ready(function() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    
-    // when the sign in button is pressed
-    function googleSignin() {
-        firebase.auth();
-        var provider = new firebase.auth.GoogleAuthProvider();
-    
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-            // ...
-            console.log(token);
-            console.log(user);
-        }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            console.log(errorCode);
-            console.log(errorMessage);
-        });
 
-    }
-
-    // when the signout button is pressed
-    function googleSignout() {
-        firebase.auth().signOut()
-        .then(function() {
-        console.log('Signout Succesfull');
-        }, function(error) {
-        console.log('Signout Failed');
-        });
-    }
 
     // --------------------- add table of centent to the main display ----------------------------------
 
