@@ -73,6 +73,9 @@ var artist = {};
 var countryName = "United States";
 var label = "";
 
+var playlistURL = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
+var artistURL = "https://api.spotify.com/v1/artists/";
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyBGEi2FNlzHCBjl6Oit1qTAjPQ7oKSTER0",
@@ -89,18 +92,48 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // --------------------------------------------- Functions --------------------------------------------------
-var userTop50 = function () {
+// var userTop50 = function() {
+// ajax call for playlist
     $.ajax({
-        url: 'https://api.spotify.com/v1/'
-    });
+        url: playlistURL,
+        method: "GET",
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        success: function(data) {
+            var response = data.tracks.items[0].track;
 
-    $.each(data.artist, function (item, index) {
-        var name = item;
-        // do an ajax call to spotify to get the info on the artist
-        // when done, receive result 
-        // artist[result.name] = {"id": ..., "followers": ...}
-    });
-}
+            console.log(data)
+            var artistID = response.artists[0].id;
+            var artistName = response.artists[0].name;
+            var trackTitle = response.track.name;
+            var trackNum = response.track.track_number;
+            console.log(artistID);
+            console.log(artistName);
+            console.log(trackTitle);
+            console.log(trackNum);
+        }
+     });  
+
+// ajax call for artist
+        $.ajax({
+            url: artistURL,
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            success: function(data) {
+                console.log(data)
+            }
+        });
+    // });
+    //     $.each(data.artist, function(item, index) {
+    //         var name = item;
+    //         // do an ajax call to spotify to get the info on the artist
+    //         // when done, receive result 
+    //         // artist[result.name] = {"id": ..., "followers": ...}
+    //     });
+    // };
 
 // Function that get label name
 function musicBrainzAPI(name) {
@@ -125,9 +158,13 @@ function musicBrainzAPI(name) {
         });
     });
 }
+<<<<<<< HEAD
+// ---------------------------------------- Spotify Authentication ----------------------------------------------
+=======
 
 var playlistURL = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
 
+>>>>>>> master
 // Find hash of URL
 var hash = window.location.hash
 .substring(1)
@@ -155,25 +192,6 @@ if (!accessToken) {
   window.location = authorizedURL + "?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token";
 }
 
-// var userTop50 = function() {
-    $.ajax({
-        url: playlistURL,
-        method: "GET",
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
-        },
-        success: function(data) {
-            console.log(data)
-        }
-     });
-    // });
-    //     $.each(data.artist, function(item, index) {
-    //         var name = item;
-    //         // do an ajax call to spotify to get the info on the artist
-    //         // when done, receive result 
-    //         // artist[result.name] = {"id": ..., "followers": ...}
-    //     });
-    // };
 // ---------------------------------------- operations prior web loading ----------------------------------------------
 
 // get Geo location and country name
