@@ -116,16 +116,16 @@ var database = firebase.database();
      });  
 
 // ajax call for artist
-        $.ajax({
-            url: artistURL,
-            method: "GET",
-            headers: {
-                'Authorization': 'Bearer ' + accessToken
-            },
-            success: function(data) {
-                console.log(data)
-            }
-        });
+        // $.ajax({
+        //     url: artistURL,
+        //     method: "GET",
+        //     headers: {
+        //         'Authorization': 'Bearer ' + accessToken
+        //     },
+        //     success: function(data) {
+        //         console.log(data)
+        //     }
+        // });
     // });
     //     $.each(data.artist, function(item, index) {
     //         var name = item;
