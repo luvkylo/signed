@@ -229,6 +229,9 @@ function googleSignin() {
                     });
                 }
             });
+            // var user = firebase.auth().currentUser;
+            // to get current user
+            // remove all display
             // ------------------------------ add map and display table -----------------------------------
         }
     }).catch(function(error) {
@@ -242,7 +245,7 @@ function googleSignin() {
 
     $(".signin").addClass("invisible").css("display", "none");
     $(".signout").removeClass("invisible").css("display", "initial");
-    $("fav").removeClass("invisible").css("display", "initial");
+    $(".fav").removeClass("invisible").css("display", "initial");
 
 }
 
@@ -257,7 +260,7 @@ function googleSignout() {
     });
     $(".signin").removeClass("invisible").css("display", "initial");
     $(".signout").addClass("invisible").css("display", "none");
-    $("fav").addClass("invisible").css("display", "none");
+    $(".fav").addClass("invisible").css("display", "none");
 }
 
 // ---------------------------------------- load web --------------------------------------------
