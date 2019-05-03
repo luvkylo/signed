@@ -158,13 +158,12 @@ function musicBrainzAPI(name) {
         });
     });
 }
-<<<<<<< HEAD
+
 // ---------------------------------------- Spotify Authentication ----------------------------------------------
-=======
+
 
 var playlistURL = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
 
->>>>>>> master
 // Find hash of URL
 var hash = window.location.hash
 .substring(1)
