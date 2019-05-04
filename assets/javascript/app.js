@@ -182,6 +182,7 @@ if (!accessToken) {
                         var x = 1;
 
                         function fetchdata() {
+                            console.log(x*1000);
                             $.ajax({
                                 url: queryURL,
                                 method: "GET"
@@ -191,7 +192,6 @@ if (!accessToken) {
                                 queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/label/" + MBID + "?inc=aliases&fmt=json";
 
                                 function datafetch() {
-                                    console.log(x*1000);
                                     $.ajax({
                                         url: queryURL,
                                         method: "GET"
