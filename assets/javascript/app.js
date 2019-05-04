@@ -125,27 +125,27 @@ if (!accessToken) {
 
 // --------------------------------------------- Functions --------------------------------------------------
 // Function that get label name
-function musicBrainzAPI(name) {
-    var search = name;
-    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
+// function musicBrainzAPI(name) {
+//     var search = name;
+//     var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-    .then(function (response) {
-        MBID = response.artists[0].id;
-        queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
+//     $.ajax({
+//         url: queryURL,
+//         method: "GET"
+//     })
+//     .then(function (response) {
+//         MBID = response.artists[0].id;
+//         queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .then(function (response) {
-            return response.relations[0].label.name;
-        });
-    });
-}
+//         $.ajax({
+//             url: queryURL,
+//             method: "GET"
+//         })
+//         .then(function (response) {
+//             return response.relations[0].label.name;
+//         });
+//     });
+// }
 
 
 // var userTop50 = function() {
@@ -163,9 +163,11 @@ function musicBrainzAPI(name) {
 
             $.each(response, function(key, item){
                 var artist = item.track.artists;
+                var artistName = i.name;
+                console.log(artistName);
                 $.each(artist, function(k, i) {
-                    var search = name;
-                    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json&origin=https://luvkylo.github.io/signed/";
+                    var search = artistName;
+                    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json&origin=*";
 
                     $.ajax({
                         url: queryURL,
@@ -173,7 +175,7 @@ function musicBrainzAPI(name) {
                     })
                     .then(function (response) {
                         MBID = response.artists[0].id;
-                        queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json&origin=https://luvkylo.github.io/signed/";
+                        queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json&origin=*";
 
                         $.ajax({
                             url: queryURL,
@@ -181,8 +183,6 @@ function musicBrainzAPI(name) {
                         })
                         .then(function (response) {
 
-                            var artistName = i.name;
-                            console.log(artistName);
                             var trackNum = t;
                             console.log(trackNum);
                             var trackName = item.track.name;
