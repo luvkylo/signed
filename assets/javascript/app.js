@@ -169,51 +169,55 @@ if (!accessToken) {
                     var search = artistName;
                     var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json&origin=*";
 
-                    $.ajax({
-                        url: queryURL,
-                        method: "GET"
-                    })
-                    .then(function (response) {
-                        MBID = response.artists[0].id;
-                        queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json&origin=*";
-
+                    setTimeout(function() {
                         $.ajax({
                             url: queryURL,
                             method: "GET"
                         })
                         .then(function (response) {
+                            MBID = response.artists[0].id;
+                            queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json&origin=*";
 
-                            var trackNum = t;
-                            console.log(trackNum);
-                            var trackName = item.track.name;
-                            console.log(trackName);
-                            var spotifyId = i.id;
-                            console.log(spotifyId);
-                            var label = response.relations[0].label.name;
-                            console.log(label);
+                            setTimeout(function() {
+                                $.ajax({
+                                    url: queryURL,
+                                    method: "GET"
+                                })
+                                .then(function (response) {
 
-                            if (artists[artistName] != undefined) {
-                                var numList = artists.artistName.trackNum;
-                                numList.push(trackNum);
-                                var nameList = artists.artistName.trackName;
-                                nameList.push(trackName);
-                                artists[artistName] = {
-                                    "trackNum": numList,
-                                    "trackName": nameList,
-                                    "spotifyId": spotifyId,
-                                    "label": label
-                                }
-                            }
-                            else {
-                                artists[artistName] = {
-                                    "trackNum": [trackNum],
-                                    "trackName": [trackName],
-                                    "spotifyId": spotifyId,
-                                    "label": label
-                                }
-                            }
+                                    var trackNum = t;
+                                    console.log(trackNum);
+                                    var trackName = item.track.name;
+                                    console.log(trackName);
+                                    var spotifyId = i.id;
+                                    console.log(spotifyId);
+                                    var label = response.relations[0].label.name;
+                                    console.log(label);
+
+                                    if (artists[artistName] != undefined) {
+                                        var numList = artists.artistName.trackNum;
+                                        numList.push(trackNum);
+                                        var nameList = artists.artistName.trackName;
+                                        nameList.push(trackName);
+                                        artists[artistName] = {
+                                            "trackNum": numList,
+                                            "trackName": nameList,
+                                            "spotifyId": spotifyId,
+                                            "label": label
+                                        }
+                                    }
+                                    else {
+                                        artists[artistName] = {
+                                            "trackNum": [trackNum],
+                                            "trackName": [trackName],
+                                            "spotifyId": spotifyId,
+                                            "label": label
+                                        }
+                                    }
+                                });
+                            }, 1000);
                         });
-                    });
+                    }, 1000);
                 });
                 t++;
             });
