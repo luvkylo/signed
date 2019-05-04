@@ -165,7 +165,7 @@ function musicBrainzAPI(name) {
                 var artist = item.track.artists;
                 $.each(artist, function(k, i) {
                     var search = name;
-                    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json&origin=https://meta.wikimedia.org";
+                    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json&origin=https://luvkylo.github.io/signed/";
 
                     $.ajax({
                         url: queryURL,
@@ -173,7 +173,7 @@ function musicBrainzAPI(name) {
                     })
                     .then(function (response) {
                         MBID = response.artists[0].id;
-                        queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json&origin=https://meta.wikimedia.org";
+                        queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json&origin=https://luvkylo.github.io/signed/";
 
                         $.ajax({
                             url: queryURL,
