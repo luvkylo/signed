@@ -161,6 +161,7 @@ if (!accessToken) {
             var response = data.tracks.items;
             var t = 1;
 
+            var x = 1;
             $.each(response, function(key, item){
                 var artist = item.track.artists;
                 $.each(artist, function(k, i) {
@@ -177,23 +178,21 @@ if (!accessToken) {
                         }
                     }
                     else {
+                        x++; 
                         var search = artistName;
                         var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
-                        var x = 1;
 
-                        function fetchdata() {
-                            console.log(x*1000);
-                            x++;
+                        console.log(x*1000);
+                        setTimeout(function() {
                             $.ajax({
                                 url: queryURL,
                                 method: "GET"
                             })
                             .then(function (response) {
+                                x++;
                                 MBID = response.artists[0].id;
                                 queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/label/" + MBID + "?inc=aliases&fmt=json";
-
-                                function datafetch() {
-                                    x++;
+                                setTimeout(function() {
                                     $.ajax({
                                         url: queryURL,
                                         method: "GET"
@@ -218,12 +217,9 @@ if (!accessToken) {
                                         }
                                         t++;
                                     });
-                                }
-                                setTimeout(datafetch, x*1000);
+                                }, x*1000);
                             });
-                        }
-
-                        setTimeout(fetchdata, x*1000);
+                        }, x*1000);
                     }
                 });
                 
