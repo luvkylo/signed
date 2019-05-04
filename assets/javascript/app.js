@@ -208,7 +208,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
     console.log(longFix);
 
     // concatenate key and long/lat as string into GET URL
-    var queryURL = "https://secure.geonames.org/findNearbyJSON?lat=" + latFix + "&lng=" + longFix + "&username=demo"
+    var queryURL = "https://secure.geonames.org/findNearbyJSON?lat=" + latFix + "&lng=" + longFix + "&username=dangggchris"
     console.log(queryURL);
 
     // Ajax call to API
