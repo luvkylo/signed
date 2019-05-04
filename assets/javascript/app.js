@@ -161,14 +161,14 @@ function musicBrainzAPI(name) {
             var response = data.tracks.items;
 
             $.each(response, function(key, item){
-                var artist = item.artists;
-                console.log(artist);
+                var artist = item.track.artists;
+                console.log(artist)
                 $.each(artist, function(k, i) {
                     var artistName = i.name;
                     console.log(artistName);
-                    var trackNum = item.track_number;
+                    var trackNum = item.track.track_number;
                     console.log(trackNum);
-                    var trackName = item.name;
+                    var trackName = item.track.name;
                     console.log(trackName);
                     var spotifyId = i.id;
                     console.log(spotifyId);
