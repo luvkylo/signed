@@ -68,10 +68,9 @@ var countryPlaylist = {
     // "Monaco": "",
 }
 
-var artist = {};
+var artists = {};
 
 var countryName = "United States";
-var label = "";
 
 var playlistURL = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
 var artistURL = "https://api.spotify.com/v1/artists/";
@@ -125,8 +124,33 @@ if (!accessToken) {
 
 
 // --------------------------------------------- Functions --------------------------------------------------
+// Function that get label name
+function musicBrainzAPI(name) {
+    var search = name;
+    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+    .then(function (response) {
+        MBID = response.artists[0].id;
+        queryURL = "http://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+        .then(function (response) {
+            return response.relations[0].label.name;
+        });
+    });
+}
+
+
 // var userTop50 = function() {
 // ajax call for playlist
+// track number, artist, track name, spotify id, label
     $.ajax({
         url: playlistURL,
         method: "GET",
@@ -134,17 +158,44 @@ if (!accessToken) {
             'Authorization': 'Bearer ' + accessToken
         },
         success: function(data) {
-            var response = data.tracks.items[0].track;
+            var response = data.tracks.items;
 
-            console.log(data)
-            var artistID = response.artists[0].id;
-            var artistName = response.artists[0].name;
-            var trackTitle = response.track.name;
-            var trackNum = response.track.track_number;
-            console.log(artistID);
-            console.log(artistName);
-            console.log(trackTitle);
-            console.log(trackNum);
+            $.each(response, function(item){
+                $.each(item.track.artist, function(i) {
+                    var artistName = i.name;
+                    console.log(artistName);
+                    var trackNum = item.track.track_number;
+                    console.log(trackNum);
+                    var trackName = item.track.name;
+                    console.log(trackName);
+                    var spotifyId = i.id;
+                    console.log(spotifyId);
+                    var label = musicBrainzAPI(artistName);
+                    console.log(label);
+
+                    if (artists[artistName] != undefined) {
+                        var numList = artists.artistName.trackNum;
+                        numList.push(trackNum);
+                        var nameList = artists.artistName.trackName;
+                        nameList.push(trackName);
+                        artists[artistName] = {
+                            "trackNum": numList,
+                            "trackName": nameList,
+                            "spotifyId": spotifyId,
+                            "label": label
+                        }
+                    }
+                    else {
+                        artists[artistName] = {
+                            "trackNum": [trackNum],
+                            "trackName": [trackName],
+                            "spotifyId": spotifyId,
+                            "label": label
+                        }
+                    }
+                });
+            });
+            console.log(artists);
         }
     });  
 
@@ -168,29 +219,6 @@ if (!accessToken) {
     //     });
     // };
 
-// Function that get label name
-function musicBrainzAPI(name) {
-    var search = name;
-    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-    .then(function (response) {
-        MBID = response.artists[0].id;
-        queryURL = "http://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .then(function (response) {
-            label = response.relations[0].label.name;
-            console.log(label);
-        });
-    });
-}
 
 
 // ---------------------------------------- operations prior web loading ----------------------------------------------
