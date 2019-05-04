@@ -183,7 +183,8 @@ if (!accessToken) {
                                     url: queryURL,
                                     method: "GET"
                                 })
-                                .then(function (response) {
+                                .then(function (result) {
+                                    console.log(result);
 
                                     var trackNum = t;
                                     console.log(trackNum);
@@ -191,7 +192,7 @@ if (!accessToken) {
                                     console.log(trackName);
                                     var spotifyId = i.id;
                                     console.log(spotifyId);
-                                    var label = response.relations[0].label.name;
+                                    var label = result.relations[0].label.name;
                                     console.log(label);
 
                                     if (artists[artistName] != undefined) {
