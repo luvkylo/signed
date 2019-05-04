@@ -111,7 +111,6 @@ window.location.hash = '';
 
 // Set token
 var accessToken = hash.access_token;
-console.log(accessToken);
 
 var authorizedURL = 'https://accounts.spotify.com/authorize';
 
@@ -128,6 +127,7 @@ if (!accessToken) {
 // --------------------------------------------- Functions --------------------------------------------------
 // var userTop50 = function() {
 // ajax call for playlist
+console.log(accessToken);
     $.ajax({
         url: playlistURL,
         method: "GET",
