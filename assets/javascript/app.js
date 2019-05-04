@@ -163,9 +163,9 @@ if (!accessToken) {
 
             $.each(response, function(key, item){
                 var artist = item.track.artists;
-                var artistName = i.name;
-                console.log(artistName);
                 $.each(artist, function(k, i) {
+                    var artistName = i.name;
+                    console.log(artistName);
                     var search = artistName;
                     var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json&origin=*";
 
