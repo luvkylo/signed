@@ -69,7 +69,7 @@ var countryPlaylist = {
 }
 
 var artists = {};
-
+var counter = 1
 var countryName = "United States";
 
 var playlistURL = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
@@ -77,12 +77,12 @@ var artistURL = "https://api.spotify.com/v1/artists/";
 
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyBGEi2FNlzHCBjl6Oit1qTAjPQ7oKSTER0",
-  authDomain: "project-1-930f6.firebaseapp.com",
-  databaseURL: "https://project-1-930f6.firebaseio.com",
-  projectId: "project-1-930f6",
-  storageBucket: "project-1-930f6.appspot.com",
-  messagingSenderId: "772881617679"
+    apiKey: "AIzaSyBGEi2FNlzHCBjl6Oit1qTAjPQ7oKSTER0",
+    authDomain: "project-1-930f6.firebaseapp.com",
+    databaseURL: "https://project-1-930f6.firebaseio.com",
+    projectId: "project-1-930f6",
+    storageBucket: "project-1-930f6.appspot.com",
+    messagingSenderId: "772881617679"
 };
 
 var userEmail = "";
@@ -97,15 +97,15 @@ var playlistURL = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
 
 // Find hash of URL
 var hash = window.location.hash
-.substring(1)
-.split('&')
-.reduce(function (initial, item) {
-  if (item) {
-    var parts = item.split('=');
-    initial[parts[0]] = decodeURIComponent(parts[1]);
-  }
-  return initial;
-}, {});
+    .substring(1)
+    .split('&')
+    .reduce(function (initial, item) {
+        if (item) {
+            var parts = item.split('=');
+            initial[parts[0]] = decodeURIComponent(parts[1]);
+        }
+        return initial;
+    }, {});
 window.location.hash = '';
 
 // Set token
@@ -119,12 +119,27 @@ var redirectUri = 'https://luvkylo.github.io/signed/';
 
 // If there is no token, redirect to Spotify authorization
 if (!accessToken) {
-  window.location = authorizedURL + "?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token";
+    window.location = authorizedURL + "?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token";
 }
 
 
 // --------------------------------------------- Functions --------------------------------------------------
-// Function that get label name
+
+function displayResults(name, trackName, followers, genre, photo, spotifyId, newlabel) {
+
+        var newRow = $("<tr>");
+        var newArtist = $("<td>").text(name);
+        var newTrackName = $("<td>").text(trackName);
+        var newFollowers = $("<td>").text(followers);
+        var newGenre = $("<td>").text(genre);
+        var newPhoto = $("<td>").text(photo);
+        var newSpotifyId = $("<td>").text(spotifyId);
+        var newLabel = $("<td>").text(newlabel);
+        newRow.append(newArtist); newRow.append(newTrackName); newRow.append(newFollowers); newRow.append(newGenre); newRow.append(newPhoto); newRow.append(newSpotifyId); newRow.append(newLabel);
+        $("#display").append(newRow);
+
+}
+
 // function musicBrainzAPI(name) {
 //     var search = name;
 //     var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
@@ -148,9 +163,11 @@ if (!accessToken) {
 // }
 
 
+
 // var userTop50 = function() {
 // ajax call for playlist
 // track number, artist, track name, spotify id, label
+
     $.ajax({
         url: playlistURL,
         method: "GET",
@@ -208,6 +225,9 @@ if (!accessToken) {
                                         console.log(spotifyId);
                                         var label = result.name;
                                         console.log(label);
+                                        var followers = i.followers.total;
+                                        var genre = i.genre;
+                                        var photo = i.images[0].url
 
                                         artists[artistName] = {
                                             "trackNum": [trackNum],
@@ -215,6 +235,7 @@ if (!accessToken) {
                                             "spotifyId": spotifyId,
                                             "label": label
                                         }
+                                        displayResults(artistName, trackName, followers, genre, photo, spotifyId, label);
                                         t++;
                                     });
                                 }, x*1000);
@@ -224,36 +245,37 @@ if (!accessToken) {
                 });
                 
             });
-            console.log(artists);
-        }
-    });  
+        });
+        console.log(artists);
+    }
+});
 
 // ajax call for artist
-        // $.ajax({
-        //     url: artistURL,
-        //     method: "GET",
-        //     headers: {
-        //         'Authorization': 'Bearer ' + accessToken
-        //     },
-        //     success: function(data) {
-        //         console.log(data)
-        //     }
-        // });
-    // });
-    //     $.each(data.artist, function(item, index) {
-    //         var name = item;
-    //         // do an ajax call to spotify to get the info on the artist
-    //         // when done, receive result 
-    //         // artist[result.name] = {"id": ..., "followers": ...}
-    //     });
-    // };
+// $.ajax({
+//     url: artistURL,
+//     method: "GET",
+//     headers: {
+//         'Authorization': 'Bearer ' + accessToken
+//     },
+//     success: function(data) {
+//         console.log(data)
+//     }
+// });
+// });
+//     $.each(data.artist, function(item, index) {
+//         var name = item;
+//         // do an ajax call to spotify to get the info on the artist
+//         // when done, receive result 
+//         // artist[result.name] = {"id": ..., "followers": ...}
+//     });
+// };
 
 
 
 // ---------------------------------------- operations prior web loading ----------------------------------------------
 
 // get Geo location and country name
-navigator.geolocation.getCurrentPosition(function(position) {
+navigator.geolocation.getCurrentPosition(function (position) {
 
     var lat = position.coords.latitude;
     var long = position.coords.longitude;
@@ -270,13 +292,13 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
     // Ajax call to API
     $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-    
-    countryName = response.geonames[0].countryName;
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
 
-    console.log(countryName);
+        countryName = response.geonames[0].countryName;
+
+        console.log(countryName);
     });
 
 })
@@ -286,7 +308,7 @@ function googleSignin() {
     firebase.auth();
     var provider = new firebase.auth.GoogleAuthProvider();
 
-    firebase.auth().signInWithPopup(provider).then(function(result) {
+    firebase.auth().signInWithPopup(provider).then(function (result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         // var token = result.credential.accessToken;
         // The signed-in user info.
@@ -295,10 +317,10 @@ function googleSignin() {
 
         var usersRef = firebase.database().ref("users");
         if (user) {
-            database.ref().once("value", function(data) {
+            database.ref().once("value", function (data) {
                 var userList = data.val().users;
                 if (userList[user.uid] == undefined) {
-                    usersRef.child(user.uid).set({ 
+                    usersRef.child(user.uid).set({
                         displayName: user.displayName,
                         email: user.email,
                         favorite: ""
@@ -310,7 +332,7 @@ function googleSignin() {
             // remove all display
             // ------------------------------ add map and display table -----------------------------------
         }
-    }).catch(function(error) {
+    }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -328,12 +350,12 @@ function googleSignin() {
 // when the signout button is pressed
 function googleSignout() {
     firebase.auth().signOut()
-    
-    .then(function() {
-    console.log('Signout Succesfull');
-    }, function(error) {
-    console.log('Signout Failed');
-    });
+
+        .then(function () {
+            console.log('Signout Succesfull');
+        }, function (error) {
+            console.log('Signout Failed');
+        });
     $(".signin").removeClass("invisible").css("display", "initial");
     $(".signout").addClass("invisible").css("display", "none");
     $(".fav").addClass("invisible").css("display", "none");
@@ -341,14 +363,14 @@ function googleSignout() {
 
 // ---------------------------------------- load web --------------------------------------------
 
-$(document).ready(function() {
+$(document).ready(function () {
 
 
     // --------------------- add table of centent to the main display ----------------------------------
 
 
     // ---------------------------- sign in and sign out operations ----------------------------------------
-    
+
 
 
     // ------------------------------------ make the map -----------------------------------------------------
