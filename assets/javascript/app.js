@@ -127,7 +127,6 @@ if (!accessToken) {
 // --------------------------------------------- Functions --------------------------------------------------
 // var userTop50 = function() {
 // ajax call for playlist
-console.log(accessToken);
     $.ajax({
         url: playlistURL,
         method: "GET",
