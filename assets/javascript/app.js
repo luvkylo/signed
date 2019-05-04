@@ -164,8 +164,8 @@ if (!accessToken) {
             $.each(response, function(key, item){
                 var artist = item.track.artists;
                 $.each(artist, function(k, i) {
-                var artistName = i.name;
-                console.log(artistName);
+                    var artistName = i.name;
+                    console.log(artistName);
                     if (artists[artistName] != undefined) {
                         var numList = artists.artistName.trackNum;
                         numList.push(trackNum);
