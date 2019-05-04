@@ -96,8 +96,8 @@ var database = firebase.database();
 
 var playlistURL = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
 
-// Get the hash of the url
-const hash = window.location.hash
+// Find hash of URL
+var hash = window.location.hash
 .substring(1)
 .split('&')
 .reduce(function (initial, item) {
@@ -110,27 +110,30 @@ const hash = window.location.hash
 window.location.hash = '';
 
 // Set token
-let _token = hash.access_token;
+var accessToken = hash.access_token;
 
-const authEndpoint = 'https://accounts.spotify.com/authorize';
+var authorizedURL = 'https://accounts.spotify.com/authorize';
 
 // Replace with your app's client ID and redirect URI
-const clientId = 'ce01ac1e69164952b0ee29ea90b860b6';
-const redirectUri = 'https://luvkylo.github.io/signed/';
+var clientId = 'ce01ac1e69164952b0ee29ea90b860b6';
+var redirectUri = 'https://luvkylo.github.io/signed/';
 
 // If there is no token, redirect to Spotify authorization
-if (!_token) {
-  window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token`;
+if (!accessToken) {
+  window.location = authorizedURL + "?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token";
 }
 
 
 // --------------------------------------------- Functions --------------------------------------------------
 // var userTop50 = function() {
 // ajax call for playlist
+console.log(accessToken);
     $.ajax({
         url: playlistURL,
         method: "GET",
-        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + _token );},
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
         success: function(data) {
             var response = data.tracks.items[0].track;
 
@@ -145,7 +148,6 @@ if (!_token) {
             console.log(trackNum);
         }
     });  
-console.log(_token);
 
 // ajax call for artist
         // $.ajax({
