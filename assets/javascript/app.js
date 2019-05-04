@@ -215,12 +215,13 @@ if (!accessToken) {
                                             "label": label
                                         }
                                     }
+                                    t++;
                                 });
                             }, 1000);
                         });
                     }, 1000);
                 });
-                t++;
+                
             });
             console.log(artists);
         }
