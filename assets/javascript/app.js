@@ -167,7 +167,7 @@ if (!accessToken) {
                     var artistName = i.name;
                     console.log(artistName);
                     var search = artistName;
-                    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json&origin=*";
+                    var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json&origin=*";
 
                     $.ajax({
                         url: queryURL,
@@ -175,7 +175,7 @@ if (!accessToken) {
                     })
                     .then(function (response) {
                         MBID = response.artists[0].id;
-                        queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json&origin=*";
+                        queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json&origin=*";
 
                         $.ajax({
                             url: queryURL,
