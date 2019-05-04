@@ -176,7 +176,7 @@ if (!accessToken) {
                             "trackName": nameList,
                         }
                     }
-                    else {}
+                    else {
                         var search = artistName;
                         var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
                         var x = 1;
