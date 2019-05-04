@@ -168,87 +168,86 @@ function displayResults(name, trackName, followers, genre, photo, spotifyId, new
 // ajax call for playlist
 // track number, artist, track name, spotify id, label
 
-    $.ajax({
-        url: playlistURL,
-        method: "GET",
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
-        },
-        success: function(data) {
-            var response = data.tracks.items;
-            var t = 1;
+$.ajax({
+    url: playlistURL,
+    method: "GET",
+    headers: {
+        'Authorization': 'Bearer ' + accessToken
+    },
+    success: function(data) {
+        var response = data.tracks.items;
+        var t = 1;
 
-            var x = 1;
-            $.each(response, function(key, item){
-                var artist = item.track.artists;
-                $.each(artist, function(k, i) {
-                    var artistName = i.name;
-                    console.log(artistName);
-                    if (artists[artistName] != undefined) {
-                        var numList = artists.artistName.trackNum;
-                        numList.push(trackNum);
-                        var nameList = artists.artistName.trackName;
-                        nameList.push(trackName);
-                        artists[artistName] = {
-                            "trackNum": numList,
-                            "trackName": nameList,
-                        }
+        var x = 1;
+        $.each(response, function(key, item){
+            var artist = item.track.artists;
+            $.each(artist, function(k, i) {
+                var artistName = i.name;
+                console.log(artistName);
+                if (artists[artistName] != undefined) {
+                    var numList = artists.artistName.trackNum;
+                    numList.push(trackNum);
+                    var nameList = artists.artistName.trackName;
+                    nameList.push(trackName);
+                    artists[artistName] = {
+                        "trackNum": numList,
+                        "trackName": nameList,
                     }
-                    else {
-                        x++; 
-                        var search = artistName;
-                        var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
+                }
+                else {
+                    x++; 
+                    var search = artistName;
+                    var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
 
-                        console.log(x*1000);
-                        setTimeout(function() {
-                            $.ajax({
-                                url: queryURL,
-                                method: "GET"
-                            })
-                            .then(function (response) {
-                                x++;
-                                MBID = response.artists[0].id;
-                                queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/label/" + MBID + "?inc=aliases&fmt=json";
-                                setTimeout(function() {
-                                    $.ajax({
-                                        url: queryURL,
-                                        method: "GET"
-                                    })
-                                    .then(function (result) {
-                                        console.log(result);
+                    console.log(x*1000);
+                    setTimeout(function() {
+                        $.ajax({
+                            url: queryURL,
+                            method: "GET"
+                        })
+                        .then(function (response) {
+                            x++;
+                            MBID = response.artists[0].id;
+                            queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/label/" + MBID + "?inc=aliases&fmt=json";
+                            setTimeout(function() {
+                                $.ajax({
+                                    url: queryURL,
+                                    method: "GET"
+                                })
+                                .then(function (result) {
+                                    console.log(result);
 
-                                        var trackNum = t;
-                                        console.log(trackNum);
-                                        var trackName = item.track.name;
-                                        console.log(trackName);
-                                        var spotifyId = i.id;
-                                        console.log(spotifyId);
-                                        var label = result.name;
-                                        console.log(label);
-                                        var followers = i.followers.total;
-                                        var genre = i.genre;
-                                        var photo = i.images[0].url
+                                    var trackNum = t;
+                                    console.log(trackNum);
+                                    var trackName = item.track.name;
+                                    console.log(trackName);
+                                    var spotifyId = i.id;
+                                    console.log(spotifyId);
+                                    var label = result.name;
+                                    console.log(label);
+                                    var followers = i.followers.total;
+                                    var genre = i.genre;
+                                    var photo = i.images[0].url
 
-                                        artists[artistName] = {
-                                            "trackNum": [trackNum],
-                                            "trackName": [trackName],
-                                            "spotifyId": spotifyId,
-                                            "label": label
-                                        }
-                                        displayResults(artistName, trackName, followers, genre, photo, spotifyId, label);
-                                        t++;
-                                    });
-                                }, x*1000);
-                            });
-                        }, x*1000);
-                    }
-                });
-                
+                                    artists[artistName] = {
+                                        "trackNum": [trackNum],
+                                        "trackName": [trackName],
+                                        "spotifyId": spotifyId,
+                                        "label": label
+                                    }
+                                    displayResults(artistName, trackName, followers, genre, photo, spotifyId, label);
+                                    t++;
+                                });
+                            }, x*1000);
+                        });
+                    }, x*1000);
+                }
             });
+            
         });
-        console.log(artists);
     }
 });
+
 
 // ajax call for artist
 // $.ajax({
