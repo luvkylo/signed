@@ -164,7 +164,6 @@ if (!accessToken) {
             $.each(response, function(key, item){
                 var artist = item.track.artists;
                 $.each(artist, function(k, i) {
-                    x++;
                     var artistName = i.name;
                     console.log(artistName);
                     if (artists[artistName] != undefined) {
@@ -177,13 +176,14 @@ if (!accessToken) {
                             "trackName": nameList,
                         }
                     }
-                    else {
+                    else {}
                         var search = artistName;
                         var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
                         var x = 1;
 
                         function fetchdata() {
                             console.log(x*1000);
+                            x++;
                             $.ajax({
                                 url: queryURL,
                                 method: "GET"
@@ -193,6 +193,7 @@ if (!accessToken) {
                                 queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/label/" + MBID + "?inc=aliases&fmt=json";
 
                                 function datafetch() {
+                                    x++;
                                     $.ajax({
                                         url: queryURL,
                                         method: "GET"
@@ -219,7 +220,6 @@ if (!accessToken) {
                                     });
                                 }
                                 setTimeout(datafetch, x*1000);
-
                             });
                         }
 
