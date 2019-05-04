@@ -165,7 +165,7 @@ function musicBrainzAPI(name) {
                 var artist = item.track.artists;
                 $.each(artist, function(k, i) {
                     var search = name;
-                    var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
+                    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json&origin=*";
 
                     $.ajax({
                         url: queryURL,
@@ -173,7 +173,7 @@ function musicBrainzAPI(name) {
                     })
                     .then(function (response) {
                         MBID = response.artists[0].id;
-                        queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
+                        queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json&origin=*";
 
                         $.ajax({
                             url: queryURL,
