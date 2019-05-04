@@ -163,6 +163,8 @@ if (!accessToken) {
 
             $.each(response, function(key, item){
                 var artist = item.track.artists;
+                var artistName = i.name;
+                console.log(artistName);
                 $.each(artist, function(k, i) {
                     if (artists[artistName] != undefined) {
                         var numList = artists.artistName.trackNum;
@@ -175,10 +177,9 @@ if (!accessToken) {
                         }
                     }
                     else {
-                        var artistName = i.name;
-                        console.log(artistName);
                         var search = artistName;
                         var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
+                        var x = 1;
 
                         function fetchdata() {
                             $.ajax({
@@ -187,7 +188,7 @@ if (!accessToken) {
                             })
                             .then(function (response) {
                                 MBID = response.artists[0].id;
-                                queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
+                                queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/label/" + MBID + "?inc=aliases&fmt=json";
 
                                 function datafetch() {
                                     $.ajax({
@@ -203,7 +204,7 @@ if (!accessToken) {
                                         console.log(trackName);
                                         var spotifyId = i.id;
                                         console.log(spotifyId);
-                                        var label = result.relations[0].label.name;
+                                        var label = result.name;
                                         console.log(label);
 
                                         artists[artistName] = {
@@ -216,12 +217,14 @@ if (!accessToken) {
                                     });
                                 }
 
-                                setTimeout(datafetch, 1000);
+                                setTimeout(datafetch, x*1000);
+                                x++;
 
                             });
                         }
 
-                        setTimeout(fetchdata, 1000);
+                        setTimeout(fetchdata, x*1000);
+                        x++;
                     }
                 });
                 
