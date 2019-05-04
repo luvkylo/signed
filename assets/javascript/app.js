@@ -164,60 +164,65 @@ if (!accessToken) {
             $.each(response, function(key, item){
                 var artist = item.track.artists;
                 $.each(artist, function(k, i) {
-                    var artistName = i.name;
-                    console.log(artistName);
-                    var search = artistName;
-                    var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
+                    if (artists[artistName] != undefined) {
+                        var numList = artists.artistName.trackNum;
+                        numList.push(trackNum);
+                        var nameList = artists.artistName.trackName;
+                        nameList.push(trackName);
+                        artists[artistName] = {
+                            "trackNum": numList,
+                            "trackName": nameList,
+                        }
+                    }
+                    else {
+                        var artistName = i.name;
+                        console.log(artistName);
+                        var search = artistName;
+                        var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
 
-                    setTimeout(function() {
-                        $.ajax({
-                            url: queryURL,
-                            method: "GET"
-                        })
-                        .then(function (response) {
-                            MBID = response.artists[0].id;
-                            queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
-
+                        function fetchdata() {
                             $.ajax({
                                 url: queryURL,
                                 method: "GET"
                             })
-                            .then(function (result) {
-                                console.log(result);
+                            .then(function (response) {
+                                MBID = response.artists[0].id;
+                                queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
 
-                                var trackNum = t;
-                                console.log(trackNum);
-                                var trackName = item.track.name;
-                                console.log(trackName);
-                                var spotifyId = i.id;
-                                console.log(spotifyId);
-                                var label = result.relations[0].label.name;
-                                console.log(label);
+                                function datafetch() {
+                                    $.ajax({
+                                        url: queryURL,
+                                        method: "GET"
+                                    })
+                                    .then(function (result) {
+                                        console.log(result);
 
-                                if (artists[artistName] != undefined) {
-                                    var numList = artists.artistName.trackNum;
-                                    numList.push(trackNum);
-                                    var nameList = artists.artistName.trackName;
-                                    nameList.push(trackName);
-                                    artists[artistName] = {
-                                        "trackNum": numList,
-                                        "trackName": nameList,
-                                        "spotifyId": spotifyId,
-                                        "label": label
-                                    }
+                                        var trackNum = t;
+                                        console.log(trackNum);
+                                        var trackName = item.track.name;
+                                        console.log(trackName);
+                                        var spotifyId = i.id;
+                                        console.log(spotifyId);
+                                        var label = result.relations[0].label.name;
+                                        console.log(label);
+
+                                        artists[artistName] = {
+                                            "trackNum": [trackNum],
+                                            "trackName": [trackName],
+                                            "spotifyId": spotifyId,
+                                            "label": label
+                                        }
+                                        t++;
+                                    });
                                 }
-                                else {
-                                    artists[artistName] = {
-                                        "trackNum": [trackNum],
-                                        "trackName": [trackName],
-                                        "spotifyId": spotifyId,
-                                        "label": label
-                                    }
-                                }
-                                t++;
+
+                                setTimeout(datafetch, 1000);
+
                             });
-                        });
-                    }, 2000);
+                        }
+
+                        setTimeout(fetchdata, 1000);
+                    }
                 });
                 
             });
