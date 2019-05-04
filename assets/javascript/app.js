@@ -164,6 +164,7 @@ if (!accessToken) {
             $.each(response, function(key, item){
                 var artist = item.track.artists;
                 $.each(artist, function(k, i) {
+                    x++;
                     var artistName = i.name;
                     console.log(artistName);
                     if (artists[artistName] != undefined) {
@@ -218,13 +219,11 @@ if (!accessToken) {
                                     });
                                 }
                                 setTimeout(datafetch, x*1000);
-                                x++;
 
                             });
                         }
 
                         setTimeout(fetchdata, x*1000);
-                        x++;
                     }
                 });
                 
