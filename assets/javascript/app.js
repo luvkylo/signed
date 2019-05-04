@@ -135,7 +135,7 @@ function musicBrainzAPI(name) {
     })
     .then(function (response) {
         MBID = response.artists[0].id;
-        queryURL = "http://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
+        queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
 
         $.ajax({
             url: queryURL,
@@ -159,43 +159,63 @@ function musicBrainzAPI(name) {
         },
         success: function(data) {
             var response = data.tracks.items;
+            var t = 1;
 
             $.each(response, function(key, item){
                 var artist = item.track.artists;
-                console.log(artist)
                 $.each(artist, function(k, i) {
-                    var artistName = i.name;
-                    console.log(artistName);
-                    var trackNum = item.track.track_number;
-                    console.log(trackNum);
-                    var trackName = item.track.name;
-                    console.log(trackName);
-                    var spotifyId = i.id;
-                    console.log(spotifyId);
-                    var label = musicBrainzAPI(artistName);
-                    console.log(label);
+                    var search = name;
+                    var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
 
-                    if (artists[artistName] != undefined) {
-                        var numList = artists.artistName.trackNum;
-                        numList.push(trackNum);
-                        var nameList = artists.artistName.trackName;
-                        nameList.push(trackName);
-                        artists[artistName] = {
-                            "trackNum": numList,
-                            "trackName": nameList,
-                            "spotifyId": spotifyId,
-                            "label": label
-                        }
-                    }
-                    else {
-                        artists[artistName] = {
-                            "trackNum": [trackNum],
-                            "trackName": [trackName],
-                            "spotifyId": spotifyId,
-                            "label": label
-                        }
-                    }
+                    $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                    })
+                    .then(function (response) {
+                        MBID = response.artists[0].id;
+                        queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
+
+                        $.ajax({
+                            url: queryURL,
+                            method: "GET"
+                        })
+                        .then(function (response) {
+
+                            var artistName = i.name;
+                            console.log(artistName);
+                            var trackNum = t;
+                            console.log(trackNum);
+                            var trackName = item.track.name;
+                            console.log(trackName);
+                            var spotifyId = i.id;
+                            console.log(spotifyId);
+                            var label = response.relations[0].label.name;
+                            console.log(label);
+
+                            if (artists[artistName] != undefined) {
+                                var numList = artists.artistName.trackNum;
+                                numList.push(trackNum);
+                                var nameList = artists.artistName.trackName;
+                                nameList.push(trackName);
+                                artists[artistName] = {
+                                    "trackNum": numList,
+                                    "trackName": nameList,
+                                    "spotifyId": spotifyId,
+                                    "label": label
+                                }
+                            }
+                            else {
+                                artists[artistName] = {
+                                    "trackNum": [trackNum],
+                                    "trackName": [trackName],
+                                    "spotifyId": spotifyId,
+                                    "label": label
+                                }
+                            }
+                        });
+                    });
                 });
+                t++;
             });
             console.log(artists);
         }
