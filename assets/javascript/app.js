@@ -161,6 +161,7 @@ function musicBrainzAPI(name) {
             var response = data.tracks.items;
 
             $.each(response, function(key, item){
+                console.log(item);
                 console.log(item.track);
                 var artist = item.track.artist;
                 console.log(artist);
