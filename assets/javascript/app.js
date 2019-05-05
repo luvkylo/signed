@@ -69,8 +69,7 @@ var countryPlaylist = {
 }
 
 var artists = {};
-var counter = 1
-var countryName = "United States";
+var counter = 1;
 
 var playlistURL = "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp";
 var artistURL = "https://api.spotify.com/v1/artists/";
