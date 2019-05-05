@@ -1,4 +1,6 @@
 // ------------------------------------------- Variables declarations --------------------------------------------
+var count = 0;
+
 var countryPlaylist = {
     "Argentina": "37i9dQZEVXbMMy2roB9myp",
     "Australia": "37i9dQZEVXbJPcfkRz0wJ0",
