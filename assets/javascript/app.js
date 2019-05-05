@@ -125,19 +125,42 @@ if (!accessToken) {
 
 // --------------------------------------------- Functions --------------------------------------------------
 
+// When the user clicks on More Info, open the popup!
+$(document.body).on("click", ".popup", function() {
+
+    var pop = "myPopup-" + $(this).attr("data-count");
+    //console.log(pop);
+    var showPopup = document.getElementById(pop);
+    showPopup.classList.toggle("show");
+  
+  });
+
 function displayResults(name, trackName, followers, genre, photo, spotifyId, newlabel) {
 
         var newRow = $("<tr>");
         var newArtist = $("<td>").text(name);
         var newTrackName = $("<td>").text(trackName);
-        var newFollowers = $("<td>").text(followers);
-        var newGenre = $("<td>").text(genre);
-        var newPhoto = $("<td>").text(photo);
-        var newSpotifyId = $("<td>").text(spotifyId);
         var newLabel = $("<td>").text(newlabel);
-        newRow.append(newArtist); newRow.append(newTrackName); newRow.append(newFollowers); newRow.append(newGenre); newRow.append(newPhoto); newRow.append(newSpotifyId); newRow.append(newLabel);
-        $("#display").append(newRow);
+        var popup = $("<td>");
 
+        popup.attr("class", "popup");
+        popup.attr("data-count", count);
+
+        var popUpSpan = $("<span>");
+        popUpSpan.attr("class", "popuptext");
+
+        var pop = "myPopup-" + count; 
+        popUpSpan.attr("id", pop);
+
+        popup.html('<a href="#">More Info</a>');
+        popup.append(popUpSpan);
+
+        popUpSpan.html('<p>' + name + '</p><p>' + spotifyId + '</p><p>' + genre + '</p><p>' + photo + '</p><p>' + followers);
+        newRow.append(newArtist, newTrackName, newLabel, popup); 
+     
+        $("#artist-data-table").append(newRow);
+
+        count++;
 }
 
 // function musicBrainzAPI(name) {
