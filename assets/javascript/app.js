@@ -161,9 +161,17 @@ function displayResults(name, trackName, followers, genre, photo, spotifyId, new
 //         });
 //     });
 // }
-
-
-
+        function dbPedia() {
+            
+            var artist = "U2"
+            artist = artist.split(' ').join('_')
+            $.getJSON(("http://dbpedia.org/data/" + artist + ".json"), function (result) {
+                var label = result["http://dbpedia.org/resource/" + artist]["http://dbpedia.org/ontology/recordLabel"][0].value;
+                label = label.split("resource/")
+                label = label[1].split('_').join(' ')
+                console.log(label)
+            }); 
+        } 
 // var userTop50 = function() {
 // ajax call for playlist
 // track number, artist, track name, spotify id, label
@@ -338,7 +346,7 @@ function googleSignin() {
         // The email of the user's account used.
         console.log(errorCode);
         console.log(errorMessage);
-    });
+
 
     $(".signin").addClass("invisible").css("display", "none");
     $(".signout").removeClass("invisible").css("display", "initial");
