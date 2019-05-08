@@ -198,6 +198,7 @@ $.ajax({
             
                 if (artists[artistName] != undefined) {
                     var nameList = artists.artistName.trackName;
+                    console.log(artists.artistName.trackName)
                     nameList.push(item.track.name);
                     var idList = artists.artistName.spotifyId;
                     idList.push(i.id)
