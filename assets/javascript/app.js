@@ -183,9 +183,9 @@ $.ajax({
         var x = 1;
         $.each(response, function(key, item){
             var artist = item.track.artists;
-            console.log(item);
             $.each(artist, function(k, i) {
                 var artistName = i.name;
+                var artistId = i.id;
                 console.log(artistName);
                 if (artists[artistName] != undefined) {
                     var numList = artists.artistName.trackNum;
@@ -198,14 +198,35 @@ $.ajax({
                     }
                 }
                 else {
-                    var trackNum = t;
-                    console.log(trackNum);
 
-                    var trackName = item.track.name;
-                    console.log(trackName);
+                    artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
 
-                    var spotifyId = i.id;
-                    console.log(spotifyId);
+                    $.ajax({
+                        url: artistURL,
+                        method: "GET",
+                        headers: {
+                            'Authorization': 'Bearer ' + accessToken
+                        },
+                        success: function(data) {
+                            console.log(data);
+                        }
+                    });
+
+
+
+
+
+
+
+
+                    // var trackNum = t;
+                    // console.log(trackNum);
+
+                    // var trackName = item.track.name;
+                    // console.log(trackName);
+
+                    // var spotifyId = i.id;
+                    // console.log(spotifyId);
 
                     // var label = 
                     // console.log(label);
