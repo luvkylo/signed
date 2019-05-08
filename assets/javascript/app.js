@@ -210,7 +210,7 @@ $.ajax({
                         success: function (data) {
                             albumId = data.items[0].id;
 
-                            albumURL = "https://api.spotify.com/v1/album/" + albumId;
+                            albumURL = "https://api.spotify.com/v1/albums/" + albumId;
                             $.ajax({
                                 url: albumURL,
                                 method: "GET",
