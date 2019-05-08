@@ -127,13 +127,18 @@ if (!accessToken) {
 
 // --------------------------------------------- Functions --------------------------------------------------
 
-function displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, newlabel) {
+function displayResults(trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel) {
 
     var newRow = $("<tr>");
 
     var number = $("<td>").text(trackNum);
     var newArtist = $("<td>").text(name);
+
+    var trackName = ""
+    for x in trackNames:
+        trackName = trackName + x + "\n ";
     var newTrackName = $("<td>").text(trackName);
+    newTrackName.html(obj.html().replace(/\n/g,'<br/>'));
     var newLabel = $("<td>").text(newlabel);
     var popup = $("<td>");
 
