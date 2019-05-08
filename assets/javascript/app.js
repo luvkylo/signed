@@ -179,11 +179,11 @@ $.ajax({
     },
     success: function (data) {
         var response = data.tracks.items;
-        var t = 1;
+        var t = 0;
 
         $.each(response, function (key, item) {
             var artist = item.track.artists;
-
+            t++;
             $.each(artist, function (k, i) {
                 var artistName = i.name;
                 var artistId = i.id;
@@ -214,7 +214,7 @@ $.ajax({
                     photo = artists.artistName.photo;
                     trackName = item.track.name;
                     spotifyId = i.id;
-                    displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
+                    displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
                 }
                 else {
 
@@ -281,7 +281,7 @@ $.ajax({
                                                 "genre": genre,
                                                 "photo": photo
                                             }
-                                            displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
+                                            displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
                                         }
                                     })
                                 }
@@ -290,7 +290,6 @@ $.ajax({
                     });
                 }
             });
-            t++;
         });
     }
 });
