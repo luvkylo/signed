@@ -181,21 +181,20 @@ $.ajax({
         var response = data.tracks.items;
         var t = 1;
 
-        var x = 1;
-        var label = "";
-        var followers = 0;
-        var genre = "";
-        var photo = "";
-        var trackNum = 0;
-        var trackName = [];
-        var spotifyId = []; 
-
         $.each(response, function (key, item) {
             var artist = item.track.artists;
+
             $.each(artist, function (k, i) {
                 var artistName = i.name;
                 var artistId = i.id;
-                console.log(artistName);
+                var label = "";
+                var followers = 0;
+                var genre = "";
+                var photo = "";
+                var trackNum = 0;
+                var trackName = [];
+                var spotifyId = []; 
+            
                 if (artists[artistName] != undefined) {
                     var numList = artists.artistName.trackNum;
                     trackNum = t;
@@ -203,11 +202,13 @@ $.ajax({
                     nameList.push(item.track.name);
                     var idList = artists.artistName.spotifyId;
                     idList.push(i.id)
+
                     artists[artistName] = {
                         "trackNum": numList,
                         "trackName": nameList,
                         "spotifyId": idList
                     }
+
                     label = artists.artistName.label;
                     followers = artists.artistName.followers;
                     genre = artists.artistName.genre;
@@ -237,7 +238,6 @@ $.ajax({
                                     'Authorization': 'Bearer ' + accessToken
                                 },
                                 success: function (data) {
-                                    console.log(data);
                                     if (data.label) {
                                         label = data.label;
                                     }
@@ -253,7 +253,6 @@ $.ajax({
                                             'Authorization': 'Bearer ' + accessToken
                                         },
                                         success: function (data) {
-                                            console.log(data);
                                             followers = data.followers.total;
                                             genre = data.genres[0];
                                             photo = data.images[0].url;
