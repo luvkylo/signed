@@ -149,7 +149,7 @@ function displayResults(trackNum, name, trackName, followers, genre, photo, spot
     popup.html('<a href="#">More Info</a>');
     popup.append(popUpSpan);
 
-    popUpSpan.html('<p>' + name + '</p><p>' + spotifyId + '</p><p>' + genre + '</p><p>' + "photo" + '</p><p>' + followers);
+    popUpSpan.html('<h3>' + name + '</h3><p>Spotify ID: ' + spotifyId + '</p><p>Genre: ' + genre + '</p><div><img src="' + photo + '" alt="Artist Photo"></div><p>Followers: ' + followers);
     newRow.append(number, newArtist, newTrackName, newLabel, popup);
 
     $("#artist-data-table").append(newRow);
@@ -378,11 +378,6 @@ function googleSignout() {
     $(".fav").addClass("invisible").css("display", "none");
 }
 
-// ---------------------------------------- load web --------------------------------------------
-
-$(document).ready(function () {
-
-// When the user clicks on More Info, open the popup!
 $(document.body).on("click", ".popup", function () {
 
     var pop = "myPopup-" + $(this).attr("data-count");
@@ -392,6 +387,13 @@ $(document.body).on("click", ".popup", function () {
     showPopup.classList.toggle("show");
 
 });
+
+// ---------------------------------------- load web --------------------------------------------
+
+$(document).ready(function () {
+
+// When the user clicks on More Info, open the popup!
+
 
     // --------------------- add table of centent to the main display ----------------------------------
 
