@@ -182,6 +182,14 @@ $.ajax({
         var t = 1;
 
         var x = 1;
+        var label = "";
+        var followers = 0;
+        var genre = "";
+        var photo = "";
+        var trackNum = 0;
+        var trackName = [];
+        var spotifyId = []; 
+
         $.each(response, function (key, item) {
             var artist = item.track.artists;
             $.each(artist, function (k, i) {
@@ -190,25 +198,28 @@ $.ajax({
                 console.log(artistName);
                 if (artists[artistName] != undefined) {
                     var numList = artists.artistName.trackNum;
-                    numList.push(trackNum);
+                    trackNum = t;
                     var nameList = artists.artistName.trackName;
-                    nameList.push(trackName);
+                    nameList.push(item.track.name);
+                    var idList = artists.artistName.spotifyId;
+                    idList.push(i.id)
                     artists[artistName] = {
                         "trackNum": numList,
                         "trackName": nameList,
+                        "spotifyId": idList
                     }
+                    label = artists.artistName.label;
+                    followers = artists.artistName.followers;
+                    genre = artists.artistName.genre;
+                    photo = artists.artistName.photo;
+                    trackName = nameList;
+                    spotifyId = idList;
                 }
                 else {
 
                     artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
 
-                    var label = "";
-                    var followers = 0;
-                    var genre = "";
-                    var photo = "";
-                    var trackNum = 0;
-                    var trackName = "":
-                    var spotifyId = ""; 
+                    
                     $.ajax({
                         url: artistURL,
                         method: "GET",
@@ -249,10 +260,10 @@ $.ajax({
                                             trackNum = t;
                                             console.log(trackNum);
 
-                                            trackName = item.track.name;
+                                            trackName.push(item.track.name);
                                             console.log(trackName);
 
-                                            spotifyId = i.id;
+                                            spotifyId.push(i.id);
                                             console.log(spotifyId);
 
                                             console.log(label);
@@ -264,8 +275,8 @@ $.ajax({
                                             // var photo = i.images[0].url
 
                                             artists[artistName] = {
-                                                "trackNum": [trackNum],
-                                                "trackName": [trackName],
+                                                "trackNum": trackNum,
+                                                "trackName": trackName,
                                                 "spotifyId": spotifyId,
                                                 "label": label,
                                                 "followers": followers,
