@@ -197,25 +197,16 @@ $.ajax({
                 var spotifyId = []; 
             
                 if (artists[artistName] != undefined) {
-                    trackNum = t;
                     var nameList = artists.artistName.trackName;
-                    console.log(artists.artistName.trackName);
                     nameList.push(item.track.name);
                     var idList = artists.artistName.spotifyId;
                     idList.push(i.id)
 
                     artists[artistName] = {
-                        "trackNum": numList,
                         "trackName": nameList,
                         "spotifyId": idList
                     }
 
-                    label = artists.artistName.label;
-                    followers = artists.artistName.followers;
-                    genre = artists.artistName.genre;
-                    photo = artists.artistName.photo;
-                    trackName = item.track.name;
-                    spotifyId = i.id;
                 }
                 else {
 
@@ -288,8 +279,10 @@ $.ajax({
 });
 
 setTimeout(function() {
+    var i = 1;
     $.each(artists, function(key, item) {
-        displayResults(item.trackNum, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label)
+        displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+        i++;
     });
 }, 7000);
 
