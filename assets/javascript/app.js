@@ -141,6 +141,7 @@ $(document.body).on("click", ".popup", function () {
 function displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, newlabel) {
 
     var newRow = $("<tr>");
+
     var number = $("<td>").text(trackNum);
     var newArtist = $("<td>").text(name);
     var newTrackName = $("<td>").text(trackName);
