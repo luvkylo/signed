@@ -378,7 +378,13 @@ function googleSignout() {
     $(".fav").addClass("invisible").css("display", "none");
 }
 
-$(document.body).on("click", ".popup", function () {
+// ---------------------------------------- load web --------------------------------------------
+
+$(document).ready(function () {
+
+// When the user clicks on More Info, open the popup!
+    
+    $(document.body).on("click", ".popup", function () {
 
     var pop = "myPopup-" + $(this).attr("data-count");
     //console.log(pop);
@@ -387,12 +393,6 @@ $(document.body).on("click", ".popup", function () {
     showPopup.classList.toggle("show");
 
 });
-
-// ---------------------------------------- load web --------------------------------------------
-
-$(document).ready(function () {
-
-// When the user clicks on More Info, open the popup!
 
 
     // --------------------- add table of centent to the main display ----------------------------------
