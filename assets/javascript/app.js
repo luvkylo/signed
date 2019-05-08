@@ -279,8 +279,10 @@ $.ajax({
 });
 
 setTimeout(function() {
+    var i = 1;
     $.each(artists, function(key, item) {
-        displayResults(item.trackNum, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label)
+        displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+        i++;
     });
 }, 7000);
 
