@@ -225,7 +225,6 @@ $.ajax({
                                         genre = data.genres[0];
                                         photo = data.images[0].url;
                                         trackNum = t;
-                                        console.log(artists[artistName]);
                                         if (artists[artistName] != undefined) {
                                             trackName = artists[artistName].trackName;
                                             spotifyId = artists[artistName].spotifyId;
