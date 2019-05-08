@@ -183,7 +183,6 @@ $.ajax({
 
         $.each(response, function (key, item) {
             var artist = item.track.artists;
-            t++;
             $.each(artist, function (k, i) {
                 var artistName = i.name;
                 var artistId = i.id;
@@ -215,6 +214,7 @@ $.ajax({
                     trackName = item.track.name;
                     spotifyId = i.id;
                     displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
+                    t++;
                 }
                 else {
 
@@ -252,6 +252,7 @@ $.ajax({
                                             'Authorization': 'Bearer ' + accessToken
                                         },
                                         success: function (data) {
+                                            t++;
                                             followers = data.followers.total;
                                             genre = data.genres[0];
                                             photo = data.images[0].url;
