@@ -220,13 +220,6 @@ $.ajax({
 
                     artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
 
-                    var label = "";
-                    var followers = 0;
-                    var genre = "";
-                    var photo = "";
-                    var trackNum = 0;
-                    var trackName = "";
-                    var spotifyId = ""; 
                     $.ajax({
                         url: artistURL,
                         method: "GET",
