@@ -283,52 +283,6 @@ $.ajax({
                             })
                         }
                     });
-
-
-                    artistURL = "https://api.spotify.com/v1/artists/" + artistId;
-                    $.ajax({
-                        url: artistURL,
-                        method: "GET",
-                        headers: {
-                            'Authorization': 'Bearer ' + accessToken
-                        },
-                        success: function (data) {
-                            followers = data.followers.total;
-                            genre = data.genres[0];
-                            photo = data.images[0].url;
-                        }
-                    })
-
-
-                    var trackNum = t;
-                    console.log(trackNum);
-
-                    var trackName = item.track.name;
-                    console.log(trackName);
-
-                    var spotifyId = i.id;
-                    console.log(spotifyId);
-
-                    console.log(label);
-                    console.log(followers);
-                    console.log(genre);
-                    console.log(photo);
-
-                    // var genre = i.genre;
-                    // var photo = i.images[0].url
-
-                    artists[artistName] = {
-                        "trackNum": [trackNum],
-                        "trackName": [trackName],
-                        "spotifyId": spotifyId,
-                        "label": label,
-                        "followers": followers,
-                        "genre": genre,
-                        "photo": photo
-                    }
-                    displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
-                    t++;
-
                 }
             });
         });
