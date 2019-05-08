@@ -179,11 +179,11 @@ $.ajax({
     },
     success: function (data) {
         var response = data.tracks.items;
-        var t = 1;
+        var t = 0;
 
         $.each(response, function (key, item) {
             var artist = item.track.artists;
-
+            t++;
             $.each(artist, function (k, i) {
                 var artistName = i.name;
                 var artistId = i.id;
@@ -214,7 +214,7 @@ $.ajax({
                     photo = artists.artistName.photo;
                     trackName = item.track.name;
                     spotifyId = i.id;
-                    displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
+                    displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
                 }
                 else {
 
@@ -256,18 +256,10 @@ $.ajax({
                                             genre = data.genres[0];
                                             photo = data.images[0].url;
                                             trackNum = t;
-                                            console.log(trackNum);
 
                                             trackName.push(item.track.name);
-                                            console.log(trackName);
 
                                             spotifyId.push(i.id);
-                                            console.log(spotifyId);
-
-                                            console.log(label);
-                                            console.log(followers);
-                                            console.log(genre);
-                                            console.log(photo);
 
                                             // var genre = i.genre;
                                             // var photo = i.images[0].url
@@ -281,7 +273,7 @@ $.ajax({
                                                 "genre": genre,
                                                 "photo": photo
                                             }
-                                            displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
+                                            displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
                                         }
                                     })
                                 }
@@ -290,7 +282,6 @@ $.ajax({
                     });
                 }
             });
-            t++;
         });
     }
 });
