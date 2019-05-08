@@ -237,7 +237,6 @@ $.ajax({
                                         photo = data.images[0].url;
                                         trackNum = t;
                                         console.log(artists.artistName);
-                                        console.log(artists.artistName.trackName);
                                         if (artists.artistName != undefined) {
                                             // trackName = artists.artistName.trackName;
                                             // spotifyId = artists.artistName.spotifyId;
