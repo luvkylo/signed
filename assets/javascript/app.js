@@ -133,14 +133,16 @@ $(document.body).on("click", ".popup", function () {
     var pop = "myPopup-" + $(this).attr("data-count");
     //console.log(pop);
     var showPopup = document.getElementById(pop);
+    console.log(showPopup);
     showPopup.classList.toggle("show");
 
 });
 
-function displayResults(name, trackName, followers, genre, photo, spotifyId, newlabel) {
+function displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, newlabel) {
 
     var newRow = $("<tr>");
-    
+
+    var number = $("<td>").text(trackNum);
     var newArtist = $("<td>").text(name);
     var newTrackName = $("<td>").text(trackName);
     var newLabel = $("<td>").text(newlabel);
@@ -159,7 +161,7 @@ function displayResults(name, trackName, followers, genre, photo, spotifyId, new
     popup.append(popUpSpan);
 
     popUpSpan.html('<p>' + name + '</p><p>' + spotifyId + '</p><p>' + genre + '</p><p>' + photo + '</p><p>' + followers);
-    newRow.append(newArtist, newTrackName, newLabel, popup);
+    newRow.append(number, newArtist, newTrackName, newLabel, popup);
 
     $("#artist-data-table").append(newRow);
 
@@ -179,33 +181,47 @@ $.ajax({
     },
     success: function (data) {
         var response = data.tracks.items;
-        var t = 1;
+        var t = 0;
 
-        var x = 1;
         $.each(response, function (key, item) {
             var artist = item.track.artists;
             $.each(artist, function (k, i) {
                 var artistName = i.name;
                 var artistId = i.id;
-                console.log(artistName);
+                var label = "";
+                var followers = 0;
+                var genre = "";
+                var photo = "";
+                var trackNum = 0;
+                var trackName = [];
+                var spotifyId = []; 
+            
                 if (artists[artistName] != undefined) {
-                    var numList = artists.artistName.trackNum;
-                    numList.push(trackNum);
+                    trackNum = t;
                     var nameList = artists.artistName.trackName;
-                    nameList.push(trackName);
+                    nameList.push(item.track.name);
+                    var idList = artists.artistName.spotifyId;
+                    idList.push(i.id)
+
                     artists[artistName] = {
                         "trackNum": numList,
                         "trackName": nameList,
+                        "spotifyId": idList
                     }
+
+                    label = artists.artistName.label;
+                    followers = artists.artistName.followers;
+                    genre = artists.artistName.genre;
+                    photo = artists.artistName.photo;
+                    trackName = item.track.name;
+                    spotifyId = i.id;
+                    displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
+                    t++;
                 }
                 else {
 
                     artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
 
-                    var label = "";
-                    var followers = 0;
-                    var genre = "";
-                    var photo = "";
                     $.ajax({
                         url: artistURL,
                         method: "GET",
@@ -223,17 +239,51 @@ $.ajax({
                                     'Authorization': 'Bearer ' + accessToken
                                 },
                                 success: function (data) {
-                                    console.log(data);
                                     if (data.label) {
                                         label = data.label;
                                     }
                                     else {
                                         label = "Unsigned";
                                     }
+
+                                    artistURL = "https://api.spotify.com/v1/artists/" + artistId;
+                                    $.ajax({
+                                        url: artistURL,
+                                        method: "GET",
+                                        headers: {
+                                            'Authorization': 'Bearer ' + accessToken
+                                        },
+                                        success: function (data) {
+                                            t++;
+                                            followers = data.followers.total;
+                                            genre = data.genres[0];
+                                            photo = data.images[0].url;
+                                            trackNum = t;
+
+                                            trackName.push(item.track.name);
+
+                                            spotifyId.push(i.id);
+
+                                            // var genre = i.genre;
+                                            // var photo = i.images[0].url
+
+                                            artists[artistName] = {
+                                                "trackNum": trackNum,
+                                                "trackName": trackName,
+                                                "spotifyId": spotifyId,
+                                                "label": label,
+                                                "followers": followers,
+                                                "genre": genre,
+                                                "photo": photo
+                                            }
+                                            displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
+                                        }
+                                    })
                                 }
                             })
                         }
                     });
+
 
                     artistURL = "https://api.spotify.com/v1/artists/" + artistId;
                     $.ajax({
@@ -281,7 +331,6 @@ $.ajax({
 
                 }
             });
-
         });
     }
 });
