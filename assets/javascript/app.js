@@ -208,7 +208,7 @@ $.ajax({
                             'Authorization': 'Bearer ' + accessToken
                         },
                         success: function(data) {
-                            console.log(data);
+                            albumId = data.items[0].id;
                         }
                     });
 
