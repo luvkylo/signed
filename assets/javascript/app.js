@@ -252,6 +252,10 @@ $.ajax({
                                             genre = data.genres[0];
                                             photo = data.images[0].url;
                                             trackNum = t;
+                                            if (artists.artistName != undefined) {
+                                                var trackName = artists.artistName.trackName;
+                                                var spotifyId = artists.artistName.spotifyId;
+                                            }
 
                                             trackName.push(item.track.name);
 
