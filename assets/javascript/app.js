@@ -196,90 +196,73 @@ $.ajax({
                 var trackName = [];
                 var spotifyId = []; 
 
-                console.log(artists.artistName)
-            
-                if (artists.artistName != undefined) {
-                    var nameList = artists.artistName.trackName;
-                    console.log(artists.artistName.trackName)
-                    nameList.push(item.track.name);
-                    var idList = artists.artistName.spotifyId;
-                    idList.push(i.id)
 
-                    artists[artistName] = {
-                        "trackName": nameList,
-                        "spotifyId": idList
-                    }
+                artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
 
-                }
-                else {
+                $.ajax({
+                    url: artistURL,
+                    method: "GET",
+                    headers: {
+                        'Authorization': 'Bearer ' + accessToken
+                    },
+                    success: function (data) {
+                        albumId = data.items[0].id;
 
-                    artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
-
-                    $.ajax({
-                        url: artistURL,
-                        method: "GET",
-                        headers: {
-                            'Authorization': 'Bearer ' + accessToken
-                        },
-                        success: function (data) {
-                            albumId = data.items[0].id;
-
-                            albumURL = "https://api.spotify.com/v1/albums/" + albumId;
-                            $.ajax({
-                                url: albumURL,
-                                method: "GET",
-                                headers: {
-                                    'Authorization': 'Bearer ' + accessToken
-                                },
-                                success: function (data) {
-                                    if (data.label) {
-                                        label = data.label;
-                                    }
-                                    else {
-                                        label = "Unsigned";
-                                    }
-
-                                    artistURL = "https://api.spotify.com/v1/artists/" + artistId;
-                                    $.ajax({
-                                        url: artistURL,
-                                        method: "GET",
-                                        headers: {
-                                            'Authorization': 'Bearer ' + accessToken
-                                        },
-                                        success: function (data) {
-                                            t++;
-                                            followers = data.followers.total;
-                                            genre = data.genres[0];
-                                            photo = data.images[0].url;
-                                            trackNum = t;
-                                            if (artists.artistName != undefined) {
-                                                var trackName = artists.artistName.trackName;
-                                                var spotifyId = artists.artistName.spotifyId;
-                                            }
-
-                                            trackName.push(item.track.name);
-
-                                            spotifyId.push(i.id);
-
-                                            // var genre = i.genre;
-                                            // var photo = i.images[0].url
-
-                                            artists[artistName] = {
-                                                "trackNum": trackNum,
-                                                "trackName": trackName,
-                                                "spotifyId": spotifyId,
-                                                "label": label,
-                                                "followers": followers,
-                                                "genre": genre,
-                                                "photo": photo
-                                            }
-                                        }
-                                    })
+                        albumURL = "https://api.spotify.com/v1/albums/" + albumId;
+                        $.ajax({
+                            url: albumURL,
+                            method: "GET",
+                            headers: {
+                                'Authorization': 'Bearer ' + accessToken
+                            },
+                            success: function (data) {
+                                if (data.label) {
+                                    label = data.label;
                                 }
-                            })
-                        }
-                    });
-                }
+                                else {
+                                    label = "Unsigned";
+                                }
+
+                                artistURL = "https://api.spotify.com/v1/artists/" + artistId;
+                                $.ajax({
+                                    url: artistURL,
+                                    method: "GET",
+                                    headers: {
+                                        'Authorization': 'Bearer ' + accessToken
+                                    },
+                                    success: function (data) {
+                                        t++;
+                                        followers = data.followers.total;
+                                        genre = data.genres[0];
+                                        photo = data.images[0].url;
+                                        trackNum = t;
+                                        if (artists.artistName != undefined) {
+                                            var trackName = artists.artistName.trackName;
+                                            var spotifyId = artists.artistName.spotifyId;
+                                        }
+
+                                        trackName.push(item.track.name);
+
+                                        spotifyId.push(i.id);
+
+                                        // var genre = i.genre;
+                                        // var photo = i.images[0].url
+
+                                        artists[artistName] = {
+                                            "trackNum": trackNum,
+                                            "trackName": trackName,
+                                            "spotifyId": spotifyId,
+                                            "label": label,
+                                            "followers": followers,
+                                            "genre": genre,
+                                            "photo": photo
+                                        }
+                                    }
+                                })
+                            }
+                        })
+                    }
+                });
             });
         });
     }
