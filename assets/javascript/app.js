@@ -214,12 +214,12 @@ $.ajax({
                     // var genre = i.genre;
                     // var photo = i.images[0].url
 
-                    artists[artistName] = {
-                        "trackNum": [trackNum],
-                        "trackName": [trackName],
-                        "spotifyId": spotifyId,
-                        "label": label
-                    }
+                    // artists[artistName] = {
+                    //     "trackNum": [trackNum],
+                    //     "trackName": [trackName],
+                    //     "spotifyId": spotifyId,
+                    //     "label": label
+                    // }
                     // displayResults(artistName, trackName, followers, genre, photo, spotifyId, label);
                     t++;
 
