@@ -256,18 +256,10 @@ $.ajax({
                                             genre = data.genres[0];
                                             photo = data.images[0].url;
                                             trackNum = t;
-                                            console.log(trackNum);
 
                                             trackName.push(item.track.name);
-                                            console.log(trackName);
 
                                             spotifyId.push(i.id);
-                                            console.log(spotifyId);
-
-                                            console.log(label);
-                                            console.log(followers);
-                                            console.log(genre);
-                                            console.log(photo);
 
                                             // var genre = i.genre;
                                             // var photo = i.images[0].url
