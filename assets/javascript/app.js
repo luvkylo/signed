@@ -197,25 +197,16 @@ $.ajax({
                 var spotifyId = []; 
             
                 if (artists[artistName] != undefined) {
-                    trackNum = t;
                     var nameList = artists.artistName.trackName;
-                    console.log(artists.artistName.trackName);
                     nameList.push(item.track.name);
                     var idList = artists.artistName.spotifyId;
                     idList.push(i.id)
 
                     artists[artistName] = {
-                        "trackNum": numList,
                         "trackName": nameList,
                         "spotifyId": idList
                     }
 
-                    label = artists.artistName.label;
-                    followers = artists.artistName.followers;
-                    genre = artists.artistName.genre;
-                    photo = artists.artistName.photo;
-                    trackName = item.track.name;
-                    spotifyId = i.id;
                 }
                 else {
 
