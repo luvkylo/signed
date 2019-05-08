@@ -207,7 +207,7 @@ $.ajax({
                     var genre = "";
                     var photo = "";
                     var trackNum = 0;
-                    var trackName = "":
+                    var trackName = "";
                     var spotifyId = ""; 
                     $.ajax({
                         url: artistURL,
