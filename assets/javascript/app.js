@@ -220,7 +220,7 @@ $.ajax({
                         "spotifyId": spotifyId,
                         "label": label
                     }
-                    displayResults(artistName, trackName, followers, genre, photo, spotifyId, label);
+                    // displayResults(artistName, trackName, followers, genre, photo, spotifyId, label);
                     t++;
 
                 }
