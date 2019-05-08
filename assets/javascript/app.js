@@ -128,41 +128,41 @@ if (!accessToken) {
 // --------------------------------------------- Functions --------------------------------------------------
 
 // When the user clicks on More Info, open the popup!
-$(document.body).on("click", ".popup", function() {
+$(document.body).on("click", ".popup", function () {
 
     var pop = "myPopup-" + $(this).attr("data-count");
     //console.log(pop);
     var showPopup = document.getElementById(pop);
     showPopup.classList.toggle("show");
-  
-  });
+
+});
 
 function displayResults(name, trackName, followers, genre, photo, spotifyId, newlabel) {
 
-        var newRow = $("<tr>");
-        var newArtist = $("<td>").text(name);
-        var newTrackName = $("<td>").text(trackName);
-        var newLabel = $("<td>").text(newlabel);
-        var popup = $("<td>");
+    var newRow = $("<tr>");
+    var newArtist = $("<td>").text(name);
+    var newTrackName = $("<td>").text(trackName);
+    var newLabel = $("<td>").text(newlabel);
+    var popup = $("<td>");
 
-        popup.attr("class", "popup");
-        popup.attr("data-count", count);
+    popup.attr("class", "popup");
+    popup.attr("data-count", count);
 
-        var popUpSpan = $("<span>");
-        popUpSpan.attr("class", "popuptext");
+    var popUpSpan = $("<span>");
+    popUpSpan.attr("class", "popuptext");
 
-        var pop = "myPopup-" + count; 
-        popUpSpan.attr("id", pop);
+    var pop = "myPopup-" + count;
+    popUpSpan.attr("id", pop);
 
-        popup.html('<a href="#">More Info</a>');
-        popup.append(popUpSpan);
+    popup.html('<a href="#">More Info</a>');
+    popup.append(popUpSpan);
 
-        popUpSpan.html('<p>' + name + '</p><p>' + spotifyId + '</p><p>' + genre + '</p><p>' + photo + '</p><p>' + followers);
-        newRow.append(newArtist, newTrackName, newLabel, popup); 
-     
-        $("#artist-data-table").append(newRow);
+    popUpSpan.html('<p>' + name + '</p><p>' + spotifyId + '</p><p>' + genre + '</p><p>' + photo + '</p><p>' + followers);
+    newRow.append(newArtist, newTrackName, newLabel, popup);
 
-        count++;
+    $("#artist-data-table").append(newRow);
+
+    count++;
 }
 
 
@@ -176,14 +176,14 @@ $.ajax({
     headers: {
         'Authorization': 'Bearer ' + accessToken
     },
-    success: function(data) {
+    success: function (data) {
         var response = data.tracks.items;
         var t = 1;
 
         var x = 1;
-        $.each(response, function(key, item){
+        $.each(response, function (key, item) {
             var artist = item.track.artists;
-            $.each(artist, function(k, i) {
+            $.each(artist, function (k, i) {
                 var artistName = i.name;
                 var artistId = i.id;
                 console.log(artistName);
@@ -207,8 +207,20 @@ $.ajax({
                         headers: {
                             'Authorization': 'Bearer ' + accessToken
                         },
-                        success: function(data) {
+                        success: function (data) {
                             albumId = data.items[0].id;
+
+                            albumURL = "https://api.spotify.com/v1/album/" + albumId;
+                            $.ajax({
+                                url: albumURL,
+                                method: "GET",
+                                headers: {
+                                    'Authorization': 'Bearer ' + accessToken
+                                },
+                                success: function (data) {
+                                    console.log(data);
+                                }
+                            })
                         }
                     });
 
@@ -246,7 +258,7 @@ $.ajax({
 
                 }
             });
-            
+
         });
     }
 });
