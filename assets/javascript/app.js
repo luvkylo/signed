@@ -165,29 +165,6 @@ function displayResults(name, trackName, followers, genre, photo, spotifyId, new
         count++;
 }
 
-// function musicBrainzAPI(name) {
-//     var search = name;
-//     var queryURL = "https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
-
-//     $.ajax({
-//         url: queryURL,
-//         method: "GET"
-//     })
-//     .then(function (response) {
-//         MBID = response.artists[0].id;
-//         queryURL = "https://musicbrainz.org/ws/2/artist/" + MBID + "?inc=label-rels&fmt=json";
-
-//         $.ajax({
-//             url: queryURL,
-//             method: "GET"
-//         })
-//         .then(function (response) {
-//             return response.relations[0].label.name;
-//         });
-//     });
-// }
-
-
 
 // var userTop50 = function() {
 // ajax call for playlist
@@ -220,52 +197,31 @@ $.ajax({
                     }
                 }
                 else {
-                    x++; 
-                    var search = artistName;
-                    var queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/artist?query=" + search + "&fmt=json";
+                    var trackNum = t;
+                    console.log(trackNum);
 
-                    console.log(x*1000);
-                    setTimeout(function() {
-                        $.ajax({
-                            url: queryURL,
-                            method: "GET"
-                        })
-                        .then(function (response) {
-                            x++;
-                            MBID = response.artists[0].id;
-                            queryURL = "https://cors-anywhere.herokuapp.com/https://musicbrainz.org/ws/2/label/" + MBID + "?inc=aliases&fmt=json";
-                            setTimeout(function() {
-                                $.ajax({
-                                    url: queryURL,
-                                    method: "GET"
-                                })
-                                .then(function (result) {
-                                    console.log(result);
+                    var trackName = item.track.name;
+                    console.log(trackName);
 
-                                    var trackNum = t;
-                                    console.log(trackNum);
-                                    var trackName = item.track.name;
-                                    console.log(trackName);
-                                    var spotifyId = i.id;
-                                    console.log(spotifyId);
-                                    var label = result.name;
-                                    console.log(label);
-                                    var followers = i.followers.total;
-                                    var genre = i.genre;
-                                    var photo = i.images[0].url
+                    var spotifyId = i.id;
+                    console.log(spotifyId);
 
-                                    artists[artistName] = {
-                                        "trackNum": [trackNum],
-                                        "trackName": [trackName],
-                                        "spotifyId": spotifyId,
-                                        "label": label
-                                    }
-                                    displayResults(artistName, trackName, followers, genre, photo, spotifyId, label);
-                                    t++;
-                                });
-                            }, x*1000);
-                        });
-                    }, x*1000);
+                    var label = 
+                    console.log(label);
+
+                    var followers = i.followers.total;
+                    var genre = i.genre;
+                    var photo = i.images[0].url
+
+                    artists[artistName] = {
+                        "trackNum": [trackNum],
+                        "trackName": [trackName],
+                        "spotifyId": spotifyId,
+                        "label": label
+                    }
+                    displayResults(artistName, trackName, followers, genre, photo, spotifyId, label);
+                    t++;
+
                 }
             });
             
