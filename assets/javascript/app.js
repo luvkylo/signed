@@ -196,7 +196,6 @@ $.ajax({
                 var spotifyId = []; 
             
                 if (artists[artistName] != undefined) {
-                    var numList = artists.artistName.trackNum;
                     trackNum = t;
                     var nameList = artists.artistName.trackName;
                     nameList.push(item.track.name);
@@ -213,8 +212,8 @@ $.ajax({
                     followers = artists.artistName.followers;
                     genre = artists.artistName.genre;
                     photo = artists.artistName.photo;
-                    trackName = nameList;
-                    spotifyId = idList;
+                    trackName = item.track.name;
+                    spotifyId = i.id;
                 }
                 else {
 
@@ -289,7 +288,6 @@ $.ajax({
                     });
 
                 }
-                displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
             });
             t++;
         });
