@@ -216,8 +216,6 @@ $.ajax({
                     photo = artists.artistName.photo;
                     trackName = item.track.name;
                     spotifyId = i.id;
-                    displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
-                    t++;
                 }
                 else {
 
@@ -277,7 +275,6 @@ $.ajax({
                                                 "genre": genre,
                                                 "photo": photo
                                             }
-                                            displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
                                         }
                                     })
                                 }
