@@ -186,6 +186,7 @@ $.ajax({
             console.log(item);
             $.each(artist, function(k, i) {
                 var artistName = i.name;
+                var artistId = i.id;
                 console.log(artistName);
                 if (artists[artistName] != undefined) {
                     var numList = artists.artistName.trackNum;
@@ -198,6 +199,27 @@ $.ajax({
                     }
                 }
                 else {
+
+                    artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
+
+                    $.ajax({
+                        url: artistURL,
+                        method: "GET",
+                        headers: {
+                            'Authorization': 'Bearer ' + accessToken
+                        },
+                        success: function(data) {
+                            console.log(data);
+                        }
+                    });
+
+
+
+
+
+
+
+
                     var trackNum = t;
                     console.log(trackNum);
 
