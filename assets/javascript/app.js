@@ -226,10 +226,10 @@ $.ajax({
                                         photo = data.images[0].url;
                                         trackNum = t;
                                         console.log(artists[artistName]);
-                                        // if (artists[artistName] != undefined) {
-                                        //     // trackName = artists.artistName.trackName;
-                                        //     // spotifyId = artists.artistName.spotifyId;
-                                        // }
+                                        if (artists[artistName] != undefined) {
+                                            trackName = artists[artistName].trackName;
+                                            spotifyId = artists[artistName].spotifyId;
+                                        }
 
                                         trackName.push(item.track.name);
 
