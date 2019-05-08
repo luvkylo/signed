@@ -183,6 +183,7 @@ $.ajax({
         var x = 1;
         $.each(response, function(key, item){
             var artist = item.track.artists;
+            console.log(item);
             $.each(artist, function(k, i) {
                 var artistName = i.name;
                 console.log(artistName);
@@ -206,12 +207,12 @@ $.ajax({
                     var spotifyId = i.id;
                     console.log(spotifyId);
 
-                    var label = 
-                    console.log(label);
+                    // var label = 
+                    // console.log(label);
 
-                    var followers = i.followers.total;
-                    var genre = i.genre;
-                    var photo = i.images[0].url
+                    // var followers = i.followers.total;
+                    // var genre = i.genre;
+                    // var photo = i.images[0].url
 
                     artists[artistName] = {
                         "trackNum": [trackNum],
