@@ -198,6 +198,7 @@ $.ajax({
                 if (artists[artistName] != undefined) {
                     trackNum = t;
                     var nameList = artists.artistName.trackName;
+                    console.log(artists.artistName.trackName);
                     nameList.push(item.track.name);
                     var idList = artists.artistName.spotifyId;
                     idList.push(i.id)
@@ -287,6 +288,12 @@ $.ajax({
         });
     }
 });
+
+setTimeout(function() {
+    $.each(artists, function(key, item) {
+        displayResults(item.trackNum, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label)
+    });
+}, 7000);
 
 
 // ajax call for artist
