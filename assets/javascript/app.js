@@ -137,9 +137,10 @@ $(document.body).on("click", ".popup", function () {
 
 });
 
-function displayResults(name, trackName, followers, genre, photo, spotifyId, newlabel) {
+function displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, newlabel) {
 
     var newRow = $("<tr>");
+    var number = $("<td>").text(trackNum);
     var newArtist = $("<td>").text(name);
     var newTrackName = $("<td>").text(trackName);
     var newLabel = $("<td>").text(newlabel);
@@ -158,7 +159,7 @@ function displayResults(name, trackName, followers, genre, photo, spotifyId, new
     popup.append(popUpSpan);
 
     popUpSpan.html('<p>' + name + '</p><p>' + spotifyId + '</p><p>' + genre + '</p><p>' + photo + '</p><p>' + followers);
-    newRow.append(newArtist, newTrackName, newLabel, popup);
+    newRow.append(number, newArtist, newTrackName, newLabel, popup);
 
     $("#artist-data-table").append(newRow);
 
@@ -205,6 +206,9 @@ $.ajax({
                     var followers = 0;
                     var genre = "";
                     var photo = "";
+                    var trackNum = 0;
+                    var trackName = "":
+                    var spotifyId = ""; 
                     $.ajax({
                         url: artistURL,
                         method: "GET",
@@ -242,13 +246,13 @@ $.ajax({
                                             followers = data.followers.total;
                                             genre = data.genres[0];
                                             photo = data.images[0].url;
-                                            var trackNum = t;
+                                            trackNum = t;
                                             console.log(trackNum);
 
-                                            var trackName = item.track.name;
+                                            trackName = item.track.name;
                                             console.log(trackName);
 
-                                            var spotifyId = i.id;
+                                            spotifyId = i.id;
                                             console.log(spotifyId);
 
                                             console.log(label);
@@ -276,7 +280,7 @@ $.ajax({
                     });
 
                 }
-                displayResults(artistName, trackName, followers, genre, photo, spotifyId, label);
+                displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
             });
             t++;
         });
