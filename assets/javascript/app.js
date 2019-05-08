@@ -286,8 +286,8 @@ $.ajax({
                             })
                         }
                     });
-
                 }
+                displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
             });
             t++;
         });
