@@ -133,6 +133,7 @@ $(document.body).on("click", ".popup", function () {
     var pop = "myPopup-" + $(this).attr("data-count");
     //console.log(pop);
     var showPopup = document.getElementById(pop);
+    console.log(showPopup);
     showPopup.classList.toggle("show");
 
 });
