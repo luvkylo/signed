@@ -199,6 +199,7 @@ $.ajax({
                 if (artists[artistName] != undefined) {
                     trackNum = t;
                     var nameList = artists.artistName.trackName;
+                    console.log(artists.artistName.trackName);
                     nameList.push(item.track.name);
                     var idList = artists.artistName.spotifyId;
                     idList.push(i.id)
@@ -215,8 +216,6 @@ $.ajax({
                     photo = artists.artistName.photo;
                     trackName = item.track.name;
                     spotifyId = i.id;
-                    displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
-                    t++;
                 }
                 else {
 
@@ -276,7 +275,6 @@ $.ajax({
                                                 "genre": genre,
                                                 "photo": photo
                                             }
-                                            displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
                                         }
                                     })
                                 }
@@ -288,6 +286,12 @@ $.ajax({
         });
     }
 });
+
+setTimeout(function() {
+    $.each(artists, function(key, item) {
+        displayResults(item.trackNum, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label)
+    });
+}, 7000);
 
 
 // ajax call for artist
