@@ -140,6 +140,7 @@ $(document.body).on("click", ".popup", function () {
 function displayResults(name, trackName, followers, genre, photo, spotifyId, newlabel) {
 
     var newRow = $("<tr>");
+    
     var newArtist = $("<td>").text(name);
     var newTrackName = $("<td>").text(trackName);
     var newLabel = $("<td>").text(newlabel);
@@ -249,10 +250,6 @@ $.ajax({
                     })
 
 
-
-
-
-
                     var trackNum = t;
                     console.log(trackNum);
 
@@ -279,7 +276,7 @@ $.ajax({
                         "genre": genre,
                         "photo": photo
                     }
-                    displayResults(artistName, trackName, followers, genre, photo, spotifyId, label);
+                    displayResults(trackNum, artistName, trackName, followers, genre, photo, spotifyId, label);
                     t++;
 
                 }
