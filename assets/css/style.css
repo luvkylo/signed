@@ -106,7 +106,7 @@ footer{
   width:50%;
   margin: auto;
   height:auto;
-  margin-top:20px;
+  margin-top:40px;
   border-radius: 5px;
   background-color:white;
   color:black;
@@ -120,7 +120,7 @@ footer{
 
 .image-popup{
   width:auto;
-  height:400px
+  height:300px
 }
 
 .artist_name{
