@@ -127,6 +127,7 @@ footer{
 
 .spotify_id{
   font-size:13px;
+  font-size: 4vw;
   color:lightslategray;
   width: 95%;
   padding: 13px;
@@ -134,6 +135,7 @@ footer{
 
 .genre{
   font-size:13px;
+  font-size: 4vw;
   color:lightslategray;
   width: 95%;
   padding: 13px;
@@ -141,6 +143,7 @@ footer{
 
 .followers{
   font-size:13px;
+  font-size: 4vw;
   width: 95%;
   color:lightslategray;
   padding: 13px;
