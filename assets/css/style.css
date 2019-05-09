@@ -123,26 +123,30 @@ footer{
 .artist_name{
   font-weight: 700px;
   font-size:18px;
-  padding: 13px;
+  padding-left: 13px;
+  padding-top:13;
 }
 
 .spotify_id{
   font-size:8px;
   color: lightskyblue;
   width: 95%;
-  padding: 13px;
+  padding-left: 13px;
+  padding-top:2px;
 }
 
 .genre{
   font-size:13px;
   color:lightslategray;
   width: 95%;
-  padding: 13px;
+  padding-left: 13px;
+  padding-top:13;
 }
 
 .followers{
   font-size:13px;
   width: 95%;
   color:lightslategray;
-  padding: 13px;
+  padding-left: 13px;
+  padding-top:8px;
 }
