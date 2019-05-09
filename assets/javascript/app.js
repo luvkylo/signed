@@ -164,7 +164,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 // ajax call for playlist
 // track number, artist, track name, spotify id, label
 function spotifySearch(playlistId) {
-    var playlistURL = "https://api.spotify.com/v1/playlists/" + playlistsId;
+    var playlistURL = "https://api.spotify.com/v1/playlists/" + playlistId;
 
     $.ajax({
         url: playlistURL,
@@ -311,7 +311,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
 
         iso2 = response.geonames[0].countryCode;
 
-        url = "http://api.worldbank.org/v2/country/" + iso2.toLowerCase() + "?format=json"
+        url = "https://api.worldbank.org/v2/country/" + iso2.toLowerCase() + "?format=json"
 
         $.ajax({
             url: url,
