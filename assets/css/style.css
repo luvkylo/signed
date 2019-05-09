@@ -103,7 +103,7 @@ footer{
 
 /* Popup Content */
 .card-container{
-  width:60%;
+  width:50%;
   margin: auto;
   height:auto;
   margin-top:20px;
@@ -111,34 +111,38 @@ footer{
   background-color:white;
   color:black;
   border: 2px solid grey;
+  font-weight: 700px;
+}
+
+.card-container span{
+  font-weight: 400px;
 }
 
 .image-popup{
   width:100%;
   margin:auto;
-  padding: 10px;
+  padding: 12px;
 }
 
 .artist_name{
   font-size:18px;
-  font-weight: 700px;
-  padding: 10px;
+  padding: 12px;
 }
 
 .spotify_id{
   font-size:14px;
   color:lightslategray;
-  padding: 10px;
+  padding: 12px;
 }
 
 .genre{
   font-size:14px;
   color:lightslategray;
-  padding: 10px;
+  padding: 12px;
 }
 
 .followers{
   font-size:14px;
   color:lightslategray;
-  padding: 10px;
+  padding: 12px;
 }
