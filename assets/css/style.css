@@ -132,8 +132,8 @@ footer{
   color: lightskyblue;
   width: 95%;
   padding-left: 13px;
-  padding-top:10px;
-  padding-bottom:10px;
+  padding-top:6px;
+  padding-bottom:6px;
 }
 
 .genre{
@@ -141,8 +141,8 @@ footer{
   color:lightslategray;
   width: 95%;
   padding-left: 13px;
-  padding-top:10px;
-  padding-bottom:10px;
+  padding-top:6px;
+  padding-bottom:6px;
 }
 
 .followers{
@@ -150,6 +150,6 @@ footer{
   width: 95%;
   color:lightslategray;
   padding-left: 13px;
-  padding-top:10px;
-  padding-bottom:10px;
+  padding-top:6px;
+  padding-bottom:6px;
 }
