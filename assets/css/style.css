@@ -107,7 +107,6 @@ footer{
   width:50%;
   margin: auto;
   height:auto;
-  padding-bottom:20px;
   margin-top:40px;
   border-radius: 5px;
   background-color:white;
@@ -125,15 +124,16 @@ footer{
   font-weight: 700px;
   font-size:18px;
   padding-left: 13px;
-  padding-top:13;
+  padding-top:13px;
 }
 
 .spotify_id{
-  font-size:8px;
+  font-size:10px;
   color: lightskyblue;
   width: 95%;
   padding-left: 13px;
-  padding-top:8px;
+  padding-top:10px;
+  padding-bottom:10px;
 }
 
 .genre{
@@ -141,7 +141,8 @@ footer{
   color:lightslategray;
   width: 95%;
   padding-left: 13px;
-  padding-top:8px;
+  padding-top:10px;
+  padding-bottom:10px;
 }
 
 .followers{
@@ -149,5 +150,6 @@ footer{
   width: 95%;
   color:lightslategray;
   padding-left: 13px;
-  padding-top:8px;
+  padding-top:10px;
+  padding-bottom:10px;
 }
