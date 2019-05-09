@@ -119,30 +119,29 @@ footer{
 }
 
 .image-popup{
-  width:100%;
-  margin:auto;
-  padding: 12px;
+  width:auto;
+  height:400px
 }
 
 .artist_name{
   font-size:18px;
-  padding: 12px;
+  padding: 13px;
 }
 
 .spotify_id{
   font-size:14px;
   color:lightslategray;
-  padding: 12px;
+  padding: 13px;
 }
 
 .genre{
   font-size:14px;
   color:lightslategray;
-  padding: 12px;
+  padding: 13px;
 }
 
 .followers{
   font-size:14px;
   color:lightslategray;
-  padding: 12px;
+  padding: 13px;
 }
