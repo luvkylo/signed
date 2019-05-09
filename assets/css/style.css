@@ -84,7 +84,7 @@ footer{
   color: #fff;
   position: fixed;
   position: absolute;
-  opacity: 0.8;
+  background-color: rgba(0,0,0,.5);
   
   margin: auto;
   height: 100%;
@@ -113,7 +113,6 @@ footer{
   color:black;
   border: 2px solid grey;
   overflow:auto;
-   opacity: 1;
 }
 
 .image-popup{
