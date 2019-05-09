@@ -63,7 +63,7 @@ footer{
   font-weight: 550;
 }
 
-.table_row tr{
+.table_row td{
   font-size: 15px;
   padding: 5px 8px;
 }
