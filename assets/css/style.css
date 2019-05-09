@@ -123,9 +123,7 @@ footer{
 .artist_name{
   font-weight: 700px;
   font-size:18px;
-  padding-left: 13px;
-  padding-top:13px;
-  padding-bottom:7px;
+  padding: 13px;
 }
 
 .spotify_id{
