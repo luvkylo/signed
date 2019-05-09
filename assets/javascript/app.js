@@ -152,10 +152,10 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
     var pop = "myPopup-" + count;
     popUpSpan.attr("id", pop);
 
-    popup.html('<p>More Info</p>');
+    popup.html('<p class="more_info" >More Info</p>');
     popup.append(popUpSpan);
-
-    popUpSpan.html('<h3>' + name + '</h3><p>Spotify ID: ' + spotifyId + '</p><p>Genre: ' + genre + '</p><div><img src="' + photo + '" alt="Artist Photo"></div><p>Followers: ' + followers);
+    
+    popUpSpan.html('<div class="card mb-3"><img src="' + photo + '" alt="Artist Photo"><div class="card-body"><h5 class="card-title">' + name + '</h5><div class="card-text">Spotify ID: ' + spotifyId + '</div><div class="card-text">Genre: ' + genre + '</div><div class="card-text">Followers: ' + followers + '</div><div class="card-text">Spotify ID: ' + spotifyId + '</div>');
     newRow.append(number, newArtist, newTrackName, newLabel, popup);
 
     $("#artist-data-table").append(newRow);
