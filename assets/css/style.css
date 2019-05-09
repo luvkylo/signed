@@ -125,22 +125,22 @@ footer{
 }
 
 .spotify_id{
-  font-size:14px;
-  font-weight: 400px;
+  font-size:13px;
   color:lightslategray;
+  width: 95%;
   padding: 13px;
 }
 
 .genre{
-  font-size:14px;
-  font-weight: 400px;
+  font-size:13px;
   color:lightslategray;
+  width: 95%;
   padding: 13px;
 }
 
 .followers{
-  font-size:14px;
-  font-weight: 400px;
+  font-size:13px;
+  width: 95%;
   color:lightslategray;
   padding: 13px;
 }
