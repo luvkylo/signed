@@ -152,7 +152,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
     var pop = "myPopup-" + count;
     popUpSpan.attr("id", pop);
 
-    popup.html('<a href="#">More Info</a>');
+    popup.html('<p>More Info</p>');
     popup.append(popUpSpan);
 
     popUpSpan.html('<h3>' + name + '</h3><p>Spotify ID: ' + spotifyId + '</p><p>Genre: ' + genre + '</p><div><img src="' + photo + '" alt="Artist Photo"></div><p>Followers: ' + followers);
