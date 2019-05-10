@@ -257,7 +257,7 @@ function spotifySearch(playlistId) {
                                             429: function() {
                                                 $(".table_row").empty();
                                                 $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
-                                                $(".table_row").append('<iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
+                                                $(".table_row").append('</br><iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
                                             }
                                         }
                                     });
@@ -266,7 +266,7 @@ function spotifySearch(playlistId) {
                                     429: function() {
                                         $(".table_row").empty();
                                         $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
-                                        $(".table_row").append('<iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
+                                        $(".table_row").append('</br><iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
                                     }
                                 }
                             });
@@ -275,7 +275,7 @@ function spotifySearch(playlistId) {
                             429: function() {
                                 $(".table_row").empty();
                                 $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
-                                $(".table_row").append('<iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
+                                $(".table_row").append('<br/><iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
                             }
                         }
                     });
@@ -286,7 +286,7 @@ function spotifySearch(playlistId) {
             429: function() {
                 $(".table_row").empty();
                 $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
-                $(".table_row").append('<iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
+                $(".table_row").append('</br><iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
             }
         }
     });
