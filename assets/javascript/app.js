@@ -272,7 +272,7 @@ function spotifySearch(playlistId) {
                                             429: function() {
                                                 $(".table_row").empty();
                                                 $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
-                                                $("#spinner").show();
+                                               
                                             }
                                         }
                                     });
@@ -281,7 +281,7 @@ function spotifySearch(playlistId) {
                                     429: function() {
                                         $(".table_row").empty();
                                         $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
-                                        $("#spinner").show();
+                                       
                                     }
                                 }
                             });
@@ -291,7 +291,7 @@ function spotifySearch(playlistId) {
                                 
                                 $(".table_row").empty();
                                 $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
-                                $("#spinner").show();
+                             
                                }
                         }
                     });
