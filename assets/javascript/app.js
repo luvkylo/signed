@@ -421,6 +421,16 @@ function googleSignout() {
     $(".signout").addClass("invisible").css("display", "none");
     $(".fav").addClass("invisible").css("display", "none");
     $(".map_row").css('display', 'none');
+    $("#artist-data-table").empty();
+    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
+    spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
+    setTimeout(function() {
+        var i = 1;
+        $.each(artists, function(key, item) {
+            displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+            i++;
+        });
+    }, 7000);
 
 }
 
