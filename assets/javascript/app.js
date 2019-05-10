@@ -533,6 +533,8 @@ $(document).ready(function () {
             d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
         }).on('click', function (d) {
             if(d.playlist === 2) {
+                var selected = d.properties.name;
+                $(".data-table").append($("<h3>").addClass("card-header text-center").text("You have selected: " + selected));
                 artists = {};
                 spotifySearch(countryPlaylist[d.id]);
                 setTimeout( function() {
