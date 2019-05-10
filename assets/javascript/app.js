@@ -460,6 +460,8 @@ $(document).ready(function () {
 // When the user clicks on More Info, open the popup!
     
     $(document.body).on("click", ".popup", function () {
+        
+        $('html,body').animate({scrollTop: $(".scroll_table").offset().top}, 'slow');
 
         var pop = "myPopup-" + $(this).attr("data-count");
         //console.log(pop);
