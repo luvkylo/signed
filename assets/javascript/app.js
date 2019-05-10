@@ -382,23 +382,31 @@ function googleSignin() {
             
             // ------------------------------ add map and display table -----------------------------------
             $(".map_row").css('display', 'initial');
-            if ($(".country") != undefined) {
-                $(".country").remove();
-            }
 
             artists = {};
             
             // default playlist to users location after sign in
-            spotifySearch(countryPlaylist[countryCode]);
             setTimeout(function() {
-                var i = 1;
-                if (!clicked) {
-                    $.each(artists, function(key, item) {
-                        displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
-                        i++;
+                if(!clicked) {
+                    $.ajax({
+                        url: "https://api.worldbank.org/v2/country/" + countryCode + "?format=json",
+                        method: "GET",
+                        success: function(r) {
+                            $(".data-table").append($("<h3>").addClass("card-header text-center country").text("Your current location: " + r[1][0].name));
+                            spotifySearch(countryPlaylist[countryCode]);
+                            setTimeout(function() {
+                                var i = 1;
+                                if (!clicked) {
+                                    $.each(artists, function(key, item) {
+                                        displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                                        i++;
+                                    });
+                                }
+                            }, 7000);
+                        }
                     });
                 }
-            }, 7000);
+            }, 3000);
 
         }
     }).catch(function (error) {
