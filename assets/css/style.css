@@ -18,6 +18,12 @@ footer{
   border-top: 2px solid darkblue;
 }
 
+#spinner{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
 .signin, .signout{
   margin:15px 15px 0px 0px;
   border-radius: 5px;
