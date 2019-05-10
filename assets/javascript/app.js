@@ -377,6 +377,7 @@ function googleSignin() {
             // remove all display
 
             $("#artist-data-table").empty();
+            $('html,body').animate({scrollTop: $(".scroll_table_2").offset().top}, 'slow');
             $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
             $("#spinner").show();
             
@@ -437,6 +438,7 @@ function googleSignout() {
     $(".signout").addClass("invisible").css("display", "none");
     $(".fav").addClass("invisible").css("display", "none");
     $(".map_row").css('display', 'none');
+    $('html,body').animate({scrollTop: $(".scroll_table").offset().top}, 'slow');
     $("#artist-data-table").empty();
     $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');        
     $("#spinner").show();
