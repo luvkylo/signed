@@ -89,6 +89,7 @@ var userEmail = "";
 
 firebase.initializeApp(config);
 var database = firebase.database();
+var clicked = false;
 
 // ---------------------------------------- Spotify Authentication ----------------------------------------------
 
@@ -387,10 +388,12 @@ function googleSignin() {
             spotifySearch(countryPlaylist[countryCode]);
             setTimeout(function() {
                 var i = 1;
-                $.each(artists, function(key, item) {
-                    displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
-                    i++;
-                });
+                if (!clicked) {
+                    $.each(artists, function(key, item) {
+                        displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                        i++;
+                    });
+                }
             }, 7000);
 
         }
@@ -546,6 +549,7 @@ $(document).ready(function () {
                 $("#artist-data-table").empty();
                 $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
             }
+            clicked = true;
         });
 
         // add svg.append("g").on("click") - > to scroll down to the list of singer from their country
