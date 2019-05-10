@@ -460,8 +460,7 @@ $(document).ready(function () {
 
     $("#artist-data-table").empty();
     $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
-    $("#artist-data-table").append('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');  
-    $("#spinner").show();
+
     
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
     setTimeout(function() {
