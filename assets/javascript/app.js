@@ -250,40 +250,45 @@ function spotifySearch(playlistId) {
                                                 "genre": genre,
                                                 "photo": photo
                                             }
+                                        },
+                                        statusCode: {
+                                            429: function() {
+                                                $(".table_row").empty();
+                                                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                                                $(".table_row").append('<img src="https://giphy.com/gifs/eiK0lHjqiMh6xa7u8S/html5" />');
+                                            }
                                         }
                                     });
+                                },
+                                statusCode: {
+                                    429: function() {
+                                        $(".table_row").empty();
+                                        $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                                        $(".table_row").append('<img src="https://giphy.com/gifs/eiK0lHjqiMh6xa7u8S/html5" />');
+                                    }
                                 }
                             });
+                        },
+                        statusCode: {
+                            429: function() {
+                                $(".table_row").empty();
+                                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                                $(".table_row").append('<img src="https://giphy.com/gifs/eiK0lHjqiMh6xa7u8S/html5" />');
+                            }
                         }
                     });
                 });
             });
+        },
+        statusCode: {
+            429: function() {
+                $(".table_row").empty();
+                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                $(".table_row").append('<img src="https://giphy.com/gifs/eiK0lHjqiMh6xa7u8S/html5" />');
+            }
         }
     });
 }
-
-
-// ajax call for artist
-// $.ajax({
-//     url: artistURL,
-//     method: "GET",
-//     headers: {
-//         'Authorization': 'Bearer ' + accessToken
-//     },
-//     success: function(data) {
-//         console.log(data)
-//     }
-// });
-// });
-//     $.each(data.artist, function(item, index) {
-//         var name = item;
-//         // do an ajax call to spotify to get the info on the artist
-//         // when done, receive result 
-//         // artist[result.name] = {"id": ..., "followers": ...}
-//     });
-// };
-
-
 
 // ---------------------------------------- operations prior web loading ----------------------------------------------
 
