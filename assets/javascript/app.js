@@ -386,6 +386,8 @@ function googleSignout() {
     $(".signin").removeClass("invisible").css("display", "initial");
     $(".signout").addClass("invisible").css("display", "none");
     $(".fav").addClass("invisible").css("display", "none");
+    $(".map_row").css('display', 'none');
+
 }
 
 // ---------------------------------------- load web --------------------------------------------
@@ -458,6 +460,7 @@ $(document).ready(function () {
     function ready(error, data) {
         var playlist = {};
         data.features.forEach(function (d) {
+            console.log(countryPlaylist[d.id]);
             if (countryPlaylist[d.id] != undefined) {
                 d.playlist = 1;
                 playlist[d.id] = 1;
