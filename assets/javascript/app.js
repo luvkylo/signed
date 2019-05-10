@@ -371,9 +371,10 @@ function googleSignin() {
             // to get current user
             // remove all display
 
-            $("#artist-data-table").empty();
-            $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
-
+           
+            $("#artist-data-table").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');  
+            $("#spinner").show();
+            
             // ------------------------------ add map and display table -----------------------------------
             $(".map_row").css('display', 'initial');
             if ($(".country") != undefined) {
@@ -423,8 +424,8 @@ function googleSignout() {
     $(".signout").addClass("invisible").css("display", "none");
     $(".fav").addClass("invisible").css("display", "none");
     $(".map_row").css('display', 'none');
-    $("#artist-data-table").empty();
-    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
+    $("#artist-data-table").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');  
+    $("#spinner").show();
     $(".country").remove();
     artists = {};
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
@@ -454,9 +455,9 @@ $(document).ready(function () {
 
     });
 
-    $("#artist-data-table").empty();
-    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
-
+    $("#artist-data-table").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');  
+    $("#spinner").show();
+    
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
     setTimeout(function() {
         var i = 1;
