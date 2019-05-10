@@ -266,6 +266,8 @@ function spotifyFollowers(artistName, artistId, label, t) {
             var genre = data.genres[0];
             var photo = data.images[0].url;
             var trackNum = t;
+            var trackName = [];
+            var spotifyId = [];
             if (artists[artistName] != undefined) {
                 trackName = artists[artistName].trackName;
                 spotifyId = artists[artistName].spotifyId;
