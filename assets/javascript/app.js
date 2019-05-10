@@ -125,6 +125,8 @@ if (!accessToken) {
 
 function displayResults(trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel) {
 
+    $("#spinner").hide();
+
     var newRow = $("<tr>");
 
     var number = $("<td>").text(trackNum);
