@@ -556,6 +556,9 @@ $(document).ready(function () {
                 }, 7000);
             }
             else {
+                if ($(".country") != undefined) {
+                    $(".country").remove();
+                }
                 $("#artist-data-table").empty();
                 $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
             }
