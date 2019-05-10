@@ -480,6 +480,8 @@ $(document).ready(function () {
         }).on('mouseout', function (d) {
             tip.hide(d);
             d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
+        }).on('click', function (d) {
+            console.log(d);
         });
         // add svg.append("g").on("click") - > to scroll down to the list of singer from their country
 
