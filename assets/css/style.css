@@ -38,13 +38,12 @@ footer{
 .map_row{
   margin: 20px 0px; 
   text-align: center;
-  
+  display: none;
 }
 
 .map_row img{
   width:100%;
   border-radius: 5px;
-  display: none;
 }
 
 .table_row{
