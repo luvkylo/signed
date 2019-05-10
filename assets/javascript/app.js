@@ -125,6 +125,8 @@ if (!accessToken) {
 
 function displayResults(trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel) {
 
+    $("#spinner").hide();
+
     var newRow = $("<tr>");
 
     var number = $("<td>").text(trackNum);
@@ -256,40 +258,45 @@ function spotifySearch(playlistId) {
                                                 "genre": genre,
                                                 "photo": photo
                                             }
+                                        },
+                                        statusCode: {
+                                            429: function() {
+                                                $(".table_row").empty();
+                                                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                                                $(".table_row").append('</br><iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
+                                            }
                                         }
                                     });
+                                },
+                                statusCode: {
+                                    429: function() {
+                                        $(".table_row").empty();
+                                        $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                                        $(".table_row").append('</br><iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
+                                    }
                                 }
                             });
+                        },
+                        statusCode: {
+                            429: function() {
+                                $(".table_row").empty();
+                                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                                $(".table_row").append('<br/><iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
+                            }
                         }
                     });
                 });
             });
+        },
+        statusCode: {
+            429: function() {
+                $(".table_row").empty();
+                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                $(".table_row").append('</br><iframe src="https://giphy.com/embed/9uI8dYy9prpS925uLl" width="480" height="267" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/stickers/cute-9uI8dYy9prpS925uLl">via GIPHY</a></p>');
+            }
         }
     });
 }
-
-
-// ajax call for artist
-// $.ajax({
-//     url: artistURL,
-//     method: "GET",
-//     headers: {
-//         'Authorization': 'Bearer ' + accessToken
-//     },
-//     success: function(data) {
-//         console.log(data)
-//     }
-// });
-// });
-//     $.each(data.artist, function(item, index) {
-//         var name = item;
-//         // do an ajax call to spotify to get the info on the artist
-//         // when done, receive result 
-//         // artist[result.name] = {"id": ..., "followers": ...}
-//     });
-// };
-
-
 
 // ---------------------------------------- operations prior web loading ----------------------------------------------
 
@@ -363,6 +370,16 @@ function googleSignin() {
 
             // ------------------------------ add map and display table -----------------------------------
             $(".map_row").css('display', 'initial');
+            
+            // default playlist to users location after sign in
+            spotifySearch(countryPlaylist[countryCode]);
+            setTimeout(function() {
+                var i = 1;
+                $.each(artists, function(key, item) {
+                    displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                    i++;
+                });
+            }, 7000);
 
         }
     }).catch(function (error) {
