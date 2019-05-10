@@ -482,6 +482,7 @@ $(document).ready(function () {
             d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
         }).on('click', function (d) {
             if(d.playlist === 2) {
+                artists = {};
                 spotifySearch(countryPlaylist[d.id]);
                 setTimeout(function() {
                     var i = 1;
