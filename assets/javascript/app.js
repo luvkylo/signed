@@ -444,7 +444,7 @@ $(document).ready(function () {
     };
     var width = 960 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
-    var color = d3.scaleThreshold().domain([1,2]).range(['rgb(247,251,255)', 'rgb(8,81,156)']);
+    var color = d3.scaleThreshold().domain([1,2]).range(['rgb(107,174,214)', 'rgb(8,81,156)']);
 
     // Note select('body') needs to select the parent element before the table
     var svg = d3.select('#world-map').append('svg').attr('width', width).attr('height', height).append('g').attr('class', 'map');
