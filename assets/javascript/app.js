@@ -554,7 +554,6 @@ $(document).ready(function () {
                 clicked = true;
                 if(d.playlist === 2) {
                     $("#artist-data-table").empty();
-                    $('html,body').animate({scrollTop: $(".scroll_table").offset().top}, 'slow');
                     $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
                     $("#spinner").show();
                     console.log($(".country"));
