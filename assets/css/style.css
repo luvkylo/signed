@@ -10,6 +10,7 @@ body{
 #spinner{
   padding-top:20px;
   margin:auto;
+  padding-bottom: 50px;
   width:40%;
   text-align: center;
 }
