@@ -425,7 +425,7 @@ function googleSignout() {
     $(".fav").addClass("invisible").css("display", "none");
     $(".map_row").css('display', 'none');
     $("#artist-data-table").empty();
-    $("#artist-data-table").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');  
+    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');        
     $("#spinner").show();
     $(".country").remove();
     artists = {};
@@ -457,8 +457,8 @@ $(document).ready(function () {
     });
 
     $("#artist-data-table").empty();
-    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
-
+    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
+            
     
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
     setTimeout(function() {
@@ -536,8 +536,7 @@ $(document).ready(function () {
         }).on('click', function (d) {
             if(d.playlist === 2) {
                 $("#artist-data-table").empty();
-                $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
-                $("#artist-data-table").append('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');  
+                $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
                 $("#spinner").show();
                 console.log($(".country"));
                 $(".country").remove();
@@ -547,8 +546,7 @@ $(document).ready(function () {
                 spotifySearch(countryPlaylist[d.id]);
                 setTimeout( function() {
                     $("#artist-data-table").empty();
-                    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
-                    $("#artist-data-table").append('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');  
+                    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
                     $("#spinner").show();
                     var i = 1;
                     $.each(artists, function (key, item) {
