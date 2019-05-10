@@ -124,7 +124,7 @@ if (!accessToken) {
 // --------------------------------------------- Functions --------------------------------------------------
 
 function capitalize_Words(str) {
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 }
 
 function displayResults(trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel) {
@@ -197,7 +197,7 @@ function spotifySearch(playlistId) {
                     // var trackNum = 0;
                     // var trackName = [];
                     // var spotifyId = [];
-                    spotifyArtist(artistName, artistId, t);
+                    spotifyArtist(artistName, artistId, t, item);
                 })
             })
         }, statusCode: {
@@ -209,7 +209,7 @@ function spotifySearch(playlistId) {
         }
     })
 }
-function spotifyArtist(artistName, artistId, t) {
+function spotifyArtist(artistName, artistId, t, item) {
     artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
     $.ajax({
         url: artistURL,
@@ -218,7 +218,7 @@ function spotifyArtist(artistName, artistId, t) {
             'Authorization': 'Bearer ' + accessToken
         }, success: function (data) {
             albumId = data.items[0].id;
-            spotifyAlbum(artistName, artistId, albumId, t);
+            spotifyAlbum(artistName, artistId, albumId, t, item);
         }, statusCode: {
             429: function () {
                 $(".table_row").empty();
@@ -228,7 +228,7 @@ function spotifyArtist(artistName, artistId, t) {
         }
     });
 }
-function spotifyAlbum(artistName, artistId, albumId, t) {
+function spotifyAlbum(artistName, artistId, albumId, t, item) {
     albumURL = "https://api.spotify.com/v1/albums/" + albumId;
     $.ajax({
         url: albumURL,
@@ -243,7 +243,7 @@ function spotifyAlbum(artistName, artistId, albumId, t) {
             else {
                 label = "Unsigned";
             }
-            spotifyFollowers(artistName, artistId, label, t)
+            spotifyFollowers(artistName, artistId, label, t, item)
         }, statusCode: {
             429: function () {
                 $(".table_row").empty();
@@ -253,7 +253,7 @@ function spotifyAlbum(artistName, artistId, albumId, t) {
         }
     })
 }
-function spotifyFollowers(artistName, artistId, label, t) {
+function spotifyFollowers(artistName, artistId, label, t, item) {
     var artistURL = "https://api.spotify.com/v1/artists/" + artistId;
     $.ajax({
         url: artistURL,
