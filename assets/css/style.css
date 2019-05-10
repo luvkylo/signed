@@ -33,6 +33,7 @@ footer{
   background-position: center;
   background-repeat: no-repeat;
   min-height: 550px;
+  margin: 0 auto;
 }
 
 .map_row{
