@@ -40,6 +40,11 @@ footer{
   margin: 0 auto;
 }
 
+.row {
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .map_row{
   margin: 20px 0px; 
   text-align: center;
