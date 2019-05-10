@@ -532,7 +532,7 @@ $(document).ready(function () {
             d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
         }).on('click', function (d) {
             if(d.playlist === 2) {
-                $("#artist-data-table").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds. </p></div>');  
+                $("#artist-data-table").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');  
                 $("#spinner").show();
                 console.log($(".country"));
                 $(".country").remove();
@@ -541,7 +541,7 @@ $(document).ready(function () {
                 artists = {};
                 spotifySearch(countryPlaylist[d.id]);
                 setTimeout( function() {
-                    $("#artist-data-table").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds. </p></div>');  
+                    $("#artist-data-table").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');  
                     $("#spinner").show();
                     var i = 1;
                     $.each(artists, function (key, item) {
