@@ -416,7 +416,6 @@ $(document).ready(function () {
 
     });
 
-    // default playlist to users location after sign in
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
     setTimeout(function() {
         var i = 1;
@@ -491,6 +490,18 @@ $(document).ready(function () {
         }).on('mouseout', function (d) {
             tip.hide(d);
             d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
+        }).on('click', function (d) {
+            if(d.playlist === 2) {
+                artists = {};
+                spotifySearch(countryPlaylist[d.id]);
+                setTimeout(function() {
+                    var i = 1;
+                    $.each(artists, function(key, item) {
+                        displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                        i++;
+                    });
+                }, 7000);
+            }
         });
         // add svg.append("g").on("click") - > to scroll down to the list of singer from their country
 
