@@ -381,6 +381,9 @@ function googleSignin() {
 
             // ------------------------------ add map and display table -----------------------------------
             $(".map_row").css('display', 'initial');
+            if ($(".country") != undefined) {
+                $(".country").remove();
+            }
 
             artists = {};
             
@@ -427,6 +430,8 @@ function googleSignout() {
     $(".map_row").css('display', 'none');
     $("#artist-data-table").empty();
     $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
+    $(".country").remove();
+    artists = {};
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
     setTimeout(function() {
         var i = 1;
@@ -533,8 +538,11 @@ $(document).ready(function () {
             d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
         }).on('click', function (d) {
             if(d.playlist === 2) {
+                if ($(".country") != undefined) {
+                    $(".country").remove();
+                }
                 var selected = d.properties.name;
-                $(".data-table").append($("<h3>").addClass("card-header text-center").text("You have selected: " + selected));
+                $(".data-table").append($("<h3>").addClass("card-header text-center country").text("You have selected: " + selected));
                 artists = {};
                 spotifySearch(countryPlaylist[d.id]);
                 setTimeout( function() {
