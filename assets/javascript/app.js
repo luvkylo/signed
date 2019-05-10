@@ -123,6 +123,10 @@ if (!accessToken) {
 
 // --------------------------------------------- Functions --------------------------------------------------
 
+function capitalize_Words(str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 function displayResults(trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel) {
 
     $("#spinner").hide();
@@ -152,10 +156,6 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 
     popup.html('<p class="more_info" >More Info</p>');
     popup.append(popUpSpan);
-
-    genre = genre.toLowerCase().replace(/\b[a-z]/g, function (txtVal) {
-        return txtVal.toUpperCase();
-    });
 
     followers = followers.toLocaleString();
 
