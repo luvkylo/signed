@@ -518,6 +518,10 @@ $(document).ready(function () {
                         });
                     }, 7000);
                 }
+                else {
+                    $("#artist-data-table").empty();
+                    $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
+                }
             });
         // add svg.append("g").on("click") - > to scroll down to the list of singer from their country
 
