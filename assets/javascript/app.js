@@ -539,7 +539,7 @@ $(document).ready(function () {
                     $.each(artists, function (key, item) {
                         displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
                         i++;
-                    }
+                    });
                 }, 7000);
             }
             else {
