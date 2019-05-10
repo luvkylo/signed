@@ -483,6 +483,8 @@ $(document).ready(function () {
         }).on('click', function (d) {
             if(d.playlist === 2) {
                 artists = {};
+                $("#artist-data-table").empty();
+                $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
                 spotifySearch(countryPlaylist[d.id]);
                 setTimeout(function() {
                     var i = 1;
