@@ -157,16 +157,23 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
     popup.html('<p class="more_info" >More Info</p>');
     popup.append(popUpSpan);
 
-    genre = capitalize_Words(genre);
+    try {
+        genre = capitalize_Words(genre);
+    }
+    catch (err) {
+        console.log(err);
+    }
+    finally {
+        followers = followers.toLocaleString();
+        
+        popUpSpan.html('<div class="card-container"><img src="' + photo + '" class="image-popup" alt="Artist Photo"><div class="artist_name">' + name + '</div><div class="spotify_id">Spotify ID: ' + spotifyId + '</div><div class="genre">Genre: ' + genre + '</div><div class="followers">Followers: ' + followers + '</div></div>');
+        newRow.append(number, newArtist, newTrackName, newLabel, popup);
 
-    followers = followers.toLocaleString();
-    
-    popUpSpan.html('<div class="card-container"><img src="' + photo + '" class="image-popup" alt="Artist Photo"><div class="artist_name">' + name + '</div><div class="spotify_id">Spotify ID: ' + spotifyId + '</div><div class="genre">Genre: ' + genre + '</div><div class="followers">Followers: ' + followers + '</div></div>');
-    newRow.append(number, newArtist, newTrackName, newLabel, popup);
+        $("#artist-data-table").append(newRow);
 
-    $("#artist-data-table").append(newRow);
+        count++;
+    }
 
-    count++;
 }
 
 
