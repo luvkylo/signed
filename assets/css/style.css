@@ -1,3 +1,7 @@
+html {
+  width: 100vw;
+}
+
 body{
   font-family: 'Martel Sans', sans-serif;
   font-weight: 400;
@@ -227,4 +231,9 @@ text{
 
 .details{
   color: white;
+}
+
+.col-sm-12 {
+  padding-left: 0px;
+  padding-right: 0px;
 }

@@ -413,7 +413,7 @@ $(document).ready(function () {
             displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
             i++;
         });
-    }, 6000);
+    }, 7000);
 
 
     // --------------------- add table of centent to the main display ----------------------------------
