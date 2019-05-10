@@ -370,6 +370,8 @@ function googleSignin() {
 
             // ------------------------------ add map and display table -----------------------------------
             $(".map_row").css('display', 'initial');
+
+            artists = {};
             
             // default playlist to users location after sign in
             spotifySearch(countryPlaylist[countryCode]);
