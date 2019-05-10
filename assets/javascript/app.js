@@ -356,7 +356,7 @@ function googleSignin() {
             $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead>');
 
             // ------------------------------ add map and display table -----------------------------------
-            $("#world-map").css('display', 'initial');
+            $(".map_row").css('display', 'initial');
 
         }
     }).catch(function (error) {
@@ -452,7 +452,7 @@ $(document).ready(function () {
     svg.call(tip);
 
     queue().
-    defer(d3.json, 'world_countries.json').
+    defer(d3.json, 'assets/javascript/world_countries.json').
     await(ready);
 
     function ready(error, data) {
