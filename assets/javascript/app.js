@@ -152,6 +152,12 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 
     popup.html('<p class="more_info" >More Info</p>');
     popup.append(popUpSpan);
+
+    genre = genre.toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
+        return txtVal.toUpperCase();
+    });
+
+    followers = followers.toLocaleString();
     
     popUpSpan.html('<div class="card-container"><img src="' + photo + '" class="image-popup" alt="Artist Photo"><div class="artist_name">' + name + '</div><div class="spotify_id">Spotify ID: ' + spotifyId + '</div><div class="genre">Genre: ' + genre + '</div><div class="followers">Followers: ' + followers + '</div></div>');
     newRow.append(number, newArtist, newTrackName, newLabel, popup);
@@ -364,6 +370,8 @@ function googleSignin() {
 
             // ------------------------------ add map and display table -----------------------------------
             $(".map_row").css('display', 'initial');
+
+            artists = {};
             
             // default playlist to users location after sign in
             spotifySearch(countryPlaylist[countryCode]);
