@@ -178,6 +178,7 @@ footer{
 
 /* Tooltip CSS */
 .d3-tip {
+  width:100%;
   line-height: 1.5;
   font-weight: 400;
   font-family:"avenir next", Arial, sans-serif;
