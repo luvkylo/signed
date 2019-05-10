@@ -534,33 +534,36 @@ $(document).ready(function () {
             tip.hide(d);
             d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
         }).on('click', function (d) {
-            if(d.playlist === 2) {
-                $("#artist-data-table").empty();
-                $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
-                $("#spinner").show();
-                console.log($(".country"));
-                $(".country").remove();
-                var selected = d.properties.name;
-                $(".data-table").append($("<h3>").addClass("card-header text-center country").text("You have selected: " + selected));
-                artists = {};
-                spotifySearch(countryPlaylist[d.id]);
-                setTimeout( function() {
+            if (!clicked) {
+                if(d.playlist === 2) {
                     $("#artist-data-table").empty();
                     $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
                     $("#spinner").show();
-                    var i = 1;
-                    $.each(artists, function (key, item) {
-                        displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
-                        i++;
-                    });
-                }, 7000);
+                    console.log($(".country"));
+                    $(".country").remove();
+                    var selected = d.properties.name;
+                    $(".data-table").append($("<h3>").addClass("card-header text-center country").text("You have selected: " + selected));
+                    artists = {};
+                    spotifySearch(countryPlaylist[d.id]);
+                    setTimeout( function() {
+                        $("#artist-data-table").empty();
+                        $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
+                        $("#spinner").show();
+                        var i = 1;
+                        $.each(artists, function (key, item) {
+                            displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                            i++;
+                        });
+                        clicked = false;
+                    }, 7000);
+                }
+                else {
+                    $(".country").remove();
+                    $("#artist-data-table").empty();
+                    $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
+                }
+                clicked = true;
             }
-            else {
-                $(".country").remove();
-                $("#artist-data-table").empty();
-                $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
-            }
-            clicked = true;
         });
 
         // add svg.append("g").on("click") - > to scroll down to the list of singer from their country
