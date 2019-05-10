@@ -57,7 +57,11 @@ footer{
   margin: 20px 0px; 
   text-align: center;
   display: none;
-
+  
+  .map_row img{
+  width:100%;
+  border-radius: 5px;
+}
 
 .table_row{
   background-color: #21304F;
@@ -173,9 +177,6 @@ footer{
 
 /* Tooltip CSS */
 .d3-tip {
-  width:auto;
-  margin-right: auto;
-  margin-left: auto;
   line-height: 1.5;
   font-weight: 400;
   font-family:"avenir next", Arial, sans-serif;
@@ -214,11 +215,6 @@ footer{
   margin: -4px 0 0 0;
   top: 50%;
   left: -8px;
-}
-
-svg{
-  width:auto;
-  margin:auto;
 }
 
 /* Southward tooltips */
