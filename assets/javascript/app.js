@@ -535,6 +535,7 @@ $(document).ready(function () {
             d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
         }).on('click', function (d) {
             if (!clicked) {
+                clicked = true;
                 if(d.playlist === 2) {
                     $("#artist-data-table").empty();
                     $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
@@ -561,8 +562,8 @@ $(document).ready(function () {
                     $(".country").remove();
                     $("#artist-data-table").empty();
                     $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
+                    clicked = false;
                 }
-                clicked = true;
             }
         });
 
