@@ -538,6 +538,7 @@ $(document).ready(function () {
             d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
         }).on('click', function (d) {
             if(d.playlist === 2) {
+                console.log($(".country"));
                 if ($(".country") != undefined) {
                     $(".country").remove();
                 }
