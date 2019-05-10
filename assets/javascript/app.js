@@ -357,6 +357,16 @@ function googleSignin() {
 
             // ------------------------------ add map and display table -----------------------------------
             $(".map_row").css('display', 'initial');
+            
+            // default playlist to users location after sign in
+            spotifySearch(countryPlaylist[countryCode]);
+            setTimeout(function() {
+                var i = 1;
+                $.each(artists, function(key, item) {
+                    displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                    i++;
+                });
+            }, 7000);
 
         }
     }).catch(function (error) {
@@ -406,6 +416,7 @@ $(document).ready(function () {
 
     });
 
+    // default playlist to users location after sign in
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
     setTimeout(function() {
         var i = 1;
