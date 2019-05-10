@@ -516,7 +516,6 @@ $(document).ready(function () {
     function ready(error, data) {
         var playlist = {};
         data.features.forEach(function (d) {
-            console.log(countryPlaylist[d.id]);
             if (countryPlaylist[d.id] != undefined) {
                 d.playlist = 2;
                 playlist[d.id] = 2;
@@ -539,9 +538,7 @@ $(document).ready(function () {
         }).on('click', function (d) {
             if(d.playlist === 2) {
                 console.log($(".country"));
-                if ($(".country") != undefined) {
-                    $(".country").remove();
-                }
+                $(".country").remove();
                 var selected = d.properties.name;
                 $(".data-table").append($("<h3>").addClass("card-header text-center country").text("You have selected: " + selected));
                 artists = {};
@@ -557,9 +554,7 @@ $(document).ready(function () {
                 }, 7000);
             }
             else {
-                if ($(".country") != undefined) {
-                    $(".country").remove();
-                }
+                $(".country").remove();
                 $("#artist-data-table").empty();
                 $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
             }
