@@ -271,29 +271,25 @@ function spotifySearch(playlistId) {
                                         },
                                         statusCode: {
                                             429: function() {
-                                                $(".table_row").empty();
-                                                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
-                                               
+                                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds. </p></div>');
+                                                $("#spinner").show();
                                             }
                                         }
                                     });
                                 },
                                 statusCode: {
                                     429: function() {
-                                        $(".table_row").empty();
-                                        $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
-                                       
+                                        $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds. </p></div>');  
+                                        $("#spinner").show();
                                     }
                                 }
                             });
                         },
                         statusCode: {
                             429: function() {
-                                
-                                $(".table_row").empty();
-                                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
-                             
-                               }
+                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds. </p></div>');
+                                $("#spinner").show();
+                            }
                         }
                     });
                 });
