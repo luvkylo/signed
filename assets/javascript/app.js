@@ -250,40 +250,45 @@ function spotifySearch(playlistId) {
                                                 "genre": genre,
                                                 "photo": photo
                                             }
+                                        },
+                                        statusCode: {
+                                            429: function() {
+                                                $(".table_row").empty();
+                                                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                                                $(".table_row").append('<img src="https://giphy.com/gifs/eiK0lHjqiMh6xa7u8S/html5" />');
+                                            }
                                         }
                                     });
+                                },
+                                statusCode: {
+                                    429: function() {
+                                        $(".table_row").empty();
+                                        $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                                        $(".table_row").append('<img src="https://giphy.com/gifs/eiK0lHjqiMh6xa7u8S/html5" />');
+                                    }
                                 }
                             });
+                        },
+                        statusCode: {
+                            429: function() {
+                                $(".table_row").empty();
+                                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                                $(".table_row").append('<img src="https://giphy.com/gifs/eiK0lHjqiMh6xa7u8S/html5" />');
+                            }
                         }
                     });
                 });
             });
+        },
+        statusCode: {
+            429: function() {
+                $(".table_row").empty();
+                $(".table_row").text("You've reached your rate limit. Please try again in a few seconds.");
+                $(".table_row").append('<img src="https://giphy.com/gifs/eiK0lHjqiMh6xa7u8S/html5" />');
+            }
         }
     });
 }
-
-
-// ajax call for artist
-// $.ajax({
-//     url: artistURL,
-//     method: "GET",
-//     headers: {
-//         'Authorization': 'Bearer ' + accessToken
-//     },
-//     success: function(data) {
-//         console.log(data)
-//     }
-// });
-// });
-//     $.each(data.artist, function(item, index) {
-//         var name = item;
-//         // do an ajax call to spotify to get the info on the artist
-//         // when done, receive result 
-//         // artist[result.name] = {"id": ..., "followers": ...}
-//     });
-// };
-
-
 
 // ---------------------------------------- operations prior web loading ----------------------------------------------
 
@@ -480,17 +485,6 @@ $(document).ready(function () {
         }).on('mouseout', function (d) {
             tip.hide(d);
             d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
-        }).on('click', function (d) {
-            if(d.playlist === 2) {
-                spotifySearch(countryPlaylist[d.id]);
-                setTimeout(function() {
-                    var i = 1;
-                    $.each(artists, function(key, item) {
-                        displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
-                        i++;
-                    });
-                }, 7000);
-            }
         });
         // add svg.append("g").on("click") - > to scroll down to the list of singer from their country
 
