@@ -390,7 +390,7 @@ function googleSignin() {
             
             // default playlist to users location after sign in
             setTimeout(function() {
-                if(!clicked) {
+                if(!clicked && !signedClick) {
                     $.ajax({
                         url: "https://api.worldbank.org/v2/country/" + countryCode + "?format=json",
                         method: "GET",
@@ -399,7 +399,7 @@ function googleSignin() {
                             spotifySearch(countryPlaylist[countryCode]);
                             setTimeout(function() {
                                 var i = 1;
-                                if (!signedClick) {
+                                if (!clicked && !signedClick) {
                                     signedClick = true;
                                     $.each(artists, function(key, item) {
                                         displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
@@ -583,6 +583,7 @@ $(document).ready(function () {
                 else {
                     $(".country").remove();
                     $("#artist-data-table").empty();
+                    $("#spinner").remove();
                     $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
                     clicked = false;
                 }
