@@ -276,7 +276,7 @@ function spotifySearch(playlistId) {
                                         },
                                         statusCode: {
                                             429: function() {
-                                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please wait a few seconds or reload the page. </p></div>');
+                                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
                                                 $("#spinner").show();
                                             }
                                         }
