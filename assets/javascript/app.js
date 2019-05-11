@@ -90,6 +90,8 @@ var userEmail = "";
 firebase.initializeApp(config);
 var database = firebase.database();
 var clicked = false;
+var signedClick = false;
+var xhr = '';
 
 // ---------------------------------------- Spotify Authentication ----------------------------------------------
 
@@ -189,7 +191,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 function spotifySearch(playlistId) {
     var playlistURL = "https://api.spotify.com/v1/playlists/" + playlistId;
 
-    $.ajax({
+    xhr = $.ajax({
         url: playlistURL,
         method: "GET",
         headers: {
@@ -396,7 +398,8 @@ function googleSignin() {
                             spotifySearch(countryPlaylist[countryCode]);
                             setTimeout(function() {
                                 var i = 1;
-                                if (!clicked) {
+                                if (!signedClick) {
+                                    signedClick = true;
                                     $.each(artists, function(key, item) {
                                         displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
                                         i++;
@@ -549,6 +552,8 @@ $(document).ready(function () {
         }).on('click', function (d) {
             if (!clicked) {
                 clicked = true;
+                signedClick = true;
+                xhr.abort();
                 if(d.playlist === 2) {
                     $("#artist-data-table").empty();
                     $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
