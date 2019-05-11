@@ -90,6 +90,8 @@ var userEmail = "";
 firebase.initializeApp(config);
 var database = firebase.database();
 var clicked = false;
+var signedClick = false;
+var xhr = '';
 
 // ---------------------------------------- Spotify Authentication ----------------------------------------------
 
@@ -189,7 +191,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 function spotifySearch(playlistId) {
     var playlistURL = "https://api.spotify.com/v1/playlists/" + playlistId;
 
-    $.ajax({
+    xhr = $.ajax({
         url: playlistURL,
         method: "GET",
         headers: {
@@ -397,7 +399,8 @@ function googleSignin() {
                             spotifySearch(countryPlaylist[countryCode]);
                             setTimeout(function() {
                                 var i = 1;
-                                if (!clicked) {
+                                if (!signedClick) {
+                                    signedClick = true;
                                     $.each(artists, function(key, item) {
                                         displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
                                         i++;
@@ -552,6 +555,8 @@ $(document).ready(function () {
         }).on('click', function (d) {
             if (!clicked) {
                 clicked = true;
+                signedClick = true;
+                xhr.abort();
                 if(d.playlist === 2) {
                     $("#artist-data-table").empty();
                     $('html,body').animate({scrollTop: $(".scroll_table_2").offset().top}, 'slow');
