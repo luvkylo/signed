@@ -583,7 +583,7 @@ $(document).ready(function () {
                 else {
                     $(".country").remove();
                     $("#artist-data-table").empty();
-                    $("#spinner").remove();
+                    $("#spinner").hide();
                     $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
                     clicked = false;
                 }
