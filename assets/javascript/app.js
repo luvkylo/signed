@@ -278,7 +278,7 @@ function spotifySearch(playlistId) {
                                         },
                                         statusCode: {
                                             429: function() {
-                                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds. </p></div>');
+                                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
                                                 $("#spinner").show();
                                             }
                                         }
@@ -286,7 +286,7 @@ function spotifySearch(playlistId) {
                                 },
                                 statusCode: {
                                     429: function() {
-                                        $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds. </p></div>');  
+                                        $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');  
                                         $("#spinner").show();
                                     }
                                 }
@@ -294,7 +294,7 @@ function spotifySearch(playlistId) {
                         },
                         statusCode: {
                             429: function() {
-                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds. </p></div>');
+                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
                                 $("#spinner").show();
                             }
                         }
@@ -304,7 +304,7 @@ function spotifySearch(playlistId) {
         },
         statusCode: {
             429: function() {
-                    $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds. </p></div>');
+                    $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
                     $("#spinner").show();    
             }
         }
@@ -379,6 +379,7 @@ function googleSignin() {
             // remove all display
 
             $("#artist-data-table").empty();
+            $('html,body').animate({scrollTop: $(".scroll_table_2").offset().top}, 'slow');
             $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
             $("#spinner").show();
             
@@ -463,6 +464,8 @@ $(document).ready(function () {
 // When the user clicks on More Info, open the popup!
     
     $(document.body).on("click", ".popup", function () {
+        
+        $('html,body').animate({scrollTop: $(".scroll_table").offset().top}, 'slow');
 
         var pop = "myPopup-" + $(this).attr("data-count");
         //console.log(pop);
@@ -556,6 +559,7 @@ $(document).ready(function () {
                 xhr.abort();
                 if(d.playlist === 2) {
                     $("#artist-data-table").empty();
+                    $('html,body').animate({scrollTop: $(".scroll_table_2").offset().top}, 'slow');
                     $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
                     $("#spinner").show();
                     console.log($(".country"));
