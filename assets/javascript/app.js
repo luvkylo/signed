@@ -515,8 +515,14 @@ $(document).ready(function () {
         bottom: 0,
         left: 0
     };
-    var width = 960 - margin.left - margin.right;
-    var height = 500 - margin.top - margin.bottom;
+    if ($(window).width() < (960 - margin.left - margin.right)){
+        var width = $(window).width() - margin.left - margin.right;
+        var height = ($(window).width() * (500/960)) - margin.top - margin.bottom;
+    }
+    else {
+        var width = 960 - margin.left - margin.right;
+        var height = 500 - margin.top - margin.bottom;
+    }
     var color = d3.scaleThreshold().domain([1,2]).range(['rgb(107,174,214)', 'rgb(8,81,156)']);
 
     // Note select('body') needs to select the parent element before the table
@@ -604,7 +610,7 @@ $(document).ready(function () {
             width = $(window).width() - margin.left - margin.right;
             height = ($(window).width() * (500/960)) - margin.top - margin.bottom;
 
-            projection.scale(width/2).rotate([352, 0, 0]).translate([width / 2, height / 2]);
+            projection.scale(width/7).rotate([352, 0, 0]).translate([width / 2, height / 2]);
             d3.select('#world-map').attr('width', width).attr('height', height);
 
             d3.select("svg").attr("width",width).attr("height",height);
