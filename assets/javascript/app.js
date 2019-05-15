@@ -597,4 +597,20 @@ $(document).ready(function () {
         })).attr('class', 'names').attr('d', path);
     }
 
+    d3.select(window).on('resize', resize);
+
+    function resize() {
+        if ($(window).width() < (960 - margin.left - margin.right)) {
+            width = $(window).width() - margin.left - margin.right;
+            height = ($(window).width() * (500/960)) - margin.top - margin.bottom;
+
+            projection.scale(148).rotate([352, 0, 0]).translate([width / 2, height / 2]);
+            d3.select('#world-map').attr('width', width).attr('height', height);
+
+            d3.select("svg").attr("width",width).attr("height",height);
+  
+            d3.selectAll("path").attr('d', path);
+        }
+    }
+
 });
