@@ -527,7 +527,7 @@ $(document).ready(function () {
 
     // Note select('body') needs to select the parent element before the table
     var svg = d3.select('#world-map').append('svg').attr('width', width).attr('height', height).append('g').attr('class', 'map');
-    var projection = d3.geoRobinson().scale(148).rotate([352, 0, 0]).translate([width / 2, height / 2]);
+    var projection = d3.geoRobinson().scale(width/7).rotate([352, 0, 0]).translate([width / 2, height / 2]);
     var path = d3.geoPath().projection(projection);
 
     svg.call(tip);
