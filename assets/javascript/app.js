@@ -604,7 +604,7 @@ $(document).ready(function () {
             width = $(window).width() - margin.left - margin.right;
             height = ($(window).width() * (500/960)) - margin.top - margin.bottom;
 
-            projection.scale(148).rotate([352, 0, 0]).translate([width / 2, height / 2]);
+            projection.scale(width/2).rotate([352, 0, 0]).translate([width / 2, height / 2]);
             d3.select('#world-map').attr('width', width).attr('height', height);
 
             d3.select("svg").attr("width",width).attr("height",height);
