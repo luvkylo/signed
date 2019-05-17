@@ -353,6 +353,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
 
 // when the sign in button is pressed
 function googleSignin() {
+    xhr.abort();
     firebase.auth();
     var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -437,6 +438,7 @@ function googleSignin() {
 
 // when the signout button is pressed
 function googleSignout() {
+    xhr.abort();
     firebase.auth().signOut()
 
         .then(function () {
