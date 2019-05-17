@@ -396,17 +396,24 @@ function googleSignin() {
                         method: "GET",
                         success: function(r) {
                             $(".data-table").append($("<h3>").addClass("card-header text-center country").text("Your current location: " + r[1][0].name));
-                            spotifySearch(countryPlaylist[countryCode]);
-                            setTimeout(function() {
-                                var i = 1;
-                                if (!clicked && !signedClick) {
-                                    signedClick = true;
-                                    $.each(artists, function(key, item) {
-                                        displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
-                                        i++;
-                                    });
-                                }
-                            }, 7000);
+                            if (!countryPlaylist.hasOwnProperty(countryCode)) {
+                                $("#artist-data-table").empty();
+                                $("#spinner").hide();
+                                $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you are currently located does not have a playlist!"));
+                            }
+                            else {
+                                spotifySearch(countryPlaylist[countryCode]);
+                                setTimeout(function() {
+                                    var i = 1;
+                                    if (!clicked && !signedClick) {
+                                        signedClick = true;
+                                        $.each(artists, function(key, item) {
+                                            displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                                            i++;
+                                        });
+                                    }
+                                }, 7000);
+                            }
                         }
                     });
                 }
