@@ -92,6 +92,9 @@ var database = firebase.database();
 var clicked = false;
 var signedClick = false;
 var xhr = '';
+var xhr1 = '';
+var xhr2 = '';
+var xhr3 = '';
 
 // ---------------------------------------- Spotify Authentication ----------------------------------------------
 
@@ -217,7 +220,7 @@ function spotifySearch(playlistId) {
 
                     artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
 
-                    $.ajax({
+                     xhr1 = $.ajax({
                         url: artistURL,
                         method: "GET",
                         headers: {
@@ -227,7 +230,7 @@ function spotifySearch(playlistId) {
                             albumId = data.items[0].id;
 
                             albumURL = "https://api.spotify.com/v1/albums/" + albumId;
-                            $.ajax({
+                             xhr2 = $.ajax({
                                 url: albumURL,
                                 method: "GET",
                                 headers: {
@@ -242,7 +245,7 @@ function spotifySearch(playlistId) {
                                     }
 
                                     artistURL = "https://api.spotify.com/v1/artists/" + artistId;
-                                    $.ajax({
+                                    xhr3 = $.ajax({
                                         url: artistURL,
                                         method: "GET",
                                         headers: {
@@ -354,6 +357,9 @@ navigator.geolocation.getCurrentPosition(function (position) {
 // when the sign in button is pressed
 function googleSignin() {
     xhr.abort();
+    xhr1.abort();
+    xhr2.abort();
+    xhr3.abort();
     firebase.auth();
     var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -439,6 +445,9 @@ function googleSignin() {
 // when the signout button is pressed
 function googleSignout() {
     xhr.abort();
+    xhr1.abort();
+    xhr2.abort();
+    xhr3.abort();
     firebase.auth().signOut()
 
         .then(function () {
@@ -572,6 +581,9 @@ $(document).ready(function () {
                 clicked = true;
                 signedClick = true;
                 xhr.abort();
+                xhr1.abort();
+                xhr2.abort();
+                xhr3.abort();
                 if(d.playlist === 2) {
                     $("#artist-data-table").empty();
                     $('html,body').animate({scrollTop: $(".scroll_table_2").offset().top}, 'slow');
