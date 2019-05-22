@@ -77,12 +77,13 @@ var artistURL = "https://api.spotify.com/v1/artists/";
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyBGEi2FNlzHCBjl6Oit1qTAjPQ7oKSTER0",
-    authDomain: "project-1-930f6.firebaseapp.com",
-    databaseURL: "https://project-1-930f6.firebaseio.com",
-    projectId: "project-1-930f6",
-    storageBucket: "project-1-930f6.appspot.com",
-    messagingSenderId: "772881617679"
+    apiKey: "AIzaSyDBCMWsA-Z4KgEoiQ2CC8pGOiHOcEqHLaQ",
+    authDomain: "chris-project-7ac32.firebaseapp.com",
+    databaseURL: "https://chris-project-7ac32.firebaseio.com",
+    projectId: "chris-project-7ac32",
+    storageBucket: "chris-project-7ac32.appspot.com",
+    messagingSenderId: "533057620555",
+    appId: "1:533057620555:web:54b894c6eb7bae2d"
 };
 
 var userEmail = "";
