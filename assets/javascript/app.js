@@ -131,7 +131,7 @@ if (!accessToken) {
 // --------------------------------------------- Functions --------------------------------------------------
 
 function capitalize_Words(str) {
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 }
 
 function displayResults(trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel) {
@@ -144,11 +144,11 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
     var newArtist = $("<td>").text(name);
 
     var trackName = "";
-    $.each(trackNames, function(key, item) {
+    $.each(trackNames, function (key, item) {
         trackName = trackName + item + "\n ";
     });
     var newTrackName = $("<td>").text(trackName);
-    newTrackName.html(newTrackName.html().replace(/\n/g,'<br/>'));
+    newTrackName.html(newTrackName.html().replace(/\n/g, '<br/>'));
     var newLabel = $("<td>").text(newlabel);
     var popup = $("<td>");
 
@@ -177,7 +177,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
         else {
             followers = 0;
         }
-        
+
         popUpSpan.html('<div class="card-container"><img src="' + photo + '" class="image-popup" alt="Artist Photo"><div class="artist_name">' + name + '</div><div class="spotify_id">Spotify ID: ' + spotifyId + '</div><div class="genre">Genre: ' + genre + '</div><div class="followers">Followers: ' + followers + '</div></div>');
         newRow.append(number, newArtist, newTrackName, newLabel, popup);
 
@@ -188,6 +188,43 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 
 }
 
+function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("artist-data-table");
+    switching = true;
+
+    dir = "asc";
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+    }
+}
 
 // var userTop50 = function() {
 // ajax call for playlist
@@ -216,12 +253,12 @@ function spotifySearch(playlistId) {
                     var photo = "";
                     var trackNum = 0;
                     var trackName = [];
-                    var spotifyId = []; 
+                    var spotifyId = [];
 
 
                     artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
 
-                     xhr1 = $.ajax({
+                    xhr1 = $.ajax({
                         url: artistURL,
                         method: "GET",
                         headers: {
@@ -231,7 +268,7 @@ function spotifySearch(playlistId) {
                             albumId = data.items[0].id;
 
                             albumURL = "https://api.spotify.com/v1/albums/" + albumId;
-                             xhr2 = $.ajax({
+                            xhr2 = $.ajax({
                                 url: albumURL,
                                 method: "GET",
                                 headers: {
@@ -281,7 +318,7 @@ function spotifySearch(playlistId) {
                                             }
                                         },
                                         statusCode: {
-                                            429: function() {
+                                            429: function () {
                                                 $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
                                                 $("#spinner").show();
                                             }
@@ -289,15 +326,15 @@ function spotifySearch(playlistId) {
                                     });
                                 },
                                 statusCode: {
-                                    429: function() {
-                                        $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');  
+                                    429: function () {
+                                        $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
                                         $("#spinner").show();
                                     }
                                 }
                             });
                         },
                         statusCode: {
-                            429: function() {
+                            429: function () {
                                 $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
                                 $("#spinner").show();
                             }
@@ -307,9 +344,9 @@ function spotifySearch(playlistId) {
             });
         },
         statusCode: {
-            429: function() {
-                    $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
-                    $("#spinner").show();    
+            429: function () {
+                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
+                $("#spinner").show();
             }
         }
     });
@@ -346,7 +383,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
         $.ajax({
             url: url,
             method: "GET",
-            success: function(result) {
+            success: function (result) {
                 countryCode = result[1][0].id;
                 console.log(countryCode);
             }
@@ -387,22 +424,22 @@ function googleSignin() {
             // remove all display
 
             $("#artist-data-table").empty();
-            $('html,body').animate({scrollTop: $(".scroll_table_2").offset().top}, 'slow');
-            $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
+            $('html,body').animate({ scrollTop: $(".scroll_table_2").offset().top }, 'slow');
+            $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
             $("#spinner").show();
-            
+
             // ------------------------------ add map and display table -----------------------------------
             $(".map_row").css('display', 'initial');
 
             artists = {};
-            
+
             // default playlist to users location after sign in
-            setTimeout(function() {
-                if(!clicked && !signedClick) {
+            setTimeout(function () {
+                if (!clicked && !signedClick) {
                     $.ajax({
                         url: "https://api.worldbank.org/v2/country/" + countryCode + "?format=json",
                         method: "GET",
-                        success: function(r) {
+                        success: function (r) {
                             $(".data-table").append($("<h3>").addClass("card-header text-center country").text("Your current location: " + r[1][0].name));
                             if (!countryPlaylist.hasOwnProperty(countryCode)) {
                                 $("#artist-data-table").empty();
@@ -411,11 +448,11 @@ function googleSignin() {
                             }
                             else {
                                 spotifySearch(countryPlaylist[countryCode]);
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     var i = 1;
                                     if (!clicked && !signedClick) {
                                         signedClick = true;
-                                        $.each(artists, function(key, item) {
+                                        $.each(artists, function (key, item) {
                                             displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
                                             i++;
                                         });
@@ -461,14 +498,14 @@ function googleSignout() {
     $(".fav").addClass("invisible").css("display", "none");
     $(".map_row").css('display', 'none');
     $("#artist-data-table").empty();
-    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');        
+    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
     $("#spinner").show();
     $(".country").remove();
     artists = {};
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
-    setTimeout(function() {
+    setTimeout(function () {
         var i = 1;
-        $.each(artists, function(key, item) {
+        $.each(artists, function (key, item) {
             displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
             i++;
         });
@@ -480,11 +517,11 @@ function googleSignout() {
 
 $(document).ready(function () {
 
-// When the user clicks on More Info, open the popup!
-    
+    // When the user clicks on More Info, open the popup!
+
     $(document.body).on("click", ".popup", function () {
-        
-        $('html,body').animate({scrollTop: $(".scroll_table").offset().top}, 'slow');
+
+        $('html,body').animate({ scrollTop: $(".scroll_table").offset().top }, 'slow');
 
         var pop = "myPopup-" + $(this).attr("data-count");
         //console.log(pop);
@@ -495,13 +532,13 @@ $(document).ready(function () {
     });
 
     $("#artist-data-table").empty();
-    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
-            
-    
+    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
+
+
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
-    setTimeout(function() {
+    setTimeout(function () {
         var i = 1;
-        $.each(artists, function(key, item) {
+        $.each(artists, function (key, item) {
             displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
             i++;
         });
@@ -534,26 +571,26 @@ $(document).ready(function () {
         bottom: 0,
         left: 0
     };
-    if ($(window).width() < (960 - margin.left - margin.right)){
+    if ($(window).width() < (960 - margin.left - margin.right)) {
         var width = $(window).width() - margin.left - margin.right;
-        var height = ($(window).width() * (500/960)) - margin.top - margin.bottom;
+        var height = ($(window).width() * (500 / 960)) - margin.top - margin.bottom;
     }
     else {
         var width = 960 - margin.left - margin.right;
         var height = 500 - margin.top - margin.bottom;
     }
-    var color = d3.scaleThreshold().domain([1,2]).range(['rgb(107,174,214)', 'rgb(8,81,156)']);
+    var color = d3.scaleThreshold().domain([1, 2]).range(['rgb(107,174,214)', 'rgb(8,81,156)']);
 
     // Note select('body') needs to select the parent element before the table
     var svg = d3.select('#world-map').append('svg').attr('width', width).attr('height', height).append('g').attr('class', 'map');
-    var projection = d3.geoRobinson().scale(width/7).rotate([352, 0, 0]).translate([width / 2, height / 2]);
+    var projection = d3.geoRobinson().scale(width / 7).rotate([352, 0, 0]).translate([width / 2, height / 2]);
     var path = d3.geoPath().projection(projection);
 
     svg.call(tip);
 
     queue().
-    defer(d3.json, 'assets/javascript/world_countries.json').
-    await(ready);
+        defer(d3.json, 'assets/javascript/world_countries.json').
+        await(ready);
 
     function ready(error, data) {
         var playlist = {};
@@ -571,52 +608,52 @@ $(document).ready(function () {
         svg.append('g').attr('class', 'countries').selectAll('path').data(data.features).enter().append('path').attr('d', path).style('fill', function (d) {
             return color(playlist[d.id]);
         }).style('stroke', 'white').style('opacity', 0.8).style('stroke-width', 0.3) // tooltips
-        .on('mouseover', function (d) {
-            tip.show(d);
-            d3.select(this).style('opacity', 1).style('stroke-width', 3);
-        }).on('mouseout', function (d) {
-            tip.hide(d);
-            d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
-        }).on('click', function (d) {
-            if (!clicked) {
-                clicked = true;
-                signedClick = true;
-                xhr.abort();
-                xhr1.abort();
-                xhr2.abort();
-                xhr3.abort();
-                if(d.playlist === 2) {
-                    $("#artist-data-table").empty();
-                    $('html,body').animate({scrollTop: $(".scroll_table_2").offset().top}, 'slow');
-                    $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
-                    $("#spinner").show();
-                    console.log($(".country"));
-                    $(".country").remove();
-                    var selected = d.properties.name;
-                    $(".data-table").append($("<h3>").addClass("card-header text-center country").text("You have selected: " + selected));
-                    artists = {};
-                    spotifySearch(countryPlaylist[d.id]);
-                    setTimeout( function() {
+            .on('mouseover', function (d) {
+                tip.show(d);
+                d3.select(this).style('opacity', 1).style('stroke-width', 3);
+            }).on('mouseout', function (d) {
+                tip.hide(d);
+                d3.select(this).style('opacity', 0.8).style('stroke-width', 0.3);
+            }).on('click', function (d) {
+                if (!clicked) {
+                    clicked = true;
+                    signedClick = true;
+                    xhr.abort();
+                    xhr1.abort();
+                    xhr2.abort();
+                    xhr3.abort();
+                    if (d.playlist === 2) {
                         $("#artist-data-table").empty();
-                        $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>'); 
+                        $('html,body').animate({ scrollTop: $(".scroll_table_2").offset().top }, 'slow');
+                        $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
                         $("#spinner").show();
-                        var i = 1;
-                        $.each(artists, function (key, item) {
-                            displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
-                            i++;
-                        });
+                        console.log($(".country"));
+                        $(".country").remove();
+                        var selected = d.properties.name;
+                        $(".data-table").append($("<h3>").addClass("card-header text-center country").text("You have selected: " + selected));
+                        artists = {};
+                        spotifySearch(countryPlaylist[d.id]);
+                        setTimeout(function () {
+                            $("#artist-data-table").empty();
+                            $("#artist-data-table").html('<thead><tr><th scope="col">Nº</th><th scope="col">ARTIST</th><th scope="col">TRACK NAME</th><th scope="col">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
+                            $("#spinner").show();
+                            var i = 1;
+                            $.each(artists, function (key, item) {
+                                displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                                i++;
+                            });
+                            clicked = false;
+                        }, 7000);
+                    }
+                    else {
+                        $(".country").remove();
+                        $("#artist-data-table").empty();
+                        $("#spinner").hide();
+                        $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
                         clicked = false;
-                    }, 7000);
+                    }
                 }
-                else {
-                    $(".country").remove();
-                    $("#artist-data-table").empty();
-                    $("#spinner").hide();
-                    $("#artist-data-table").append($("<h2>").addClass("text-center").text("Sorry the country you selected does not have a playlist!"));
-                    clicked = false;
-                }
-            }
-        });
+            });
 
         // add svg.append("g").on("click") - > to scroll down to the list of singer from their country
 
@@ -630,13 +667,13 @@ $(document).ready(function () {
     function resize() {
         if ($(window).width() < (960 - margin.left - margin.right)) {
             width = $(window).width() - margin.left - margin.right;
-            height = ($(window).width() * (500/960)) - margin.top - margin.bottom;
+            height = ($(window).width() * (500 / 960)) - margin.top - margin.bottom;
 
-            projection.scale(width/7).rotate([352, 0, 0]).translate([width / 2, height / 2]);
+            projection.scale(width / 7).rotate([352, 0, 0]).translate([width / 2, height / 2]);
             d3.select('#world-map').attr('width', width).attr('height', height);
 
-            d3.select("svg").attr("width",width).attr("height",height);
-  
+            d3.select("svg").attr("width", width).attr("height", height);
+
             d3.selectAll("path").attr('d', path);
         }
     }
