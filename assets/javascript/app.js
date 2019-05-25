@@ -139,17 +139,24 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
     $("#spinner").hide();
 
     var newRow = $("<tr>");
+    
 
     var number = $("<td>").text(trackNum);
+
     var newArtist = $("<td>").text(name);
+    
 
     var trackName = "";
     $.each(trackNames, function (key, item) {
         trackName = trackName + item + "\n ";
     });
     var newTrackName = $("<td>").text(trackName);
+    newTrackName.attr("data-count", count);
+    newTrackName.html(newTrackName.html().replace(/\n/g,'<br/>'));
     newTrackName.html(newTrackName.html().replace(/\n/g, '<br/>'));
     var newLabel = $("<td>").text(newlabel);
+    
+
     var popup = $("<td>");
 
     popup.attr("class", "popup");
@@ -179,12 +186,18 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
         }
 
         popUpSpan.html('<div class="card-container"><img src="' + photo + '" class="image-popup" alt="Artist Photo"><div class="artist_name">' + name + '</div><div class="spotify_id">Spotify ID: ' + spotifyId + '</div><div class="genre">Genre: ' + genre + '</div><div class="followers">Followers: ' + followers + '</div></div>');
-        newRow.append(number, newArtist, newTrackName, newLabel, popup);
+        newRow.append(number, newArtist, newTrackName, newLabel, popup, favorites);
 
         $("#artist-data-table").append(newRow);
 
         count++;
     }
+
+        // 
+        var favorites = $("<td>").html("<button>+</button>");
+        favorites.attr("id", "favoriteButton");
+        favorites.attr("data-count", count);
+        //
 
 }
 
@@ -530,6 +543,22 @@ $(document).ready(function () {
         showPopup.classList.toggle("show");
 
     });
+
+    $(document.body).on("click", "#favoriteButton", function () {
+        
+        var favorites = {};
+
+        let indexNum = $(this).attr("data-count");
+
+        var newFavArtist = artists[indexNum];
+
+        favorites.push(newFavArtist);
+
+        database.ref("/favoriteTracks").set({
+            tracks: favorites
+          });
+
+    })
 
     $("#artist-data-table").empty();
     $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable()">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
