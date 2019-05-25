@@ -151,12 +151,9 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
         trackName = trackName + item + "\n ";
     });
     var newTrackName = $("<td>").text(trackName);
-<<<<<<< HEAD
     newTrackName.attr("data-count", count);
     newTrackName.html(newTrackName.html().replace(/\n/g,'<br/>'));
-=======
     newTrackName.html(newTrackName.html().replace(/\n/g, '<br/>'));
->>>>>>> master
     var newLabel = $("<td>").text(newlabel);
     
 
@@ -551,8 +548,7 @@ $(document).ready(function () {
         
         var favorites = {};
 
-        let indexNum = $("#favoriteButton").attr("data-count");
-        console.log(indexNum);
+        let indexNum = $(this).attr("data-count");
 
         var newFavArtist = artists[indexNum];
 
