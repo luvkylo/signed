@@ -15,6 +15,17 @@ body{
   text-align: center;
 }
 
+/* ADDED */
+#img-spinner{
+  margin:auto;
+  width:100%;
+  text-align: center;
+}
+
+.table{
+  width:100%;
+}
+
 footer{ 
   background-color: black;
   color:darkgray;
@@ -38,13 +49,14 @@ footer{
   padding:5px;
 }
 
+/* ADDED */
 .header_row{
   background-image: url("../images/logo.jpg");
   background-color: white;
-  background-size: 800px;
+  background-size: 600px;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 550px;
+  height: 350px;
   margin: 0 auto;
 }
 
@@ -241,4 +253,32 @@ footer{
 .col-sm-12 {
   padding-left: 0px;
   padding-right: 0px;
+}
+
+.msg_container{
+  display: none;
+}
+
+@media only screen and (max-width: 750px) {
+  .desapire{
+    display: none;
+  }
+  .msg{
+    background-color: white;
+    border-radius: 40px;
+    color:black;
+    padding:30px;
+    margin:auto;
+    margin-top:10px;
+    width:90%;
+    font-family: 'PT Sans Narrow', sans-serif;
+  }
+
+  .msg_container{
+    display: unset;
+    width:80%;
+    
+    
+  }
+  
 }
