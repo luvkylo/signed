@@ -26,7 +26,9 @@ body{
 .table{
   width:100%;
 }
-
+th {
+  cursor: pointer;
+}
 footer{ 
   background-color: black;
   color:darkgray;
