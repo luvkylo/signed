@@ -4,9 +4,7 @@ Signed is a web based application that was created for the A&R team at Nettwerk 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-Use the following link to access our live site: X. From there you will log in with your personal Spotify account and allow the browser to access your location. From there you can sign in with your Google account to access the visualisation map and explore Top 50 playlists from multiple countries.
+Use the following link to access our live site: https://luvkylo.github.io/signed/. From there you will log in with your personal Spotify account and allow the browser to access your location. Then sign in with your Google account to access the visualisation map and explore Top 50 playlists from multiple countries.
 
 ### Prerequisites
 
