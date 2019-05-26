@@ -139,12 +139,12 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
     $("#spinner").hide();
 
     var newRow = $("<tr>");
-    
+
 
     var number = $("<td>").text(trackNum);
 
     var newArtist = $("<td>").text(name);
-    
+
 
     var trackName = "";
     $.each(trackNames, function (key, item) {
@@ -152,10 +152,10 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
     });
     var newTrackName = $("<td>").text(trackName);
     newTrackName.attr("data-count", count);
-    newTrackName.html(newTrackName.html().replace(/\n/g,'<br/>'));
+    newTrackName.html(newTrackName.html().replace(/\n/g, '<br/>'));
     newTrackName.html(newTrackName.html().replace(/\n/g, '<br/>'));
     var newLabel = $("<td>").text(newlabel);
-    
+
 
     var popup = $("<td>");
 
@@ -193,11 +193,11 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
         count++;
     }
 
-        // 
-        var favorites = $("<td>").html("<button>+</button>");
-        favorites.attr("id", "favoriteButton");
-        favorites.attr("data-count", count);
-        //
+    // 
+    var favorites = $("<td>").html("<button>+</button>");
+    favorites.attr("id", "favoriteButton");
+    favorites.attr("data-count", count);
+    //
 
 }
 
@@ -438,7 +438,7 @@ function googleSignin() {
 
             $("#artist-data-table").empty();
             $('html,body').animate({ scrollTop: $(".scroll_table_2").offset().top }, 'slow');
-            $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable()">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
+            $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
             $("#spinner").show();
 
             // ------------------------------ add map and display table -----------------------------------
@@ -511,7 +511,7 @@ function googleSignout() {
     $(".fav").addClass("invisible").css("display", "none");
     $(".map_row").css('display', 'none');
     $("#artist-data-table").empty();
-    $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable()">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
+    $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
     $("#spinner").show();
     $(".country").remove();
     artists = {};
@@ -545,7 +545,7 @@ $(document).ready(function () {
     });
 
     $(document.body).on("click", "#favoriteButton", function () {
-        
+
         var favorites = {};
 
         let indexNum = $(this).attr("data-count");
@@ -556,12 +556,12 @@ $(document).ready(function () {
 
         database.ref("/favoriteTracks").set({
             tracks: favorites
-          });
+        });
 
     })
 
     $("#artist-data-table").empty();
-    $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable()">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
+    $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
 
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
     setTimeout(function () {
@@ -653,7 +653,7 @@ $(document).ready(function () {
                     if (d.playlist === 2) {
                         $("#artist-data-table").empty();
                         $('html,body').animate({ scrollTop: $(".scroll_table_2").offset().top }, 'slow');
-                        $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable()">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
+                        $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
                         $("#spinner").show();
                         console.log($(".country"));
                         $(".country").remove();
@@ -663,7 +663,7 @@ $(document).ready(function () {
                         spotifySearch(countryPlaylist[d.id]);
                         setTimeout(function () {
                             $("#artist-data-table").empty();
-                            $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable()">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
+                            $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
                             $("#spinner").show();
                             var i = 1;
                             $.each(artists, function (key, item) {
