@@ -39,7 +39,7 @@ You must have access to both of the below accounts. They can be created for free
 
 ## Authors
 
-* [Alvin NG](https://github.com/luvkylo)
+* [Alvin Ng](https://github.com/luvkylo)
 * [Christopher Dang](https://github.com/Dangggchris)
 * [Steven Meiers](https://github.com/SMLM42)
 * [Taylor Dougherty](https://github.com/taydougherty)
