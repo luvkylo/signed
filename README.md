@@ -39,8 +39,8 @@ You must have access to both of the below accounts. They can be created for free
 
 ## Authors
 
-* **Alvin NG** - [GitHub Name](https://github.com/luvkylo)
-* **Christopher Dang** - [GitHub Name](https://github.com/Dangggchris)
-* **Steven Meiers** - [GitHub Name](https://github.com/SMLM42)
-* **Taylor Dougherty** - [GitHub Name](https://github.com/taydougherty)
-* **Tomas Slemenson** - [GitHub Name](https://github.com/TomSlemenson)
+* [Alvin NG](https://github.com/luvkylo)
+* [Christopher Dang](https://github.com/Dangggchris)
+* [Steven Meiers](https://github.com/SMLM42)
+* [Taylor Dougherty](https://github.com/taydougherty)
+* [Tomas Slemenson](https://github.com/TomSlemenson)
