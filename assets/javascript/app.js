@@ -92,10 +92,11 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var clicked = false;
 var signedClick = false;
+var ReSearch = true;
 var xhr = '';
-var xhr1 = '';
-var xhr2 = '';
-var xhr3 = '';
+var xhr1 = [];
+var xhr2 = [];
+var xhr3 = [];
 
 // ---------------------------------------- Spotify Authentication ----------------------------------------------
 
@@ -259,6 +260,7 @@ function sortTable(n) {
 // ajax call for playlist
 // track number, artist, track name, spotify id, label
 function spotifySearch(playlistId) {
+    ReSearch = true;
     var playlistURL = "https://api.spotify.com/v1/playlists/" + playlistId;
 
     xhr = $.ajax({
@@ -287,7 +289,7 @@ function spotifySearch(playlistId) {
 
                     artistURL = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
 
-                    xhr1 = $.ajax({
+                    xhr1.push($.ajax({
                         url: artistURL,
                         method: "GET",
                         headers: {
@@ -297,7 +299,7 @@ function spotifySearch(playlistId) {
                             albumId = data.items[0].id;
 
                             albumURL = "https://api.spotify.com/v1/albums/" + albumId;
-                            xhr2 = $.ajax({
+                            xhr2.push($.ajax({
                                 url: albumURL,
                                 method: "GET",
                                 headers: {
@@ -312,7 +314,7 @@ function spotifySearch(playlistId) {
                                     }
 
                                     artistURL = "https://api.spotify.com/v1/artists/" + artistId;
-                                    xhr3 = $.ajax({
+                                    xhr3.push($.ajax({
                                         url: artistURL,
                                         method: "GET",
                                         headers: {
@@ -348,34 +350,142 @@ function spotifySearch(playlistId) {
                                         },
                                         statusCode: {
                                             429: function () {
-                                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
+                                                xhr.abort();
+                                                xhr1.forEach(function(item) {
+                                                    item.abort()
+                                                });
+                                                xhr2.forEach(function(item) {
+                                                    item.abort()
+                                                });
+                                                xhr3.forEach(function(item) {
+                                                    item.abort()
+                                                });
+                                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. The page will retry in 5 seconds or you can manually reload the page. </p></div>');
                                                 $("#spinner").show();
+                                                xhr1 = [];
+                                                xhr2 = [];
+                                                xhr3 = [];
+                                                if (ReSearch) {
+                                                    ReSearch = false;
+                                                    setTimeout(function() {
+                                                        $(".table_row").html('<div class="row"><div class="col-md-12"><div class="data-table"><h3 class="card-header text-center">DATA TABLE</h3></div><div class="scroll_table"></div><div id="popup-container"><div class="card-body"><!--Table Title--><table class="table table-sm table-hover" id="artist-data-table"><thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th><th scope="col"></th></tr></thead></table><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div></div></div></div></div>');
+                                                        spotifySearch(playlistId);
+                                                        setTimeout(function () {
+                                                            var i = 1;
+                                                            $.each(artists, function (key, item) {
+                                                                displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                                                                i++;
+                                                            });
+                                                        }, 7000);
+                                                    }, 5000);
+                                                }
                                             }
                                         }
-                                    });
+                                    }));
                                 },
                                 statusCode: {
                                     429: function () {
-                                        $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
+                                        xhr.abort();
+                                        xhr1.forEach(function(item) {
+                                            item.abort()
+                                        });
+                                        xhr2.forEach(function(item) {
+                                            item.abort()
+                                        });
+                                        xhr3.forEach(function(item) {
+                                            item.abort()
+                                        });
+                                        $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. The page will retry in 5 seconds or you can manually reload the page. </p></div>');
                                         $("#spinner").show();
+                                        xhr1 = [];
+                                        xhr2 = [];
+                                        xhr3 = [];
+                                        if (ReSearch) {
+                                            ReSearch = false;
+                                            setTimeout(function() {
+                                                $(".table_row").html('<div class="row"><div class="col-md-12"><div class="data-table"><h3 class="card-header text-center">DATA TABLE</h3></div><div class="scroll_table"></div><div id="popup-container"><div class="card-body"><!--Table Title--><table class="table table-sm table-hover" id="artist-data-table"><thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th><th scope="col"></th></tr></thead></table><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div></div></div></div></div>');
+                                                spotifySearch(playlistId);
+                                                setTimeout(function () {
+                                                    var i = 1;
+                                                    $.each(artists, function (key, item) {
+                                                        displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                                                        i++;
+                                                    });
+                                                }, 7000);
+                                            }, 5000);
+                                        }
                                     }
                                 }
-                            });
+                            }));
                         },
                         statusCode: {
                             429: function () {
-                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
+                                xhr.abort();
+                                xhr1.forEach(function(item) {
+                                    item.abort()
+                                });
+                                xhr2.forEach(function(item) {
+                                    item.abort()
+                                });
+                                xhr3.forEach(function(item) {
+                                    item.abort()
+                                });
+                                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. The page will retry in 5 seconds or you can manually reload the page. </p></div>');
                                 $("#spinner").show();
+                                xhr1 = [];
+                                xhr2 = [];
+                                xhr3 = [];
+                                if (ReSearch) {
+                                    ReSearch = false;
+                                    setTimeout(function() {
+                                        $(".table_row").html('<div class="row"><div class="col-md-12"><div class="data-table"><h3 class="card-header text-center">DATA TABLE</h3></div><div class="scroll_table"></div><div id="popup-container"><div class="card-body"><!--Table Title--><table class="table table-sm table-hover" id="artist-data-table"><thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th><th scope="col"></th></tr></thead></table><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div></div></div></div></div>');
+                                        spotifySearch(playlistId);
+                                        setTimeout(function () {
+                                            var i = 1;
+                                            $.each(artists, function (key, item) {
+                                                displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                                                i++;
+                                            });
+                                        }, 7000);
+                                    }, 5000);
+                                }
                             }
                         }
-                    });
+                    }));
                 });
             });
         },
         statusCode: {
             429: function () {
-                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. Please try again in a few seconds or reload the page. </p></div>');
+                xhr.abort();
+                xhr1.forEach(function(item) {
+                    item.abort()
+                });
+                xhr2.forEach(function(item) {
+                    item.abort()
+                });
+                xhr3.forEach(function(item) {
+                    item.abort()
+                });
+                $(".table_row").html('<div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> You have reached your rate limit. The page will retry in 5 seconds or you can manually reload the page. </p></div>');
                 $("#spinner").show();
+                xhr1 = [];
+                xhr2 = [];
+                xhr3 = [];
+                if (ReSearch) {
+                    ReSearch = false;
+                    setTimeout(function() {
+                        $(".table_row").html('<div class="row"><div class="col-md-12"><div class="data-table"><h3 class="card-header text-center">DATA TABLE</h3></div><div class="scroll_table"></div><div id="popup-container"><div class="card-body"><!--Table Title--><table class="table table-sm table-hover" id="artist-data-table"><thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th><th scope="col"></th></tr></thead></table><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div></div></div></div></div>');
+                        spotifySearch(playlistId);
+                        setTimeout(function () {
+                            var i = 1;
+                            $.each(artists, function (key, item) {
+                                displayResults(i, key, item.trackName, item.followers, item.genre, item.photo, item.spotifyId, item.label);
+                                i++;
+                            });
+                        }, 7000);
+                    }, 5000);
+                }
             }
         }
     });
@@ -424,9 +534,18 @@ navigator.geolocation.getCurrentPosition(function (position) {
 // when the sign in button is pressed
 function googleSignin() {
     xhr.abort();
-    xhr1.abort();
-    xhr2.abort();
-    xhr3.abort();
+    xhr1.forEach(function(item) {
+        item.abort()
+    });
+    xhr2.forEach(function(item) {
+        item.abort()
+    });
+    xhr3.forEach(function(item) {
+        item.abort()
+    });
+    xhr1 = [];
+    xhr2 = [];
+    xhr3 = [];
     firebase.auth();
     var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -512,9 +631,18 @@ function googleSignin() {
 // when the signout button is pressed
 function googleSignout() {
     xhr.abort();
-    xhr1.abort();
-    xhr2.abort();
-    xhr3.abort();
+    xhr1.forEach(function(item) {
+        item.abort()
+    });
+    xhr2.forEach(function(item) {
+        item.abort()
+    });
+    xhr3.forEach(function(item) {
+        item.abort()
+    });
+    xhr1 = [];
+    xhr2 = [];
+    xhr3 = [];
     firebase.auth().signOut()
 
         .then(function () {
@@ -580,6 +708,7 @@ $(document).ready(function () {
     $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
 
     spotifySearch("37i9dQZEVXbLRQDuF5jeBp");
+
     setTimeout(function () {
         var i = 1;
         $.each(artists, function (key, item) {
@@ -663,9 +792,18 @@ $(document).ready(function () {
                     clicked = true;
                     signedClick = true;
                     xhr.abort();
-                    xhr1.abort();
-                    xhr2.abort();
-                    xhr3.abort();
+                    xhr1.forEach(function(item) {
+                        item.abort()
+                    });
+                    xhr2.forEach(function(item) {
+                        item.abort()
+                    });
+                    xhr3.forEach(function(item) {
+                        item.abort()
+                    });
+                    xhr1 = [];
+                    xhr2 = [];
+                    xhr3 = [];
                     if (d.playlist === 2) {
                         $("#artist-data-table").empty();
                         $('html,body').animate({ scrollTop: $(".scroll_table_2").offset().top }, 'slow');
