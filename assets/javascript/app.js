@@ -369,6 +369,7 @@ function spotifySearch(playlistId) {
                                                     ReSearch = false;
                                                     setTimeout(function() {
                                                         $(".table_row").html('<div class="row"><div class="col-md-12"><div class="data-table"><h3 class="card-header text-center">DATA TABLE</h3></div><div class="scroll_table"></div><div id="popup-container"><div class="card-body"><!--Table Title--><table class="table table-sm table-hover" id="artist-data-table"><thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th><th scope="col"></th></tr></thead></table><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div></div></div></div></div>');
+                                                        artists = {};
                                                         spotifySearch(playlistId);
                                                         setTimeout(function () {
                                                             var i = 1;
@@ -404,6 +405,7 @@ function spotifySearch(playlistId) {
                                             ReSearch = false;
                                             setTimeout(function() {
                                                 $(".table_row").html('<div class="row"><div class="col-md-12"><div class="data-table"><h3 class="card-header text-center">DATA TABLE</h3></div><div class="scroll_table"></div><div id="popup-container"><div class="card-body"><!--Table Title--><table class="table table-sm table-hover" id="artist-data-table"><thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th><th scope="col"></th></tr></thead></table><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div></div></div></div></div>');
+                                                artists = {};
                                                 spotifySearch(playlistId);
                                                 setTimeout(function () {
                                                     var i = 1;
@@ -439,6 +441,7 @@ function spotifySearch(playlistId) {
                                     ReSearch = false;
                                     setTimeout(function() {
                                         $(".table_row").html('<div class="row"><div class="col-md-12"><div class="data-table"><h3 class="card-header text-center">DATA TABLE</h3></div><div class="scroll_table"></div><div id="popup-container"><div class="card-body"><!--Table Title--><table class="table table-sm table-hover" id="artist-data-table"><thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th><th scope="col"></th></tr></thead></table><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div></div></div></div></div>');
+                                        artists = {};
                                         spotifySearch(playlistId);
                                         setTimeout(function () {
                                             var i = 1;
@@ -476,6 +479,7 @@ function spotifySearch(playlistId) {
                     ReSearch = false;
                     setTimeout(function() {
                         $(".table_row").html('<div class="row"><div class="col-md-12"><div class="data-table"><h3 class="card-header text-center">DATA TABLE</h3></div><div class="scroll_table"></div><div id="popup-container"><div class="card-body"><!--Table Title--><table class="table table-sm table-hover" id="artist-data-table"><thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th><th scope="col"></th></tr></thead></table><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div></div></div></div></div>');
+                        artists = {};
                         spotifySearch(playlistId);
                         setTimeout(function () {
                             var i = 1;
