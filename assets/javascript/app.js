@@ -169,7 +169,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
     var pop = "myPopup-" + count;
     popUpSpan.attr("id", pop);
 
-    popup.html('<p class="more_info" >More Info</p>');
+    popup.html('<p class="more_info">More Info</p><p><button id="favoriteButton" data-count=' + count + '>+</button></p>');
     popup.append(popUpSpan);
 
     try {
@@ -193,12 +193,6 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 
         count++;
     }
-
-    // 
-    var favorites = $("<td>").html("<button>+</button>");
-    favorites.attr("id", "favoriteButton");
-    favorites.attr("data-count", count);
-    //
 
 }
 
