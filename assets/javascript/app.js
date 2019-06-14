@@ -694,7 +694,7 @@ $(document).ready(function () {
     });
 
     $(document.body).on("click", "#favoriteButton", function () {
-
+        console.log("clicked");
         var favorites = {};
 
         let indexNum = $(this).attr("data-count");
