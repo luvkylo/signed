@@ -171,7 +171,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            popup.html('<p class="more_info">More Info</p><p><button id="favoriteButton" data-count=' + count + '>+</button></p>');
+            popup.html('<p class="popup more_info">More Info</p><p><button id="favoriteButton" data-count=' + count + '>+</button></p>');
         } else {
             popup.html('<p class="more_info">More Info</p>');
         }
