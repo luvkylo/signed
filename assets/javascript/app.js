@@ -698,9 +698,9 @@ $(document).ready(function () {
         var favorites = {};
 
         let indexNum = $(this).attr("data-count");
-
+        console.log(indexNum);
         var newFavArtist = artists[indexNum];
-
+        console.log(newFavArtist);
         favorites.push(newFavArtist);
 
         database.ref("/favoriteTracks").set({
