@@ -171,7 +171,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            popup.html('<p class="popup more_info">More Info</p>');
+            popup.html('<p class="more_info">More Info</p>');
         } else {
             popup.html('<p class="more_info">More Info</p>');
         }
@@ -692,7 +692,7 @@ $(document).ready(function () {
         showPopup.classList.toggle("show");
 
     });
-    
+
     //  <p><button id="favoriteButton" data-name=' + name + '>+</button></p>
     // $(document.body).on("click", "#favoriteButton", function () {
     //     console.log("clicked");
