@@ -169,14 +169,14 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
     var pop = "myPopup-" + count;
     popUpSpan.attr("id", pop);
 
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            popup.html('<p class="more_info">More Info</p>');
-        } else {
-            popup.html('<p class="more_info">More Info</p>');
-        }
-      });
-    
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //     if (user) {
+    //         popup.html('<p class="more_info">More Info</p>');
+    //     } else {
+    //         popup.html('<p class="more_info">More Info</p>');
+    //     }
+    //   });
+    popup.html('<p class="more_info">More Info</p>');
     popup.append(popUpSpan);
 
     try {
