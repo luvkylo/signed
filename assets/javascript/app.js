@@ -173,7 +173,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            popup.html('<p class="more_info">More Info<button id="favoriteButton' + trackNum +'">+</button></p>');
+            popup.html('<p class="more_info">More Info<button class="favButt" id="favoriteButton' + trackNum +'">+</button></p>');
                 $("#favoriteButton" + trackNum).attr({
                 trackNum: trackNum,
                 name: name,
@@ -706,7 +706,7 @@ $(document).ready(function () {
 
     });
         // trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel
-    $(document.body).on("click", "#favoriteButton", function () {
+    $(document.body).on("click", ".favButt", function () {
         console.log("clicked");
         var favorites = {};
 
