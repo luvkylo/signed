@@ -171,7 +171,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
                                                                 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            popup.html('<p class="more_info">More Info<button id="favoriteButton" data-trackNum=' + trackNum +' data-name=' + name + ' data-trackName=' + trackName + ' data-followers=' + followers + ' data-genre=' + genre + ' data-photo=' + photo + ' data-spotifyId=' + spotifyId + ' data-newlabel=' + newlabel + '>+</button></p>');
+            popup.html('<p class="more_info">More Info<button id="favoriteButton" data-trackNum=' + trackNum +' data-name=' + name + ' data-trackName=' + trackNames + ' data-followers=' + followers + ' data-genre=' + genre + ' data-photo=' + photo + ' data-spotifyId=' + spotifyId + ' data-newlabel=' + newlabel + '>+</button></p>');
             popup.append(popUpSpan);
         } else {
             popup.html('<p class="more_info">More Info</p>');
@@ -707,6 +707,14 @@ $(document).ready(function () {
         let spotifyId = $(this).attr("data-spotifyId");
         let newlabel = $(this).attr("data-newlabel");
 
+        console.log(trackNum);
+        console.log(name);
+        console.log(trackNames);
+        console.log(followers);
+        console.log(genre);
+        console.log(photo);
+        console.log(spotifyId);
+        console.log(newlabel);
         // var newFavArtist = artists[indexNum];
         // console.log(newFavArtist);
         // favorites.push(newFavArtist);
