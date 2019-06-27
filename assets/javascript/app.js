@@ -710,14 +710,14 @@ $(document).ready(function () {
         console.log("clicked");
         var favorites = {};
 
-        let trackNum = $(this).attr("data-trackNum");
-        let name = $(this).attr("data-name");
-        let trackNames = $(this).attr("data-trackNames");
-        let followers = $(this).attr("data-followers");
-        let genre = $(this).attr("data-genre");
-        let photo = $(this).attr("data-photo");
-        let spotifyId = $(this).attr("data-spotifyId");
-        let newlabel = $(this).attr("data-newlabel");
+        let trackNum = $(this).attr("tracknum");
+        let name = $(this).attr("name");
+        let trackNames = $(this).attr("tracknames");
+        let followers = $(this).attr("followers");
+        let genre = $(this).attr("genre");
+        let photo = $(this).attr("photo");
+        let spotifyId = $(this).attr("spotifyid");
+        let newlabel = $(this).attr("newlabel");
 
         console.log(trackNum);
         console.log(name);
