@@ -700,11 +700,10 @@ $(document).ready(function () {
 
         let indexName = $(this).attr("data-name");
         console.log(indexName);
-        let indexNum = artists.indexOf(indexName);
-        console.log("indexNum");
-        var newFavArtist = artists[indexNum];
-        console.log(newFavArtist);
-        favorites.push(newFavArtist);
+        console.log(artists);
+        // var newFavArtist = artists[indexNum];
+        // console.log(newFavArtist);
+        // favorites.push(newFavArtist);
 
         database.ref("/favoriteTracks").set({
             tracks: favorites
