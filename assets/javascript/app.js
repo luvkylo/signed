@@ -168,10 +168,10 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 
     var pop = "myPopup-" + count;
     popUpSpan.attr("id", pop);
-
+                                                                
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            popup.html('<p class="more_info">More Info<button id="favoriteButton" data-name=' + name + '>+</button></p>');
+            popup.html('<p class="more_info">More Info<button id="favoriteButton" data-trackNum=' + trackNum +' data-name=' + name + ' data-trackName=' + trackName + ' data-followers=' + followers + ' data-genre=' + genre + ' data-photo=' + photo + ' data-spotifyId=' + spotifyId + ' data-newlabel=' + newlabel + '>+</button></p>');
             popup.append(popUpSpan);
         } else {
             popup.html('<p class="more_info">More Info</p>');
@@ -693,14 +693,20 @@ $(document).ready(function () {
         showPopup.classList.toggle("show");
 
     });
-
+        // trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel
     $(document.body).on("click", "#favoriteButton", function () {
         console.log("clicked");
         var favorites = {};
 
-        let indexName = $(this).attr("data-name");
-        console.log(indexName);
-        console.log(artists.indexName);
+        let trackNum = $(this).attr("data-trackNum");
+        let name = $(this).attr("data-name");
+        let trackNames = $(this).attr("data-trackNames");
+        let followers = $(this).attr("data-followers");
+        let genre = $(this).attr("data-genre");
+        let photo = $(this).attr("data-photo");
+        let spotifyId = $(this).attr("data-spotifyId");
+        let newlabel = $(this).attr("data-newlabel");
+
         // var newFavArtist = artists[indexNum];
         // console.log(newFavArtist);
         // favorites.push(newFavArtist);
