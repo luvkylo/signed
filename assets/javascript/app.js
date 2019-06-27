@@ -700,7 +700,7 @@ $(document).ready(function () {
 
         let indexName = $(this).attr("data-name");
         console.log(indexName);
-        console.log(artists);
+        console.log(artists.indexName);
         // var newFavArtist = artists[indexNum];
         // console.log(newFavArtist);
         // favorites.push(newFavArtist);
