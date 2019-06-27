@@ -171,10 +171,10 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            popup.html('<p class="more_info">More Info</p><p><button id="favoriteButton" data-name=' + name + '>+</button></p>');
+            popup.html('<p class="more_info">More Info<button id="favoriteButton" data-name=' + name + '>+</button></p>');
             popup.append(popUpSpan);
         } else {
-            popup.html('<p class="more_info">More Info</p><p><button id="favoriteButton" data-name=' + name + '>+</button></p>');
+            popup.html('<p class="more_info">More Info<button id="favoriteButton" data-name=' + name + '>+</button></p>');
             popup.append(popUpSpan);
         }
       });
