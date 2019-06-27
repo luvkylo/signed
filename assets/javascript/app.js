@@ -169,15 +169,16 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
     var pop = "myPopup-" + count;
     popUpSpan.attr("id", pop);
 
-    // firebase.auth().onAuthStateChanged(function(user) {
-    //     if (user) {
-    //         popup.html('<p class="more_info">More Info</p>');
-    //     } else {
-    //         popup.html('<p class="more_info">More Info</p>');
-    //     }
-    //   });
-    popup.html('<p class="more_info">More Info</p>');
-    popup.append(popUpSpan);
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            popup.html('<p class="more_info">More Info</p><p><button id="favoriteButton" data-name=' + name + '>+</button></p>');
+            popup.append(popUpSpan);
+        } else {
+            popup.html('<p class="more_info">More Info</p><p><button id="favoriteButton" data-name=' + name + '>+</button></p>');
+            popup.append(popUpSpan);
+        }
+      });
+   
 
     try {
         genre = capitalize_Words(genre);
@@ -693,22 +694,20 @@ $(document).ready(function () {
 
     });
 
-    //  <p><button id="favoriteButton" data-name=' + name + '>+</button></p>
-    // $(document.body).on("click", "#favoriteButton", function () {
-    //     console.log("clicked");
-    //     var favorites = {};
+    $(document.body).on("click", "#favoriteButton", function () {
+        console.log("clicked");
+        var favorites = {};
 
-    //     let indexName = $(this).attr("data-name");
-    //     console.log(indexName);
-    //     var newFavArtist = artists[indexNum];
-    //     console.log(newFavArtist);
-    //     favorites.push(newFavArtist);
+        let indexName = $(this).attr("data-name");
+        console.log(indexName);
+        var newFavArtist = artists[indexNum];
+        console.log(newFavArtist);
+        favorites.push(newFavArtist);
 
-    //     database.ref("/favoriteTracks").set({
-    //         tracks: favorites
-    //     });
-
-    // })
+        database.ref("/favoriteTracks").set({
+            tracks: favorites
+        });
+    })
 
     $("#artist-data-table").empty();
     $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
