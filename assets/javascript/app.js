@@ -174,7 +174,7 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
             popup.html('<p class="more_info">More Info<button id="favoriteButton" data-name=' + name + '>+</button></p>');
             popup.append(popUpSpan);
         } else {
-            popup.html('<p class="more_info">More Info<button id="favoriteButton" data-name=' + name + '>+</button></p>');
+            popup.html('<p class="more_info">More Info</p>');
             popup.append(popUpSpan);
         }
       });
@@ -700,6 +700,8 @@ $(document).ready(function () {
 
         let indexName = $(this).attr("data-name");
         console.log(indexName);
+        let indexNum = artists.indexOf(indexName);
+        console.log("indexNum");
         var newFavArtist = artists[indexNum];
         console.log(newFavArtist);
         favorites.push(newFavArtist);
