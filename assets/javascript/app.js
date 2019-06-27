@@ -168,10 +168,22 @@ function displayResults(trackNum, name, trackNames, followers, genre, photo, spo
 
     var pop = "myPopup-" + count;
     popUpSpan.attr("id", pop);
-                                                                
+    
+    // data-trackNum=' + trackNum +' data-name=' + name + ' data-trackName=' + trackNames + ' data-followers=' + followers + ' data-genre=' + genre + ' data-photo=' + photo + ' data-spotifyId=' + spotifyId + ' data-newlabel=' + newlabel + '
+
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            popup.html('<p class="more_info">More Info<button id="favoriteButton" data-trackNum=' + trackNum +' data-name=' + name + ' data-trackName=' + trackNames + ' data-followers=' + followers + ' data-genre=' + genre + ' data-photo=' + photo + ' data-spotifyId=' + spotifyId + ' data-newlabel=' + newlabel + '>+</button></p>');
+            popup.html('<p class="more_info">More Info<button id="favoriteButton">+</button></p>');
+                $('#favoriteButton').attr({
+                trackNum: trackNum,
+                name: name,
+                trackNames: trackNames,
+                followers: followers,
+                genre: genre,
+                photo: photo,
+                spotifyId: spotifyId,
+                newlabel: newlabel
+              });
             popup.append(popUpSpan);
         } else {
             popup.html('<p class="more_info">More Info</p>');
