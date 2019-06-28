@@ -705,11 +705,12 @@ $(document).ready(function () {
         showPopup.classList.toggle("show");
 
     });
-        // trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel
+        
+    var favorites = [];
+
     $(document.body).on("click", ".favButt", function () {
         console.log("clicked");
-        var favorites = [];
-
+        
         let trackNum = $(this).attr("tracknum");
         let name = $(this).attr("name");
         let trackNames = $(this).attr("tracknames");
