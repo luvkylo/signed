@@ -708,7 +708,7 @@ $(document).ready(function () {
         // trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel
     $(document.body).on("click", ".favButt", function () {
         console.log("clicked");
-        var favorites = {};
+        var favorites = [];
 
         let trackNum = $(this).attr("tracknum");
         let name = $(this).attr("name");
