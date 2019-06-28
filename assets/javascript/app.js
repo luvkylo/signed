@@ -729,20 +729,12 @@ $(document).ready(function () {
             spotifyId: spotifyId,
             newLabel: newlabel
         }
-        console.log(trackNum);
-        console.log(name);
-        console.log(trackNames);
-        console.log(followers);
-        console.log(genre);
-        console.log(photo);
-        console.log(spotifyId);
-        console.log(newlabel);
 
         console.log(newFavArtist);
-        // var newFavArtist = artists[indexNum];
-        // console.log(newFavArtist);
-        // favorites.push(newFavArtist);
 
+        favorites.push(newFavArtist);
+
+        console.log(favorites);
         database.ref("/favoriteTracks").set({
             tracks: favorites
         });
