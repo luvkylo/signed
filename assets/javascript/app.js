@@ -719,6 +719,16 @@ $(document).ready(function () {
         let spotifyId = $(this).attr("spotifyid");
         let newlabel = $(this).attr("newlabel");
 
+        var newFavArtist = {
+            trackNum: trackNum,
+            name: name,
+            trackNames: trackNames,
+            followers: followers,
+            genre: genre,
+            photo: photo,
+            spotifyId: spotifyId,
+            newLabel: newlabel
+        }
         console.log(trackNum);
         console.log(name);
         console.log(trackNames);
@@ -727,6 +737,8 @@ $(document).ready(function () {
         console.log(photo);
         console.log(spotifyId);
         console.log(newlabel);
+
+        console.log(newFavArtist);
         // var newFavArtist = artists[indexNum];
         // console.log(newFavArtist);
         // favorites.push(newFavArtist);
