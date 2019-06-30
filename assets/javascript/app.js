@@ -710,6 +710,8 @@ $(document).ready(function () {
 
     $(document.body).on("click", ".favButt", function () {
         console.log("clicked");
+
+        var userId = firebase.auth().currentUser.uid;
         
         let trackNum = $(this).attr("tracknum");
         let name = $(this).attr("name");
@@ -736,7 +738,7 @@ $(document).ready(function () {
         favorites.push(newFavArtist);
 
         console.log(favorites);
-        database.ref("/favoriteTracks").set({
+        database.ref('users/' + userId + '/favoriteTracks').set({
             tracks: favorites
         });
     })
