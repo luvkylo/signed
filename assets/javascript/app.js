@@ -581,8 +581,7 @@ function googleSignin() {
                 if (userList[user.uid] == undefined) {
                     usersRef.child(user.uid).set({
                         displayName: user.displayName,
-                        email: user.email,
-                        favorite: ""
+                        email: user.email
                     });
                 }
             });
@@ -738,8 +737,8 @@ $(document).ready(function () {
         favorites.push(newFavArtist);
 
         console.log(favorites);
-        database.ref('users/' + userId + '/favoriteTracks').set({
-            tracks: favorites
+        database.ref('users/' + userId).set({
+            favorites: favorites
         });
     })
 
