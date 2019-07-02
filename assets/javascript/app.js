@@ -641,7 +641,7 @@ function googleSignin() {
 
     $(".signin").addClass("invisible").css("display", "none");
     $(".signout").removeClass("invisible").css("display", "initial");
-    $(".fav").removeClass("invisible").css("display", "initial");
+    $(".favorites").removeClass("invisible").css("display", "initial");
 
 }
 
@@ -706,9 +706,7 @@ $(document).ready(function () {
     });
         
     var favorites = [];
-
     $(document.body).on("click", ".favButt", function () {
-        console.log("clicked");
 
         var userId = firebase.auth().currentUser.uid;
         
@@ -740,6 +738,12 @@ $(document).ready(function () {
         database.ref('users/' + userId).set({
             favorites: favorites
         });
+    })
+
+    $(document.body).on("click", ".favorites", function () {
+        var favoriteArtists = userId/favorites
+
+        console.log(favoriteArtists);
     })
 
     $("#artist-data-table").empty();
