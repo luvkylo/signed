@@ -742,7 +742,7 @@ $(document).ready(function () {
 
     $(document.body).on("click", ".favorites", function () {
         var userId = firebase.auth().currentUser.uid;
-        var favoriteArtists = userId/favorites
+        var favoriteArtists = userId.favorites;
 
         console.log(favoriteArtists);
     })
