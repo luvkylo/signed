@@ -749,14 +749,14 @@ $(document).ready(function () {
          snapshot.forEach(function(childSnapshot) {
           var childData = childSnapshot.val();
 
-          var trackNum = childData.favorites.trackNum;
-          var name = childData.favorites.name;
-          var trackName = childData.favorites.trackNames;
-          var followers = childData.favorites.followers;
-          var genre = childData.favorites.genre;
-          var photo = childData.favorites.photo;
-          var spotifyId = childData.favorites.spotifyId;
-          var label = childData.favorites.newLabel;
+          var trackNum = childData.trackNum;
+          var name = childData.name;
+          var trackName = childData.trackNames;
+          var followers = childData.followers;
+          var genre = childData.genre;
+          var photo = childData.photo;
+          var spotifyId = childData.spotifyId;
+          var label = childData.newLabel;
           console.log(childData);
           console.log(trackNum);
 
