@@ -753,6 +753,7 @@ $(document).ready(function () {
          snapshot.forEach(function(childSnapshot) {
         var childData = childSnapshot.val();
 
+        var key = Object.keys(childData[userId]);
         //   var trackNum = childData.trackNum;
         //   var name = childData.name;
         //   var trackName = childData.trackNames;
@@ -762,7 +763,7 @@ $(document).ready(function () {
         //   var spotifyId = childData.spotifyId;
         //   var label = childData.newLabel;
 
-          console.log(childData);
+          console.log(key);
 
             // displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
          });
