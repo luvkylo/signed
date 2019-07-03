@@ -744,7 +744,7 @@ $(document).ready(function () {
         $("#artist-data-table").empty();
 
         var userId = firebase.auth().currentUser.uid;
-        var ref = firebase.database().ref("users");
+        var ref = firebase.database().ref();
 
         console.log(userId);
         console.log(ref);
