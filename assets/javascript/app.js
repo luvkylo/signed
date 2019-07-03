@@ -743,8 +743,8 @@ $(document).ready(function () {
     $(document.body).on("click", ".favorites", function () {
         var userId = firebase.auth().currentUser.uid;
 
-        var ref = firebase.database().ref(userId);
-
+        var ref = firebase.database().ref(userId.favorites);
+        $("#artist-data-table").empty();
         ref.on("value", function(snapshot) {
          snapshot.forEach(function(childSnapshot) {
           var childData = childSnapshot.val();
@@ -758,7 +758,7 @@ $(document).ready(function () {
           var label = childData.newLabel;
           console.log(childData);
 
-          displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label)
+            displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
          });
         });
 
