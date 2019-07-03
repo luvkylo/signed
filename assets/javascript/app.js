@@ -750,9 +750,8 @@ $(document).ready(function () {
         console.log(ref);
         
         ref.on("value", function(snapshot) {
-            console.log(snapshot);
          snapshot.forEach(function(childSnapshot) {
-        var childData = childSnapshot.val().userId;
+        var childData = childSnapshot.val();
 
         //   var trackNum = childData.trackNum;
         //   var name = childData.name;
