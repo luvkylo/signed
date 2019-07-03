@@ -754,14 +754,14 @@ $(document).ready(function () {
          snapshot.forEach(function(childSnapshot) {
         var childData = childSnapshot.val().userId;
 
-          var trackNum = childData.trackNum;
-          var name = childData.name;
-          var trackName = childData.trackNames;
-          var followers = childData.followers;
-          var genre = childData.genre;
-          var photo = childData.photo;
-          var spotifyId = childData.spotifyId;
-          var label = childData.newLabel;
+        //   var trackNum = childData.trackNum;
+        //   var name = childData.name;
+        //   var trackName = childData.trackNames;
+        //   var followers = childData.followers;
+        //   var genre = childData.genre;
+        //   var photo = childData.photo;
+        //   var spotifyId = childData.spotifyId;
+        //   var label = childData.newLabel;
 
           console.log(childData);
 
