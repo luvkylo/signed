@@ -765,7 +765,7 @@ $(document).ready(function () {
 
           console.log(childData);
 
-            displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
+            // displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
          });
         });
 
