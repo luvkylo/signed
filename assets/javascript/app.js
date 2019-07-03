@@ -750,7 +750,7 @@ $(document).ready(function () {
           var childData = childSnapshot.val();
           var trackNum = childData.trackNum;
           var name = childData.name;
-          var trackNames = childData.trackNames;
+          var trackName = childData.trackNames;
           var followers = childData.followers;
           var genre = childData.genre;
           var photo = childData.photo;
