@@ -744,14 +744,15 @@ $(document).ready(function () {
         $("#artist-data-table").empty();
 
         var userId = firebase.auth().currentUser.uid;
-        var ref = firebase.database().ref(userId);
+        var ref = firebase.database().ref("users");
 
+        console.log(userId);
         console.log(ref);
         
         ref.on("value", function(snapshot) {
             console.log(snapshot);
          snapshot.forEach(function(childSnapshot) {
-        var childData = childSnapshot.val();
+        var childData = childSnapshot.val().userId;
 
           var trackNum = childData.trackNum;
           var name = childData.name;
