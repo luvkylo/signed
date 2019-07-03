@@ -763,7 +763,7 @@ $(document).ready(function () {
         //   var spotifyId = childData.spotifyId;
         //   var label = childData.newLabel;
 
-          console.log(childData);
+          console.log(childData[0]);
 
             displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
          });
