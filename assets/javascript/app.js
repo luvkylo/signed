@@ -743,7 +743,8 @@ $(document).ready(function () {
     $(document.body).on("click", ".favorites", function () {
         var userId = firebase.auth().currentUser.uid;
 
-        var ref = firebase.database().ref(userId.favorites);
+        var ref = firebase.database().ref(userId);
+        console.log(ref);
         $("#artist-data-table").empty();
         ref.on("value", function(snapshot) {
          snapshot.forEach(function(childSnapshot) {
