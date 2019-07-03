@@ -743,19 +743,20 @@ $(document).ready(function () {
     $(document.body).on("click", ".favorites", function () {
         var userId = firebase.auth().currentUser.uid;
 
-        var ref = firebase.database().ref(userId.favorites);
+        var ref = firebase.database().ref(userId);
         $("#artist-data-table").empty();
         ref.on("value", function(snapshot) {
          snapshot.forEach(function(childSnapshot) {
           var childData = childSnapshot.val();
-          var trackNum = childData.trackNum;
-          var name = childData.name;
-          var trackName = childData.trackNames;
-          var followers = childData.followers;
-          var genre = childData.genre;
-          var photo = childData.photo;
-          var spotifyId = childData.spotifyId;
-          var label = childData.newLabel;
+
+          var trackNum = childData.favorites.trackNum;
+          var name = childData.favorites.name;
+          var trackName = childData.favorites.trackNames;
+          var followers = childData.favorites.followers;
+          var genre = childData.favorites.genre;
+          var photo = childData.favorites.photo;
+          var spotifyId = childData.favorites.spotifyId;
+          var label = childData.favorites.newLabel;
           console.log(childData);
 
             displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
