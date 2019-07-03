@@ -758,7 +758,7 @@ $(document).ready(function () {
           var spotifyId = childSnapshot.spotifyId;
           var label = childSnapshot.newLabel;
 
-          console.log(trackNum);
+          console.log(childSnapshot);
 
             displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
          });
