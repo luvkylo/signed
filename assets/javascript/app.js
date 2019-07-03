@@ -742,9 +742,27 @@ $(document).ready(function () {
 
     $(document.body).on("click", ".favorites", function () {
         var userId = firebase.auth().currentUser.uid;
-        var favoriteArtists = userId.favorites;
 
-        console.log(favoriteArtists);
+        var ref = firebase.database().ref(userId);
+
+        ref.on("value", function(snapshot) {
+         snapshot.forEach(function(childSnapshot) {
+          var childData = childSnapshot.val();
+          var trackNum = childData.trackNum;
+          var name = childData.name;
+          var trackNames = childData.trackNames;
+          var followers = childData.followers;
+          var genre = childData.genre;
+          var photo = childData.photo;
+          var spotifyId = childData.spotifyId;
+          var label = childData.newLabel;
+          console.log(childData);
+
+          displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label)
+         });
+        });
+
+        
     })
 
     $("#artist-data-table").empty();
