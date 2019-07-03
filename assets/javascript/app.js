@@ -743,7 +743,7 @@ $(document).ready(function () {
     $(document.body).on("click", ".favorites", function () {
         var userId = firebase.auth().currentUser.uid;
 
-        var ref = firebase.database().ref(userId);
+        var ref = firebase.database().ref(userId.favorites);
         $("#artist-data-table").empty();
         ref.on("value", function(snapshot) {
          snapshot.forEach(function(childSnapshot) {
@@ -758,6 +758,7 @@ $(document).ready(function () {
           var spotifyId = childData.favorites.spotifyId;
           var label = childData.favorites.newLabel;
           console.log(childData);
+          console.log(trackNum);
 
             displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
          });
