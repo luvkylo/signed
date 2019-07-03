@@ -758,7 +758,6 @@ $(document).ready(function () {
           var spotifyId = childSnapshot.spotifyId;
           var label = childSnapshot.newLabel;
 
-          console.log(childData);
           console.log(trackNum);
 
             displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
