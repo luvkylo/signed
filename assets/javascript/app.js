@@ -745,10 +745,11 @@ $(document).ready(function () {
 
         var userId = firebase.auth().currentUser.uid;
         var ref = firebase.database().ref(userId);
-        
+
         console.log(ref);
         
         ref.on("value", function(snapshot) {
+            console.log(snapshot);
          snapshot.forEach(function(childSnapshot) {
         var childData = childSnapshot.val();
 
