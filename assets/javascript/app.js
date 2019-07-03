@@ -748,16 +748,16 @@ $(document).ready(function () {
         $("#artist-data-table").empty();
         ref.on("value", function(snapshot) {
          snapshot.forEach(function(childSnapshot) {
-          var childData = childSnapshot.val();
 
-          var trackNum = childData.trackNum;
-          var name = childData.name;
-          var trackName = childData.trackNames;
-          var followers = childData.followers;
-          var genre = childData.genre;
-          var photo = childData.photo;
-          var spotifyId = childData.spotifyId;
-          var label = childData.newLabel;
+          var trackNum = childSnapshot.trackNum;
+          var name = childSnapshot.name;
+          var trackName = childSnapshot.trackNames;
+          var followers = childSnapshot.followers;
+          var genre = childSnapshot.genre;
+          var photo = childSnapshot.photo;
+          var spotifyId = childSnapshot.spotifyId;
+          var label = childSnapshot.newLabel;
+
           console.log(childData);
           console.log(trackNum);
 
