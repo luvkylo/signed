@@ -748,7 +748,7 @@ $(document).ready(function () {
 
         console.log(userId);
         console.log(rootRef);
-        var newRoot = rootRef.child(userID).child('favorites');
+        var newRoot = rootRef.child(userId).child('favorites');
 
         console.log(newRoot);
 
