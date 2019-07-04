@@ -761,7 +761,7 @@ $(document).ready(function () {
             var genre = value.genre;
             var photo = value.photo;
             var spotifyId = value.spotifyId;
-            var newLabel = value.newlabel;
+            var newlabel = value.newLabel;
 
             console.log(key);
 
@@ -772,7 +772,9 @@ $(document).ready(function () {
             console.log(genre);
             console.log(photo);
             console.log(spotifyId);
-            console.log(newLabel);
+            console.log(newlabel);
+
+            displayResults(trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel);
             
             });
         });
