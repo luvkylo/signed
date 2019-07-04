@@ -746,12 +746,14 @@ $(document).ready(function () {
         var userId = firebase.auth().currentUser.uid;
         console.log(userId);
 
-        var rootRef = firebase.database().ref(userId + '/favorites');
-        rootRef.once('value', function(snapshot){
-            snapshot.forEach(function(_child){
-                var track = _child.key;
-                console.log(track);
-            });
+        var rootRef = firebase.database().ref();
+        var urlRef = rootRef.child(userId + '/favorites');
+            urlRef.once('value', function(snapshot){
+                snapshot.forEach(function (snapshot) {
+                    var key = snapshot.key();
+                    var obj = snapshot.val();
+                    console.log(key);
+                    console.log(obj);
         });
         
         // ref.on("value", function(snapshot) {
