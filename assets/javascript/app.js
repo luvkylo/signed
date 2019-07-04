@@ -753,15 +753,15 @@ $(document).ready(function () {
          snapshot.forEach(function(childSnapshot) {
         var childData = childSnapshot.val();
 
-        var key = Object.keys(childData[userId]);
-        //   var trackNum = childData.trackNum;
-        //   var name = childData.name;
-        //   var trackName = childData.trackNames;
-        //   var followers = childData.followers;
-        //   var genre = childData.genre;
-        //   var photo = childData.photo;
-        //   var spotifyId = childData.spotifyId;
-        //   var label = childData.newLabel;
+        var key = Object.keys(childData[userId.favorites]);
+        //   var trackNum = key.trackNum;
+        //   var name = key.name;
+        //   var trackName = key.trackNames;
+        //   var followers = key.followers;
+        //   var genre = key.genre;
+        //   var photo = key.photo;
+        //   var spotifyId = key.spotifyId;
+        //   var label = key.newLabel;
 
           console.log(key);
 
