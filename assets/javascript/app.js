@@ -754,6 +754,7 @@ $(document).ready(function () {
                     var obj = snapshot.val();
                     console.log(key);
                     console.log(obj);
+                })
         });
         
         // ref.on("value", function(snapshot) {
