@@ -764,11 +764,16 @@ $(document).ready(function () {
             var newLabel = value.newlabel;
 
             console.log(key);
-            console.log(value);
-            console.log(value.followers)
-            console.log(value.name)
 
-
+            console.log(trackNum);
+            console.log(name);
+            console.log(trackNames);
+            console.log(followers);
+            console.log(genre);
+            console.log(photo);
+            console.log(spotifyId);
+            console.log(newLabel);
+            
             });
         });
     })
