@@ -753,7 +753,7 @@ $(document).ready(function () {
          snapshot.forEach(function(childSnapshot) {
         var childData = childSnapshot.val();
 
-        var key = Object.keys(childData[userId[favorites]]);
+        var key = Object.keys(childData[userId[0]]);
         //   var trackNum = key.trackNum;
         //   var name = key.name;
         //   var trackName = key.trackNames;
