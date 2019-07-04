@@ -744,16 +744,15 @@ $(document).ready(function () {
         $("#artist-data-table").empty();
 
         var userId = firebase.auth().currentUser.uid;
-        var ref = firebase.database().ref();
+        var ref = firebase.database().ref(userId);
 
         console.log(userId);
         console.log(ref);
-        
+
         ref.on("value", function(snapshot) {
          snapshot.forEach(function(childSnapshot) {
-        var childData = childSnapshot.val();
 
-        var key = Object.keys(childData)[0];
+        var ref = firebase.database().ref().child(userId).child("favorites").child();
         //   var trackNum = key.trackNum;
         //   var name = key.name;
         //   var trackName = key.trackNames;
@@ -763,7 +762,7 @@ $(document).ready(function () {
         //   var spotifyId = key.spotifyId;
         //   var label = key.newLabel;
 
-          console.log(key);
+          console.log(ref);
 
             // displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
          });
