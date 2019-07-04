@@ -744,9 +744,15 @@ $(document).ready(function () {
         $("#artist-data-table").empty();
 
         var userId = firebase.auth().currentUser.uid;
-        var rootRef = firebase.database().ref(userId);
-
         console.log(userId);
+
+        var rootRef = firebase.database().ref(userId + '/favorites');
+        rootRef.once('value', function(snapshot){
+            snapshot.forEach(function(_child){
+                var track = _child.key;
+                console.log(track);
+            });
+        });
         
         // ref.on("value", function(snapshot) {
         //     snapshot.forEach(function(childSnapshot) {
