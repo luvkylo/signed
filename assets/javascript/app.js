@@ -747,15 +747,13 @@ $(document).ready(function () {
         var rootRef = firebase.database().ref('users');
 
         console.log(userId);
-        console.log(rootRef);
         var newRoot = rootRef.child(userId).child('favorites');
-
-        console.log(newRoot);
 
         newRoot.once('value', function(snapshot){
             snapshot.forEach(function(_child){
-                var trackNum = _child.key;
-                console.log(trackNum);
+                var track = _child;
+                console.log(track);
+                
             });
         });
         
