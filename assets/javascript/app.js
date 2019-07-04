@@ -756,6 +756,8 @@ $(document).ready(function () {
 
             console.log(key);
             console.log(value);
+            console.log(value.followers)
+            console.log(value.name)
 
 
             });
