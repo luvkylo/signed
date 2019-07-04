@@ -744,32 +744,42 @@ $(document).ready(function () {
         $("#artist-data-table").empty();
 
         var userId = firebase.auth().currentUser.uid;
-        var ref = firebase.database().ref(userId);
+        var rootRef = firebase.database().ref('users');
 
         console.log(userId);
-        console.log(ref);
-        
-        ref.on("value", function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-                
-        var childData = childSnapshot.val();
+        console.log(rootRef);
+        var newRoot = rootRef.child(userID).child('favorites');
 
-        var key = Object.keys(childData);
-        //   var trackNum = key.trackNum;
-        //   var name = key.name;
-        //   var trackName = key.trackNames;
-        //   var followers = key.followers;
-        //   var genre = key.genre;
-        //   var photo = key.photo;
-        //   var spotifyId = key.spotifyId;
-        //   var label = key.newLabel;
+        console.log(newRoot);
 
-            console.log(childData);
-            console.log(key);
-
-            // displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
+        newRoot.once('value', function(snapshot){
+            snapshot.forEach(function(_child){
+                var trackNum = _child.key;
+                console.log(trackNum);
             });
         });
+        
+        // ref.on("value", function(snapshot) {
+        //     snapshot.forEach(function(childSnapshot) {
+
+        // var childData = childSnapshot.val();
+
+        // var key = Object.keys(childData);
+        // //   var trackNum = key.trackNum;
+        // //   var name = key.name;
+        // //   var trackName = key.trackNames;
+        // //   var followers = key.followers;
+        // //   var genre = key.genre;
+        // //   var photo = key.photo;
+        // //   var spotifyId = key.spotifyId;
+        // //   var label = key.newLabel;
+
+        //     console.log(childData);
+        //     console.log(key);
+
+        //     // displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
+        //     });
+        // });
 
         
     })
