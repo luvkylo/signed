@@ -750,10 +750,11 @@ $(document).ready(function () {
         console.log(ref);
         
         ref.on("value", function(snapshot) {
-         snapshot.forEach(function(childSnapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                
         var childData = childSnapshot.val();
 
-        var key = Object.keys(childData)[0];
+        var key = Object.keys(childData);
         //   var trackNum = key.trackNum;
         //   var name = key.name;
         //   var trackName = key.trackNames;
@@ -763,10 +764,11 @@ $(document).ready(function () {
         //   var spotifyId = key.spotifyId;
         //   var label = key.newLabel;
 
-          console.log(childData);
+            console.log(childData);
+            console.log(key);
 
             // displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
-         });
+            });
         });
 
         
