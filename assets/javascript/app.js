@@ -746,16 +746,19 @@ $(document).ready(function () {
         var userId = firebase.auth().currentUser.uid;
         console.log(userId);
 
-        var rootRef = firebase.database().ref();
-        var urlRef = rootRef.child(userId + '/favorites');
-            urlRef.once('value', function(snapshot){
-                snapshot.forEach(function (snapshot) {
-                    var key = snapshot.key();
-                    var obj = snapshot.val();
-                    console.log(key);
-                    console.log(obj);
-                })
+        var query = firebase.database().ref(userId).orderByKey();
+        query.once("value")
+        .then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+            
+            var key = childSnapshot.key;
+            var childData = childSnapshot.val();
+
+            console.log(key);
+            console.log(childData);
+            });
         });
+
         
         // ref.on("value", function(snapshot) {
         //     snapshot.forEach(function(childSnapshot) {
