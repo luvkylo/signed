@@ -754,39 +754,28 @@ $(document).ready(function () {
             var key = childSnapshot.key;
             var value = childSnapshot.val();
 
+            var trackNum = value.trackNum;
+            var name = value.name;
+            var trackNames = value.trackNames;
+            var followers = value.followers;
+            var genre = value.genre;
+            var photo = value.photo;
+            var spotifyId = value.spotifyId;
+            var newLabel = value.newlabel;
+
             console.log(key);
-            console.log(value);
-            console.log(value.followers)
-            console.log(value.name)
 
-
+            console.log(trackNum);
+            console.log(name);
+            console.log(trackNames);
+            console.log(followers);
+            console.log(genre);
+            console.log(photo);
+            console.log(spotifyId);
+            console.log(newLabel);
+            
             });
         });
-
-        
-        // ref.on("value", function(snapshot) {
-        //     snapshot.forEach(function(childSnapshot) {
-
-        // var childData = childSnapshot.val();
-
-        // var key = Object.keys(childData);
-        // //   var trackNum = key.trackNum;
-        // //   var name = key.name;
-        // //   var trackName = key.trackNames;
-        // //   var followers = key.followers;
-        // //   var genre = key.genre;
-        // //   var photo = key.photo;
-        // //   var spotifyId = key.spotifyId;
-        // //   var label = key.newLabel;
-
-        //     console.log(childData);
-        //     console.log(key);
-
-        //     // displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
-        //     });
-        // });
-
-        
     })
 
     $("#artist-data-table").empty();
