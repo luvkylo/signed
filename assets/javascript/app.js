@@ -735,7 +735,7 @@ $(document).ready(function () {
         favorites.push(newFavArtist);
 
         console.log(favorites);
-        database.ref('users/' + userId).set({
+        database.ref(userId).set({
             favorites: favorites
         });
     })
@@ -744,18 +744,9 @@ $(document).ready(function () {
         $("#artist-data-table").empty();
 
         var userId = firebase.auth().currentUser.uid;
-        var rootRef = firebase.database().ref('users');
+        var rootRef = firebase.database().ref(userId);
 
         console.log(userId);
-        var newRoot = rootRef.child(userId).child('favorites');
-
-        newRoot.once('value', function(snapshot){
-            snapshot.forEach(function(_child){
-                var track = _child;
-                console.log(track);
-                
-            });
-        });
         
         // ref.on("value", function(snapshot) {
         //     snapshot.forEach(function(childSnapshot) {
