@@ -748,11 +748,12 @@ $(document).ready(function () {
 
         console.log(userId);
         console.log(ref);
-
+        
         ref.on("value", function(snapshot) {
          snapshot.forEach(function(childSnapshot) {
+        var childData = childSnapshot.val();
 
-        var ref = firebase.database().ref().child(userId).child("favorites").child();
+        var key = Object.keys(childData)[0];
         //   var trackNum = key.trackNum;
         //   var name = key.name;
         //   var trackName = key.trackNames;
@@ -762,7 +763,7 @@ $(document).ready(function () {
         //   var spotifyId = key.spotifyId;
         //   var label = key.newLabel;
 
-          console.log(ref);
+          console.log(childData);
 
             // displayResults(trackNum, name, trackName, followers, genre, photo, spotifyId, label);
          });
