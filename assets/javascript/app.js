@@ -718,6 +718,7 @@ $(document).ready(function () {
         let photo = $(this).attr("photo");
         let spotifyId = $(this).attr("spotifyid");
         let newlabel = $(this).attr("newlabel");
+        console.log(trackNames);
 
         var newFavArtist = {
             trackNum: trackNum,
