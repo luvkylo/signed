@@ -747,34 +747,38 @@ $(document).ready(function () {
         console.log(userId);
 
         var query = firebase.database().ref(userId + '/favorites').orderByKey();
+
+        $("#artist-data-table").empty();
+        $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th></tr></thead>');
+        $(".country").remove();
         query.once("value")
         .then(function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
             
-            var key = childSnapshot.key;
-            var value = childSnapshot.val();
+                var key = childSnapshot.key;
+                var value = childSnapshot.val();
 
-            var trackNum = value.trackNum;
-            var name = value.name;
-            var trackNames = value.trackNames;
-            var followers = value.followers;
-            var genre = value.genre;
-            var photo = value.photo;
-            var spotifyId = value.spotifyId;
-            var newlabel = value.newLabel;
+                var trackNum = value.trackNum;
+                var name = value.name;
+                var trackNames = value.trackNames;
+                var followers = value.followers;
+                var genre = value.genre;
+                var photo = value.photo;
+                var spotifyId = value.spotifyId;
+                var newlabel = value.newLabel;
 
-            console.log(key);
+                console.log(key);
 
-            console.log(trackNum);
-            console.log(name);
-            console.log(trackNames);
-            console.log(followers);
-            console.log(genre);
-            console.log(photo);
-            console.log(spotifyId);
-            console.log(newlabel);
+                console.log(trackNum);
+                console.log(name);
+                console.log(trackNames);
+                console.log(followers);
+                console.log(genre);
+                console.log(photo);
+                console.log(spotifyId);
+                console.log(newlabel);
 
-            // displayResults(trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel);
+                displayResults(trackNum, name, trackNames, followers, genre, photo, spotifyId, newlabel);
             
             });
         });
