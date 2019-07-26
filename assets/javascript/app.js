@@ -712,7 +712,7 @@ $(document).ready(function () {
         
         let trackNum = $(this).attr("tracknum");
         let name = $(this).attr("name");
-        let trackNames = $(this).attr("tracknames");
+        let trackNames = $(this).attr("tracknames").split(",");
         let followers = $(this).attr("followers");
         let genre = $(this).attr("genre");
         let photo = $(this).attr("photo");
@@ -751,6 +751,7 @@ $(document).ready(function () {
         $("#artist-data-table").empty();
         $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th></tr></thead>');
         $(".country").remove();
+        $(".map_row").remove();
         query.once("value")
         .then(function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
