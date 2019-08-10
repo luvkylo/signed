@@ -669,7 +669,7 @@ function googleSignout() {
         });
     $(".signin").removeClass("invisible").css("display", "initial");
     $(".signout").addClass("invisible").css("display", "none");
-    $(".fav").addClass("invisible").css("display", "none");
+    $(".favorites").addClass("invisible").css("display", "none");
     $(".map_row").css('display', 'none');
     $("#artist-data-table").empty();
     $("#artist-data-table").html('<thead><tr><th scope="col" onclick="sortTable(0)">Nº</th><th scope="col" onclick="sortTable(1)">ARTIST</th><th scope="col" onclick="sortTable(2)">TRACK NAME</th><th scope="col" onclick="sortTable(3)">LABEL</th><th scope="col"></th></tr></thead><div id="spinner"><img id="img-spinner" src="https://media.giphy.com/media/AEs9flr7tNPBw1cs8Q/giphy.gif" alt="loading"><p> LOADING </p></div>');
